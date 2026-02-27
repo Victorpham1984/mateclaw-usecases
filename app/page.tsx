@@ -89,7 +89,7 @@ function Home() {
               <span className="text-[#FFD460]">MateClaw</span> Use Cases
             </h1>
             <p className="text-base sm:text-lg text-[#8b949e] max-w-2xl mx-auto mb-8">
-              Playbook thực chiến với OpenClaw AI agents — copy prompt & bắt đầu ngay
+              Battle-tested playbook with OpenClaw AI agents — copy prompt & start now
             </p>
 
             {/* Stats */}
@@ -118,6 +118,20 @@ function Home() {
               </div>
             </div>
 
+            {/* Upsell CTA */}
+            <div className="text-center mb-8">
+              <p className="text-gray-400 mb-4">
+                💡 Using OpenClaw use cases is great. <strong className="text-[#e6edf3]">Building your own AI CEO is better.</strong>
+              </p>
+              <a
+                href="/ai-ceo"
+                data-cta="homepage-hero"
+                className="inline-block bg-[#FFD460] text-[#2D4059] font-bold px-6 py-3 rounded-lg hover:bg-[#FFE895] transition"
+              >
+                Learn to build your AI squad in 7 days →
+              </a>
+            </div>
+
             {/* Search */}
             <div className="relative max-w-xl mx-auto mb-8">
               <MagnifyingGlass
@@ -128,7 +142,7 @@ function Home() {
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Tìm kiếm use case, tag, prompt..."
+                placeholder="Search use cases, tags, prompts..."
                 className="w-full pl-11 pr-10 py-3 rounded-xl bg-[#161b22] border border-[#30363d] text-[#e6edf3] placeholder-[#484f58] focus:outline-none focus:border-[#FFD460]/50 focus:ring-1 focus:ring-[#FFD460]/20 transition-all text-sm"
               />
               {query && (
@@ -154,7 +168,7 @@ function Home() {
                     : "border-[#30363d] text-[#8b949e]"
                 }`}
               >
-                Tất cả
+                All
               </button>
               {CATEGORY_KEYS.map((key) => (
                 <button
@@ -194,15 +208,15 @@ function Home() {
       <main className="max-w-6xl mx-auto px-4 pb-20">
         <div className="flex items-center justify-between mb-6">
           <p className="text-sm text-[#8b949e]">
-            {filtered.length} kết quả
-            {query && <span className="text-[#484f58]"> cho &ldquo;{query}&rdquo;</span>}
+            {filtered.length} results
+            {query && <span className="text-[#484f58]"> for &ldquo;{query}&rdquo;</span>}
           </p>
         </div>
 
         {filtered.length === 0 ? (
           <div className="text-center py-20">
-            <p className="text-[#8b949e] text-lg mb-2">Không tìm thấy use case nào</p>
-            <p className="text-[#484f58] text-sm">Thử tìm kiếm với từ khóa khác</p>
+            <p className="text-[#8b949e] text-lg mb-2">No use cases found</p>
+            <p className="text-[#484f58] text-sm">Try searching with different keywords</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -217,6 +231,16 @@ function Home() {
           </div>
         )}
       </main>
+
+      {/* Upsell Footer Banner */}
+      <div className="bg-[#2D4059] border-t border-[#FFD460]/20 py-4 text-center">
+        <p className="text-gray-300">
+          Ready to 10x your productivity?
+          <a href="/ai-ceo" data-cta="footer-banner" className="text-[#FFD460] hover:underline ml-2 font-semibold">
+            Build your AI squad →
+          </a>
+        </p>
+      </div>
 
       {/* Footer */}
       <footer className="border-t border-[#30363d] py-8">

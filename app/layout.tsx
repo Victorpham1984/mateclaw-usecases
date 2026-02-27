@@ -13,12 +13,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "MateClaw Use Cases — AI Agent Playbook cho Business",
+  title: "MateClaw Use Cases — AI Agent Playbook for Business",
   description:
-    "20+ use cases thực chiến với OpenClaw AI agents. Từ setup ban đầu đến automation marketing, development, customer support. Copy prompt & bắt đầu ngay.",
+    "20+ battle-tested use cases with OpenClaw AI agents. From initial setup to marketing automation, development, and customer support. Copy prompt & start now.",
   openGraph: {
     title: "MateClaw Use Cases — AI Agent Playbook",
-    description: "20+ use cases thực chiến với OpenClaw AI agents",
+    description: "20+ battle-tested use cases with OpenClaw AI agents",
     siteName: "MateClaw",
   },
 };
@@ -29,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="vi" className="dark">
+    <html lang="en" className="dark">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

@@ -81,6 +81,7 @@ function BreadcrumbNav({ useCase }: { useCase: UseCase }) {
 // ── PromptBlock ────────────────────────────────────────────────
 function PromptBlock({ prompt }: { prompt: string }) {
   const [copied, setCopied] = useState(false);
+  const [showUpsell, setShowUpsell] = useState(false);
   const blockRef = useRef<HTMLDivElement>(null);
 
   const handleMouseMove = useCallback((e: React.MouseEvent) => {
@@ -95,6 +96,7 @@ function PromptBlock({ prompt }: { prompt: string }) {
     await navigator.clipboard.writeText(prompt);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
+    setTimeout(() => setShowUpsell(true), 2000);
   };
 
   return (
@@ -119,12 +121,28 @@ function PromptBlock({ prompt }: { prompt: string }) {
           }`}
         >
           {copied ? <Check size={16} /> : <Copy size={16} />}
-          {copied ? "Đã copy!" : "Copy prompt"}
+          {copied ? "Copied!" : "Copy prompt"}
         </button>
       </div>
       <pre className="p-5 text-sm text-[#e6edf3] font-mono leading-relaxed whitespace-pre-wrap break-words relative z-10">
         {prompt}
       </pre>
+      {showUpsell && (
+        <div className="px-4 pb-4 animate-in slide-in-from-top">
+          <div className="rounded-lg border border-[#FFD460]/20 bg-[#FFD460]/5 p-4 flex flex-col sm:flex-row items-start sm:items-center gap-3">
+            <p className="text-sm text-[#8b949e] flex-1">
+              ✅ Prompt copied! Want to automate this entire workflow?
+            </p>
+            <a
+              href="/ai-ceo"
+              data-cta="detail-copy-success"
+              className="text-sm font-semibold text-[#FFD460] hover:underline whitespace-nowrap"
+            >
+              Build your AI squad →
+            </a>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -375,10 +393,20 @@ export default function CaseDetailPage({ id }: { id: string }) {
             className="inline-flex items-center gap-2 text-sm text-[#FFD460] hover:underline"
           >
             <ArrowLeft size={14} />
-            Quay lại tất cả use cases
+            Back to all use cases
           </Link>
         </div>
       </main>
+
+      {/* Upsell Footer Banner */}
+      <div className="bg-[#2D4059] border-t border-[#FFD460]/20 py-4 text-center">
+        <p className="text-gray-300">
+          Ready to 10x your productivity?
+          <a href="/ai-ceo" data-cta="footer-banner" className="text-[#FFD460] hover:underline ml-2 font-semibold">
+            Build your AI squad →
+          </a>
+        </p>
+      </div>
 
       {/* Footer */}
       <footer className="border-t border-[#30363d] py-8">

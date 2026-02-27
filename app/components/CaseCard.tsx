@@ -99,7 +99,7 @@ export default function CaseCard({ useCase, onTagClick, onCategoryClick }: Props
             onClick={() => setExpanded(true)}
             className="text-[#FFD460] hover:underline ml-1 cursor-pointer"
           >
-            xem thêm
+            show more
           </button>
         )}
       </p>
@@ -147,7 +147,7 @@ export default function CaseCard({ useCase, onTagClick, onCategoryClick }: Props
           }`}
         >
           {copied ? <Check size={14} /> : <Copy size={14} />}
-          {copied ? "Đã copy!" : "Copy prompt"}
+          {copied ? "Copied!" : "Copy prompt"}
         </button>
       </div>
     </div>
