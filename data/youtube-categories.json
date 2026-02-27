@@ -1,0 +1,104 @@
+{
+  "categories": [
+    {
+      "id": "cat-content",
+      "name": "Content Creation",
+      "slug": "content-creation",
+      "icon": "✍️",
+      "color": "#f472b6",
+      "description": "AI tools for creating content",
+      "sort_order": 1,
+      "status": "active"
+    },
+    {
+      "id": "cat-marketing",
+      "name": "Marketing & SEO",
+      "slug": "marketing-seo",
+      "icon": "📈",
+      "color": "#4ade80",
+      "description": "AI for marketing and SEO",
+      "sort_order": 2,
+      "status": "active"
+    },
+    {
+      "id": "cat-customer",
+      "name": "Customer Service",
+      "slug": "customer-service",
+      "icon": "💬",
+      "color": "#60a5fa",
+      "description": "AI for customer support",
+      "sort_order": 3,
+      "status": "active"
+    },
+    {
+      "id": "cat-data",
+      "name": "Data Analysis",
+      "slug": "data-analysis",
+      "icon": "📊",
+      "color": "#a78bfa",
+      "description": "AI for data analysis",
+      "sort_order": 4,
+      "status": "active"
+    },
+    {
+      "id": "cat-code",
+      "name": "Code Generation",
+      "slug": "code-generation",
+      "icon": "💻",
+      "color": "#34d399",
+      "description": "AI for coding and development",
+      "sort_order": 5,
+      "status": "active"
+    },
+    {
+      "id": "cat-automation",
+      "name": "Automation",
+      "slug": "automation",
+      "icon": "⚡",
+      "color": "#fbbf24",
+      "description": "AI workflow automation",
+      "sort_order": 6,
+      "status": "active"
+    },
+    {
+      "id": "cat-research",
+      "name": "Research",
+      "slug": "research",
+      "icon": "🔬",
+      "color": "#fb923c",
+      "description": "AI for research",
+      "sort_order": 7,
+      "status": "active"
+    },
+    {
+      "id": "cat-education",
+      "name": "Education",
+      "slug": "education",
+      "icon": "🎓",
+      "color": "#e879f9",
+      "description": "AI for learning and education",
+      "sort_order": 8,
+      "status": "active"
+    },
+    {
+      "id": "cat-design",
+      "name": "Design",
+      "slug": "design",
+      "icon": "🎨",
+      "color": "#f87171",
+      "description": "AI for design and visual creation",
+      "sort_order": 9,
+      "status": "active"
+    },
+    {
+      "id": "cat-strategy",
+      "name": "Business Strategy",
+      "slug": "business-strategy",
+      "icon": "🎯",
+      "color": "#38bdf8",
+      "description": "AI for business strategy",
+      "sort_order": 10,
+      "status": "active"
+    }
+  ]
+}

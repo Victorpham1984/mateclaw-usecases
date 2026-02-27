@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { verifyAdminAuth, createAuthResponse } from "@/lib/pipeline/auth";
-import { createAdminClient } from "@/lib/supabase/admin";
+import {
+  readDrafts,
+  readCategories,
+  readSources,
+} from "@/lib/youtube-data";
 
 export const dynamic = "force-dynamic";
 
@@ -8,31 +12,41 @@ export const dynamic = "force-dynamic";
 export async function GET(request: NextRequest) {
   if (!verifyAdminAuth(request)) return createAuthResponse();
 
-  const supabase = createAdminClient();
   const { searchParams } = new URL(request.url);
   const status = searchParams.get("status") || "draft";
   const category = searchParams.get("category");
   const limit = parseInt(searchParams.get("limit") || "50");
   const offset = parseInt(searchParams.get("offset") || "0");
 
-  let query = supabase
-    .from("yt_use_cases")
-    .select("*, yt_categories(name, icon, color), yt_sources(name)", { count: "exact" })
-    .order("created_at", { ascending: false })
-    .range(offset, offset + limit - 1);
+  const allDrafts = readDrafts();
+  const categories = readCategories();
+  const sources = readSources();
 
+  // Build lookup maps
+  const catMap = new Map(categories.map((c) => [c.id, { name: c.name, icon: c.icon, color: c.color }]));
+  const srcMap = new Map(sources.map((s) => [s.id, { name: s.name }]));
+
+  // Filter
+  let filtered = allDrafts;
   if (status !== "all") {
-    query = query.eq("status", status);
+    filtered = filtered.filter((d) => d.status === status);
   }
   if (category) {
-    query = query.eq("category_id", category);
+    filtered = filtered.filter((d) => d.category_id === category);
   }
 
-  const { data, error, count } = await query;
+  // Sort by created_at desc
+  filtered.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
 
-  if (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
-  }
+  const total = filtered.length;
+  const paged = filtered.slice(offset, offset + limit);
 
-  return NextResponse.json({ data, total: count });
+  // Enrich with category/source data (matching Supabase join format)
+  const enriched = paged.map((d) => ({
+    ...d,
+    yt_categories: d.category_id ? catMap.get(d.category_id) || null : null,
+    yt_sources: d.source_id ? srcMap.get(d.source_id) || null : null,
+  }));
+
+  return NextResponse.json({ data: enriched, total });
 }

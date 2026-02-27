@@ -1,6 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { verifyAdminAuth, createAuthResponse } from "@/lib/pipeline/auth";
-import { createAdminClient } from "@/lib/supabase/admin";
+import {
+  getDraftById,
+  updateDraft,
+  deleteDraft,
+  readCategories,
+  readSources,
+  commitSingleFile,
+} from "@/lib/youtube-data";
 
 export const dynamic = "force-dynamic";
 
@@ -12,19 +19,23 @@ export async function GET(
   if (!verifyAdminAuth(request)) return createAuthResponse();
 
   const { id } = await params;
-  const supabase = createAdminClient();
+  const draft = getDraftById(id);
 
-  const { data, error } = await supabase
-    .from("yt_use_cases")
-    .select("*, yt_categories(name, icon, color), yt_sources(name)")
-    .eq("id", id)
-    .single();
-
-  if (error || !data) {
+  if (!draft) {
     return NextResponse.json({ error: "Not found" }, { status: 404 });
   }
 
-  return NextResponse.json(data);
+  // Enrich with category/source data
+  const categories = readCategories();
+  const sources = readSources();
+  const cat = draft.category_id ? categories.find((c) => c.id === draft.category_id) : null;
+  const src = draft.source_id ? sources.find((s) => s.id === draft.source_id) : null;
+
+  return NextResponse.json({
+    ...draft,
+    yt_categories: cat ? { name: cat.name, icon: cat.icon, color: cat.color } : null,
+    yt_sources: src ? { name: src.name } : null,
+  });
 }
 
 // PATCH /api/admin/yt-drafts/[id] - Update draft (edit, approve, reject, publish)
@@ -35,9 +46,7 @@ export async function PATCH(
   if (!verifyAdminAuth(request)) return createAuthResponse();
 
   const { id } = await params;
-  const supabase = createAdminClient();
   const body = await request.json();
-
   const { action, ...updates } = body;
 
   let updateData: Record<string, any> = {};
@@ -85,18 +94,19 @@ export async function PATCH(
       return NextResponse.json({ error: "Invalid action" }, { status: 400 });
   }
 
-  const { data, error } = await supabase
-    .from("yt_use_cases")
-    .update(updateData)
-    .eq("id", id)
-    .select()
-    .single();
-
-  if (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+  const updated = updateDraft(id, updateData);
+  if (!updated) {
+    return NextResponse.json({ error: "Draft not found" }, { status: 404 });
   }
 
-  return NextResponse.json({ success: true, data });
+  // Commit to GitHub
+  const actionLabel = action === "publish" ? "Publish" : action === "approve" ? "Approve" : action === "reject" ? "Reject" : "Edit";
+  await commitSingleFile(
+    "youtube-drafts.json",
+    `[YouTube Pipeline] ${actionLabel}: ${updated.title}`
+  );
+
+  return NextResponse.json({ success: true, data: updated });
 }
 
 // DELETE /api/admin/yt-drafts/[id] - Delete draft
@@ -107,13 +117,18 @@ export async function DELETE(
   if (!verifyAdminAuth(request)) return createAuthResponse();
 
   const { id } = await params;
-  const supabase = createAdminClient();
+  const draft = getDraftById(id);
+  const deleted = deleteDraft(id);
 
-  const { error } = await supabase.from("yt_use_cases").delete().eq("id", id);
-
-  if (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+  if (!deleted) {
+    return NextResponse.json({ error: "Draft not found" }, { status: 404 });
   }
+
+  // Commit to GitHub
+  await commitSingleFile(
+    "youtube-drafts.json",
+    `[YouTube Pipeline] Delete: ${draft?.title || id}`
+  );
 
   return NextResponse.json({ success: true });
 }

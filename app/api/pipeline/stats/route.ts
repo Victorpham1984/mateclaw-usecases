@@ -1,44 +1,31 @@
-import { NextRequest, NextResponse } from "next/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { NextResponse } from "next/server";
+import {
+  readDrafts,
+  readSources,
+  readCategories,
+  readCrawlLog,
+} from "@/lib/youtube-data";
 
 export const dynamic = "force-dynamic";
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
-    const supabase = createAdminClient();
+    const drafts = readDrafts();
+    const sources = readSources();
+    const categories = readCategories();
+    const crawlLog = readCrawlLog();
 
-    // Parallel queries for stats
-    const [useCasesRes, categoriesRes, sourcesRes, draftsRes, recentCrawlsRes] =
-      await Promise.all([
-        supabase
-          .from("yt_use_cases")
-          .select("id", { count: "exact", head: true })
-          .eq("status", "published"),
-        supabase
-          .from("yt_categories")
-          .select("id", { count: "exact", head: true })
-          .eq("status", "active"),
-        supabase
-          .from("yt_sources")
-          .select("id", { count: "exact", head: true })
-          .eq("enabled", true),
-        supabase
-          .from("yt_use_cases")
-          .select("id", { count: "exact", head: true })
-          .eq("status", "draft"),
-        supabase
-          .from("yt_crawl_log")
-          .select("*")
-          .order("started_at", { ascending: false })
-          .limit(5),
-      ]);
+    const published = drafts.filter((d) => d.status === "published").length;
+    const pendingDrafts = drafts.filter((d) => d.status === "draft").length;
+    const activeCategories = categories.filter((c) => c.status === "active").length;
+    const activeSources = sources.filter((s) => s.enabled).length;
 
     return NextResponse.json({
-      use_cases: useCasesRes.count || 0,
-      categories: categoriesRes.count || 0,
-      sources: sourcesRes.count || 0,
-      drafts: draftsRes.count || 0,
-      recent_crawls: recentCrawlsRes.data || [],
+      use_cases: published,
+      categories: activeCategories,
+      sources: activeSources,
+      drafts: pendingDrafts,
+      recent_crawls: crawlLog.slice(0, 5),
     });
   } catch (error) {
     console.error("Stats error:", error);

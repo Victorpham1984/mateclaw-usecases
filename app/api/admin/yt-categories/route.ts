@@ -1,6 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import { verifyAdminAuth, createAuthResponse } from "@/lib/pipeline/auth";
-import { createAdminClient } from "@/lib/supabase/admin";
+import {
+  readCategories,
+  addCategory,
+  updateCategory,
+  writeCategories,
+  readDrafts,
+  writeDrafts,
+  commitSingleFile,
+} from "@/lib/youtube-data";
 
 export const dynamic = "force-dynamic";
 
@@ -8,37 +16,30 @@ export const dynamic = "force-dynamic";
 export async function GET(request: NextRequest) {
   if (!verifyAdminAuth(request)) return createAuthResponse();
 
-  const supabase = createAdminClient();
   const { searchParams } = new URL(request.url);
   const status = searchParams.get("status");
 
-  let query = supabase
-    .from("yt_categories")
-    .select("*")
-    .order("sort_order", { ascending: true });
+  let categories = readCategories();
 
-  if (status) query = query.eq("status", status);
+  // Sort by sort_order
+  categories.sort((a, b) => a.sort_order - b.sort_order);
 
-  const { data, error } = await query;
-
-  if (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+  if (status) {
+    categories = categories.filter((c) => c.status === status);
   }
 
-  // Also get use case count per category
-  const { data: counts } = await supabase
-    .from("yt_use_cases")
-    .select("category_id")
-    .in("status", ["draft", "approved", "published"]);
-
+  // Count use cases per category
+  const drafts = readDrafts();
   const countMap: Record<string, number> = {};
-  (counts || []).forEach((c: any) => {
-    if (c.category_id) {
-      countMap[c.category_id] = (countMap[c.category_id] || 0) + 1;
-    }
-  });
+  drafts
+    .filter((d) => ["draft", "approved", "published"].includes(d.status))
+    .forEach((d) => {
+      if (d.category_id) {
+        countMap[d.category_id] = (countMap[d.category_id] || 0) + 1;
+      }
+    });
 
-  const enriched = (data || []).map((cat: any) => ({
+  const enriched = categories.map((cat) => ({
     ...cat,
     use_case_count: countMap[cat.id] || 0,
   }));
@@ -50,39 +51,33 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   if (!verifyAdminAuth(request)) return createAuthResponse();
 
-  const supabase = createAdminClient();
   const body = await request.json();
 
-  const slug = body.name
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-|-$/g, "");
-
-  const { data, error } = await supabase
-    .from("yt_categories")
-    .insert({
-      name: body.name,
-      slug,
-      description: body.description || null,
-      icon: body.icon || "📁",
-      color: body.color || "#60a5fa",
-      status: body.status || "active",
-    })
-    .select()
-    .single();
-
-  if (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+  if (!body.name) {
+    return NextResponse.json({ error: "Missing name" }, { status: 400 });
   }
 
-  return NextResponse.json(data, { status: 201 });
+  const cat = addCategory({
+    name: body.name,
+    description: body.description,
+    icon: body.icon,
+    color: body.color,
+    status: body.status,
+  });
+
+  // Commit to GitHub
+  await commitSingleFile(
+    "youtube-categories.json",
+    `[YouTube Pipeline] Add category: ${cat.name}`
+  );
+
+  return NextResponse.json(cat, { status: 201 });
 }
 
 // PATCH /api/admin/yt-categories - Update category
 export async function PATCH(request: NextRequest) {
   if (!verifyAdminAuth(request)) return createAuthResponse();
 
-  const supabase = createAdminClient();
   const body = await request.json();
   const { id, ...updates } = body;
 
@@ -92,29 +87,31 @@ export async function PATCH(request: NextRequest) {
 
   // If merging into another category
   if (updates.merge_into) {
-    await supabase
-      .from("yt_use_cases")
-      .update({ category_id: updates.merge_into })
-      .eq("category_id", id);
+    const drafts = readDrafts();
+    const updated = drafts.map((d) =>
+      d.category_id === id ? { ...d, category_id: updates.merge_into } : d
+    );
+    writeDrafts(updated);
 
-    await supabase
-      .from("yt_categories")
-      .update({ status: "archived" })
-      .eq("id", id);
+    updateCategory(id, { status: "archived" as any });
+
+    // Commit both files
+    await commitSingleFile("youtube-drafts.json", `[YouTube Pipeline] Merge category ${id} → ${updates.merge_into}`);
+    await commitSingleFile("youtube-categories.json", `[YouTube Pipeline] Archive merged category ${id}`);
 
     return NextResponse.json({ success: true, merged: true });
   }
 
-  const { data, error } = await supabase
-    .from("yt_categories")
-    .update(updates)
-    .eq("id", id)
-    .select()
-    .single();
-
-  if (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+  const cat = updateCategory(id, updates);
+  if (!cat) {
+    return NextResponse.json({ error: "Category not found" }, { status: 404 });
   }
 
-  return NextResponse.json(data);
+  // Commit to GitHub
+  await commitSingleFile(
+    "youtube-categories.json",
+    `[YouTube Pipeline] Update category: ${cat.name}`
+  );
+
+  return NextResponse.json(cat);
 }

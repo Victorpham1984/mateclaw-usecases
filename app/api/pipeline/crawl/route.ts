@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { verifyAdminAuth, createAuthResponse } from "@/lib/pipeline/auth";
 import { runFullPipeline, processSingleSource } from "@/lib/pipeline/orchestrator";
-import { createAdminClient } from "@/lib/supabase/admin";
+import { readSources } from "@/lib/youtube-data";
 
 export const dynamic = "force-dynamic";
 export const maxDuration = 300; // 5 min for Vercel
@@ -17,12 +17,8 @@ export async function POST(request: NextRequest) {
 
     if (source_id) {
       // Process single source
-      const supabase = createAdminClient();
-      const { data: source } = await supabase
-        .from("yt_sources")
-        .select("*")
-        .eq("id", source_id)
-        .single();
+      const sources = readSources();
+      const source = sources.find((s) => s.id === source_id);
 
       if (!source) {
         return NextResponse.json({ error: "Source not found" }, { status: 404 });

@@ -1,7 +1,19 @@
 // Pipeline Orchestrator
 // Coordinates: fetch videos → get transcripts → extract use cases → save drafts
+// Storage: file-based JSON + GitHub commits (zero Supabase)
 
-import { createAdminClient } from "@/lib/supabase/admin";
+import {
+  readSources,
+  updateSource,
+  readDrafts,
+  addDraft,
+  hasVideoBeenProcessed,
+  readCategories,
+  getCategoryMap,
+  addCrawlEntry,
+  updateCrawlEntry,
+  commitYouTubeData,
+} from "@/lib/youtube-data";
 import { fetchVideos, getTranscript, type YouTubeVideo } from "./youtube";
 import { extractUseCases, extractFromDescription } from "./extractor";
 
@@ -22,7 +34,6 @@ export async function processSingleSource(source: {
   youtube_id: string;
   last_crawled_at: string | null;
 }): Promise<PipelineResult> {
-  const supabase = createAdminClient();
   const result: PipelineResult = {
     source_id: source.id,
     source_name: source.name,
@@ -33,11 +44,7 @@ export async function processSingleSource(source: {
   };
 
   // Create crawl log entry
-  const { data: crawlLog } = await supabase
-    .from("yt_crawl_log")
-    .insert({ source_id: source.id, status: "running" })
-    .select()
-    .single();
+  const crawlLog = addCrawlEntry(source.id);
 
   try {
     // Fetch videos (only those after last crawl)
@@ -45,25 +52,11 @@ export async function processSingleSource(source: {
     const videos = await fetchVideos(source.type, source.youtube_id, 15, publishedAfter);
     result.videos_found = videos.length;
 
-    // Get existing video IDs to skip duplicates
-    const videoIds = videos.map((v) => v.videoId);
-    const { data: existing } = await supabase
-      .from("yt_use_cases")
-      .select("source_video_id")
-      .in("source_video_id", videoIds);
+    // Filter out already-processed videos
+    const newVideos = videos.filter((v) => !hasVideoBeenProcessed(v.videoId));
 
-    const existingIds = new Set((existing || []).map((e: any) => e.source_video_id));
-    const newVideos = videos.filter((v) => !existingIds.has(v.videoId));
-
-    // Fetch categories for matching
-    const { data: categories } = await supabase
-      .from("yt_categories")
-      .select("id, name, slug")
-      .eq("status", "active");
-
-    const categoryMap = new Map(
-      (categories || []).map((c: any) => [c.name.toLowerCase(), c.id])
-    );
+    // Get category map for matching
+    const categoryMap = getCategoryMap();
 
     // Process each new video
     for (const video of newVideos) {
@@ -92,7 +85,7 @@ export async function processSingleSource(source: {
         for (const uc of extraction.use_cases) {
           // Try to match category
           const categoryKey = uc.suggested_category.toLowerCase();
-          let categoryId = categoryMap.get(categoryKey) || null;
+          let categoryId: string | null = categoryMap.get(categoryKey) || null;
 
           // Try partial match
           if (!categoryId) {
@@ -104,7 +97,7 @@ export async function processSingleSource(source: {
             }
           }
 
-          await supabase.from("yt_use_cases").insert({
+          addDraft({
             title: uc.title,
             description: uc.description,
             detailed_content: uc.detailed_content,
@@ -144,37 +137,31 @@ export async function processSingleSource(source: {
     }
 
     // Update source last_crawled_at
-    await supabase
-      .from("yt_sources")
-      .update({ last_crawled_at: new Date().toISOString() })
-      .eq("id", source.id);
+    updateSource(source.id, { last_crawled_at: new Date().toISOString() });
 
     // Update crawl log
-    if (crawlLog) {
-      await supabase
-        .from("yt_crawl_log")
-        .update({
-          videos_found: result.videos_found,
-          videos_processed: result.videos_processed,
-          use_cases_created: result.use_cases_created,
-          errors: result.errors,
-          completed_at: new Date().toISOString(),
-          status: "completed",
-        })
-        .eq("id", crawlLog.id);
+    updateCrawlEntry(crawlLog.id, {
+      videos_found: result.videos_found,
+      videos_processed: result.videos_processed,
+      use_cases_created: result.use_cases_created,
+      errors: result.errors,
+      completed_at: new Date().toISOString(),
+      status: "completed",
+    });
+
+    // Commit to GitHub
+    if (result.use_cases_created > 0) {
+      await commitYouTubeData(
+        `[YouTube Pipeline] Crawl ${source.name}: ${result.use_cases_created} new drafts`
+      );
     }
   } catch (err) {
     const msg = err instanceof Error ? err.message : String(err);
-    if (crawlLog) {
-      await supabase
-        .from("yt_crawl_log")
-        .update({
-          errors: [{ videoId: "source-level", error: msg }],
-          completed_at: new Date().toISOString(),
-          status: "failed",
-        })
-        .eq("id", crawlLog.id);
-    }
+    updateCrawlEntry(crawlLog.id, {
+      errors: [{ videoId: "source-level", error: msg }],
+      completed_at: new Date().toISOString(),
+      status: "failed",
+    });
     throw err;
   }
 
@@ -183,15 +170,8 @@ export async function processSingleSource(source: {
 
 // Run pipeline for all enabled sources
 export async function runFullPipeline(): Promise<PipelineResult[]> {
-  const supabase = createAdminClient();
-
-  const { data: sources, error } = await supabase
-    .from("yt_sources")
-    .select("*")
-    .eq("enabled", true);
-
-  if (error) throw error;
-  if (!sources || sources.length === 0) return [];
+  const sources = readSources().filter((s) => s.enabled);
+  if (sources.length === 0) return [];
 
   const results: PipelineResult[] = [];
 
