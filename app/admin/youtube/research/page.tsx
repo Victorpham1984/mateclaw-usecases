@@ -76,7 +76,7 @@ function ChannelCard({
 }: {
   channel: ResearchChannel;
   researchId: string;
-  onAction: (channelId: string, action: string, researchId: string) => void;
+  onAction: (channel: ResearchChannel, action: string, researchId: string) => void;
   actionLoading: string | null;
 }) {
   const [expanded, setExpanded] = useState(false);
@@ -199,21 +199,21 @@ function ChannelCard({
       {channel.status === "suggested" && (
         <div className="flex gap-2 mt-4">
           <button
-            onClick={() => onAction(channel.channelId, "approve", researchId)}
+            onClick={() => onAction(channel, "approve", researchId)}
             disabled={isLoading}
             className="px-4 py-1.5 rounded-lg bg-green-600 text-white text-sm font-semibold hover:bg-green-500 transition disabled:opacity-50"
           >
             {isLoading ? "⏳" : "✅"} Approve
           </button>
           <button
-            onClick={() => onAction(channel.channelId, "later", researchId)}
+            onClick={() => onAction(channel, "later", researchId)}
             disabled={isLoading}
             className="px-4 py-1.5 rounded-lg bg-yellow-600/20 text-yellow-400 text-sm font-semibold hover:bg-yellow-600/30 transition disabled:opacity-50"
           >
             ⏸️ Later
           </button>
           <button
-            onClick={() => onAction(channel.channelId, "reject", researchId)}
+            onClick={() => onAction(channel, "reject", researchId)}
             disabled={isLoading}
             className="px-4 py-1.5 rounded-lg bg-red-600/20 text-red-400 text-sm font-semibold hover:bg-red-600/30 transition disabled:opacity-50"
           >
@@ -303,17 +303,18 @@ export default function ResearchPage() {
 
   // Handle channel actions (approve/reject/later)
   const handleAction = async (
-    channelId: string,
+    channel: ResearchChannel,
     action: string,
     researchId: string
   ) => {
+    const channelId = channel.channelId;
     setActionLoading(channelId);
     try {
       const res = await fetch(`/api/research/youtube/${channelId}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
-        body: JSON.stringify({ action, researchId }),
+        body: JSON.stringify({ action, researchId, channelData: channel }),
       });
 
       if (!res.ok) {
@@ -353,7 +354,7 @@ export default function ResearchPage() {
     if (!confirm(`Approve ${toApprove.length} channels with score ≥ ${minScore}?`)) return;
 
     for (const ch of toApprove) {
-      await handleAction(ch.channelId, "approve", currentResult.id);
+      await handleAction(ch, "approve", currentResult.id);
     }
   };
 
@@ -510,7 +511,7 @@ export default function ResearchPage() {
                   const top5 = suggested.sort((a, b) => b.aiScore - a.aiScore).slice(0, 5);
                   if (top5.length === 0) return;
                   if (!confirm(`Approve top ${top5.length} channels?`)) return;
-                  top5.forEach(ch => handleAction(ch.channelId, "approve", currentResult.id));
+                  top5.forEach(ch => handleAction(ch, "approve", currentResult.id));
                 }}
                 className="px-3 py-1.5 rounded-lg bg-blue-900/20 text-blue-400 text-xs font-semibold hover:bg-blue-900/30 transition"
               >

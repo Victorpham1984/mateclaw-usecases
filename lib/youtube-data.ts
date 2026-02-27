@@ -363,3 +363,82 @@ export async function commitSingleFile(
     return false;
   }
 }
+
+// ─── GitHub-Direct Source Addition (Vercel-safe, no local FS writes) ─
+
+/**
+ * Add a source directly via GitHub API - reads current sources from GitHub,
+ * appends the new source, and commits. Works on Vercel (no EROFS).
+ */
+export async function addSourceViaGitHub(
+  input: Omit<YTSource, "id" | "created_at" | "last_crawled_at">,
+  commitMessage: string
+): Promise<YTSource> {
+  const token = process.env.GITHUB_TOKEN;
+  if (!token) throw new Error("GITHUB_TOKEN not configured");
+
+  const filePath = "data/youtube-sources.json";
+  const apiBase = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${filePath}`;
+  const headers = {
+    Authorization: `Bearer ${token}`,
+    "Content-Type": "application/json",
+    Accept: "application/vnd.github.v3+json",
+  };
+
+  // 1. Read current file from GitHub
+  const getRes = await fetch(apiBase, { headers });
+  let currentSources: YTSource[] = [];
+  let currentSHA: string | undefined;
+
+  if (getRes.ok) {
+    const fileData = await getRes.json();
+    currentSHA = fileData.sha;
+    try {
+      const content = Buffer.from(fileData.content, "base64").toString("utf-8");
+      const parsed = JSON.parse(content);
+      currentSources = parsed.sources || [];
+    } catch {
+      currentSources = [];
+    }
+  }
+
+  // 2. Create new source
+  const source: YTSource = {
+    ...input,
+    id: `yt-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+    last_crawled_at: null,
+    created_at: new Date().toISOString(),
+  };
+
+  // 3. Check for duplicates
+  const exists = currentSources.some((s) => s.youtube_id === source.youtube_id);
+  if (exists) {
+    throw new Error(`Source with youtube_id "${source.youtube_id}" already exists`);
+  }
+
+  currentSources.push(source);
+
+  // 4. Commit updated file to GitHub
+  const newContent = JSON.stringify({ sources: currentSources }, null, 2);
+  const base64Content = Buffer.from(newContent).toString("base64");
+
+  const body: any = {
+    message: commitMessage,
+    content: base64Content,
+    branch: "main",
+  };
+  if (currentSHA) body.sha = currentSHA;
+
+  const putRes = await fetch(apiBase, {
+    method: "PUT",
+    headers,
+    body: JSON.stringify(body),
+  });
+
+  if (!putRes.ok) {
+    const error = await putRes.text();
+    throw new Error(`GitHub commit failed: ${putRes.status} ${error}`);
+  }
+
+  return source;
+}
