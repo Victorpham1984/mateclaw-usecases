@@ -1,12 +1,28 @@
 // File-based data layer for YouTube Research Cache
-// Follows same pattern as lib/youtube-data.ts
+// Uses /tmp on Vercel (read-only filesystem) with fallback to data/ for local dev
 
-import { readFileSync, writeFileSync, existsSync } from "fs";
+import { readFileSync, writeFileSync, existsSync, copyFileSync, mkdirSync } from "fs";
 import { join } from "path";
 import type { ResearchResult, ResearchCache, ResearchChannel } from "./types";
 
-const DATA_DIR = join(process.cwd(), "data");
+const IS_VERCEL = !!process.env.VERCEL;
+const PROJECT_DATA_DIR = join(process.cwd(), "data");
+const WRITE_DIR = IS_VERCEL ? "/tmp" : PROJECT_DATA_DIR;
 const CACHE_FILE = "youtube-research-cache.json";
+
+// On Vercel, seed /tmp cache from committed data/ if not yet copied
+let _seeded = false;
+function ensureWritableCache(): void {
+  if (!IS_VERCEL || _seeded) return;
+  _seeded = true;
+  const dest = join(WRITE_DIR, CACHE_FILE);
+  if (!existsSync(dest)) {
+    const src = join(PROJECT_DATA_DIR, CACHE_FILE);
+    if (existsSync(src)) {
+      try { copyFileSync(src, dest); } catch { /* ignore */ }
+    }
+  }
+}
 
 function generateId(): string {
   return `res-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
@@ -15,8 +31,19 @@ function generateId(): string {
 // ─── Read / Write ────────────────────────────────────────────
 
 export function readResearchCache(): ResearchResult[] {
-  const filePath = join(DATA_DIR, CACHE_FILE);
-  if (!existsSync(filePath)) return [];
+  ensureWritableCache();
+  const filePath = join(WRITE_DIR, CACHE_FILE);
+  if (!existsSync(filePath)) {
+    // Fallback: try reading from committed data/ (read-only on Vercel)
+    const fallback = join(PROJECT_DATA_DIR, CACHE_FILE);
+    if (!existsSync(fallback)) return [];
+    try {
+      const data: ResearchCache = JSON.parse(readFileSync(fallback, "utf-8"));
+      return data.researches || [];
+    } catch {
+      return [];
+    }
+  }
   try {
     const data: ResearchCache = JSON.parse(readFileSync(filePath, "utf-8"));
     return data.researches || [];
@@ -26,7 +53,8 @@ export function readResearchCache(): ResearchResult[] {
 }
 
 export function writeResearchCache(researches: ResearchResult[]): void {
-  const filePath = join(DATA_DIR, CACHE_FILE);
+  ensureWritableCache();
+  const filePath = join(WRITE_DIR, CACHE_FILE);
   writeFileSync(filePath, JSON.stringify({ researches }, null, 2), "utf-8");
 }
 

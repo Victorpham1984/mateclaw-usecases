@@ -46,15 +46,15 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  // Create research entry (status: searching)
-  const research = createResearch(
-    keyword.trim(),
-    language,
-    minSubscribers,
-    recentDaysFilter
-  );
-
+  let research;
   try {
+    // Create research entry (status: searching)
+    research = createResearch(
+      keyword.trim(),
+      language,
+      minSubscribers,
+      recentDaysFilter
+    );
     // Step 1: Discover channels via YouTube API
     updateResearch(research.id, { status: "searching" });
 
@@ -117,11 +117,18 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(updated);
   } catch (err: any) {
     console.error("Research pipeline failed:", err);
-    const updated = updateResearch(research.id, {
-      status: "failed",
-      error: err.message || "Unknown error",
-      completedAt: new Date().toISOString(),
-    });
-    return NextResponse.json(updated, { status: 500 });
+    if (research) {
+      try {
+        updateResearch(research.id, {
+          status: "failed",
+          error: err.message || "Unknown error",
+          completedAt: new Date().toISOString(),
+        });
+      } catch { /* ignore write errors in error handler */ }
+    }
+    return NextResponse.json(
+      { error: err.message || "Research pipeline failed", status: "failed" },
+      { status: 500 }
+    );
   }
 }
