@@ -159,6 +159,7 @@ export default function AdminPage() {
           {msg && <span className="text-xs text-emerald-400 ml-2">{msg}</span>}
         </div>
         <div className="flex items-center gap-2">
+          <a href="/admin/youtube" className="text-xs px-3 py-1.5 rounded-lg border border-red-500/30 text-red-400 hover:text-red-300 hover:border-red-500/50 transition-colors">📺 YouTube Pipeline</a>
           <button onClick={exportJson} className="text-xs px-3 py-1.5 rounded-lg border border-[#30363d] text-[#8b949e] hover:text-[#FFD460] hover:border-[#FFD460]/30 transition-colors">📥 Export JSON</button>
           <button onClick={openNew} className="text-xs px-3 py-1.5 rounded-lg bg-[#FFD460] text-[#0d1117] font-semibold hover:bg-[#ffe080] transition-colors">+ Add Case</button>
           <button onClick={handleLogout} className="text-xs px-3 py-1.5 rounded-lg border border-[#30363d] text-[#8b949e] hover:text-red-400 transition-colors">Logout</button>
