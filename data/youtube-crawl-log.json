@@ -1,3 +1,15 @@
 {
-  "crawls": []
+  "crawls": [
+    {
+      "id": "crawl-1772207087701-kn8b",
+      "source_id": "yt-1772206123032-42kwm1",
+      "status": "completed",
+      "videos_found": 15,
+      "videos_processed": 15,
+      "use_cases_created": 4,
+      "errors": [],
+      "started_at": "2026-02-27T15:42:56.924Z",
+      "completed_at": "2026-02-27T15:44:47.701Z"
+    }
+  ]
 }
