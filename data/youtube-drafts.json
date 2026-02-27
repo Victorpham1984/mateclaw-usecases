@@ -1,3 +1,152 @@
 {
-  "drafts": []
+  "drafts": [
+    {
+      "title": "Customer Service Enhancement with Claude Opus 4.6",
+      "description": "Using Claude Opus 4.6 AI model to improve customer service operations through the OpenClaw platform.",
+      "detailed_content": "## Customer Service Enhancement with Claude Opus 4.6\n\nThis use case focuses on leveraging Claude Opus 4.6, an advanced AI language model, to transform customer service operations through the OpenClaw platform. The integration aims to provide more intelligent, responsive, and efficient customer support.\n\n### How It Works\n\nThe implementation involves integrating Claude Opus 4.6 into existing customer service workflows through the OpenClaw platform. This allows businesses to automate responses, provide 24/7 support, and handle multiple customer inquiries simultaneously with high-quality, contextually appropriate responses.\n\n### Key Benefits\n\n- **Improved Response Quality**: Claude Opus 4.6's advanced language understanding capabilities ensure more accurate and helpful customer responses\n- **24/7 Availability**: Automated customer service that doesn't require human intervention for common queries\n- **Scalability**: Handle multiple customer conversations simultaneously without degrading service quality\n- **Cost Efficiency**: Reduce the need for large customer service teams while maintaining high service standards\n\nThe OpenClaw platform appears to serve as the integration layer that makes implementing Claude Opus 4.6 in customer service workflows more accessible for businesses.",
+      "category_id": "cat-customer",
+      "suggested_category": null,
+      "tags": [
+        "claude-opus",
+        "customer-service",
+        "chatbot",
+        "automation",
+        "openclaw",
+        "ai-integration"
+      ],
+      "difficulty": "intermediate",
+      "source_id": "yt-1772206123032-42kwm1",
+      "source_video_id": "guPw8HgOtVs",
+      "source_video_title": "Desvendando o Open claw Turbine seu Atendimento com Opus 4.6! - #OpenClaw #ClaudeCode",
+      "source_video_url": "https://www.youtube.com/watch?v=guPw8HgOtVs",
+      "source_channel_name": "Diego Fornalha | Claude Code | OpenClaw",
+      "source_channel_id": "UCeY0SKw3BIsJzVZ3W08r4tA",
+      "source_published_at": "2026-02-24T20:23:18Z",
+      "ai_confidence": 0.6,
+      "ai_model": "anthropic/claude-sonnet-4",
+      "extraction_metadata": {
+        "tokens_used": 1000,
+        "had_transcript": false,
+        "transcript_length": 0
+      },
+      "status": "draft",
+      "id": "yt-1772207086808-o4y031",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "rejection_reason": null,
+      "published_at": null,
+      "created_at": "2026-02-27T15:44:46.808Z"
+    },
+    {
+      "title": "AI-Powered Customer Service Revolution with Open Cloud APIs",
+      "description": "Transform customer service operations using open cloud platforms and APIs to create more efficient, automated support systems.",
+      "detailed_content": "## Revolutionizing Customer Service with Open Cloud and APIs\n\nThis use case focuses on leveraging open cloud platforms and APIs to dramatically improve customer service operations. The approach involves integrating various cloud-based AI services through APIs to create a comprehensive customer support ecosystem.\n\n### How It Works\n\nThe implementation typically involves connecting multiple AI services through open APIs to handle different aspects of customer interaction. This might include natural language processing for understanding customer queries, sentiment analysis for prioritizing urgent issues, and automated response generation for common questions.\n\n### Tools and Technologies\n\nWhile specific tools aren't detailed in the available content, the mention of \"Open Cloud\" suggests the use of publicly available cloud AI services that can be accessed through APIs. These platforms typically offer pre-trained models for text analysis, chatbot functionality, and integration capabilities.\n\n### Benefits and Results\n\nBy implementing this approach, businesses can expect reduced response times, 24/7 availability, consistent service quality, and the ability to handle higher volumes of customer inquiries without proportionally increasing staff. The open nature of the APIs allows for customization and integration with existing business systems.",
+      "category_id": "cat-customer",
+      "suggested_category": null,
+      "tags": [
+        "customer-service",
+        "apis",
+        "cloud-computing",
+        "automation",
+        "integration"
+      ],
+      "difficulty": "intermediate",
+      "source_id": "yt-1772206123032-42kwm1",
+      "source_video_id": "YNeDajr1Hrk",
+      "source_video_title": "Descubra os Segredos do Open Cloud e APIs Revolucione seu Atendimento ao Cliente! - #OpenClaw",
+      "source_video_url": "https://www.youtube.com/watch?v=YNeDajr1Hrk",
+      "source_channel_name": "Diego Fornalha | Claude Code | OpenClaw",
+      "source_channel_id": "UCeY0SKw3BIsJzVZ3W08r4tA",
+      "source_published_at": "2026-02-24T20:22:45Z",
+      "ai_confidence": 0.6,
+      "ai_model": "anthropic/claude-sonnet-4",
+      "extraction_metadata": {
+        "tokens_used": 963,
+        "had_transcript": false,
+        "transcript_length": 0
+      },
+      "status": "draft",
+      "id": "yt-1772207086808-n4hxl7",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "rejection_reason": null,
+      "published_at": null,
+      "created_at": "2026-02-27T15:44:46.808Z"
+    },
+    {
+      "title": "Creating a Jarvis-like AI Agent with Voice Capabilities",
+      "description": "Transform a basic AI agent into an advanced voice-enabled assistant similar to Jarvis using Eleven Labs' text-to-speech technology.",
+      "detailed_content": "## Creating a Jarvis-like AI Agent with Voice Capabilities\n\nThis use case involves enhancing an AI agent to provide a more interactive and human-like experience by integrating advanced voice synthesis technology. The process transforms a traditional text-based AI assistant into a sophisticated voice-enabled system reminiscent of Tony Stark's Jarvis from the Iron Man movies.\n\n### How It Works\n\nThe implementation likely involves integrating Eleven Labs' advanced text-to-speech API with an existing AI agent framework (possibly using Claude or similar language models). The process would include setting up voice synthesis endpoints, configuring voice parameters for natural-sounding speech, and creating a seamless pipeline from text generation to audio output.\n\n### Tools and Technologies\n\nThe primary tool mentioned is Eleven Labs, which provides state-of-the-art voice synthesis technology. This would be combined with AI frameworks like Claude (as suggested by the channel name) and potentially OpenClaw (mentioned in the hashtags), which appears to be a related AI development platform or framework.\n\n### Benefits and Applications\n\nThis enhancement significantly improves user experience by providing natural voice interactions, making the AI agent more accessible and engaging. It's particularly valuable for hands-free operations, accessibility applications, and creating more immersive AI assistant experiences for both personal and professional use cases.",
+      "category_id": "cat-automation",
+      "suggested_category": null,
+      "tags": [
+        "voice-synthesis",
+        "ai-agent",
+        "eleven-labs",
+        "jarvis",
+        "text-to-speech",
+        "claude",
+        "assistant"
+      ],
+      "difficulty": "intermediate",
+      "source_id": "yt-1772206123032-42kwm1",
+      "source_video_id": "Kh0QA1su_VQ",
+      "source_video_title": "Transforme Seu Agente em Jarvis com Eleven Labs! - #OpenClaw #ClaudeCode",
+      "source_video_url": "https://www.youtube.com/watch?v=Kh0QA1su_VQ",
+      "source_channel_name": "Diego Fornalha | Claude Code | OpenClaw",
+      "source_channel_id": "UCeY0SKw3BIsJzVZ3W08r4tA",
+      "source_published_at": "2026-02-24T20:21:40Z",
+      "ai_confidence": 0.75,
+      "ai_model": "anthropic/claude-sonnet-4",
+      "extraction_metadata": {
+        "tokens_used": 1031,
+        "had_transcript": false,
+        "transcript_length": 0
+      },
+      "status": "draft",
+      "id": "yt-1772207086808-40kojk",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "rejection_reason": null,
+      "published_at": null,
+      "created_at": "2026-02-27T15:44:46.808Z"
+    },
+    {
+      "title": "Instagram Automation with Open Claw",
+      "description": "Transform chaotic Instagram management into automated workflows using Open Claw platform for streamlined social media operations.",
+      "detailed_content": "## Instagram Automation with Open Claw\n\nThis use case focuses on transforming disorganized Instagram management into a streamlined, automated system using the Open Claw platform. The approach addresses the common challenge of managing Instagram content, engagement, and growth manually, which often leads to inconsistent posting, missed opportunities, and inefficient time management.\n\n### How It Works\n\nThe Open Claw platform appears to provide automation tools specifically designed for Instagram management. While specific implementation details aren't available from the limited content, the system likely involves setting up automated workflows for content scheduling, engagement tracking, and possibly follower interaction management.\n\n### Benefits and Applications\n\nBy implementing Instagram automation through Open Claw, users can expect to achieve more consistent posting schedules, better engagement rates, and reduced manual workload. This automation approach is particularly valuable for content creators, small businesses, and social media managers who need to maintain active Instagram presence without dedicating excessive time to manual management tasks.\n\n### Technical Implementation\n\nThe solution appears to integrate Claude AI capabilities, suggesting that the automation includes intelligent content generation, response management, or analytical insights powered by AI technology.",
+      "category_id": "cat-marketing",
+      "suggested_category": null,
+      "tags": [
+        "instagram-automation",
+        "social-media",
+        "open-claw",
+        "claude-ai",
+        "content-management",
+        "workflow-automation"
+      ],
+      "difficulty": "intermediate",
+      "source_id": "yt-1772206123032-42kwm1",
+      "source_video_id": "fIxsGwvR2eQ",
+      "source_video_title": "Transforme Seu Instagram Do Caos à Automação com Open Claw- #OpenClaw #ClaudeCode",
+      "source_video_url": "https://www.youtube.com/watch?v=fIxsGwvR2eQ",
+      "source_channel_name": "Diego Fornalha | Claude Code | OpenClaw",
+      "source_channel_id": "UCeY0SKw3BIsJzVZ3W08r4tA",
+      "source_published_at": "2026-02-24T20:20:47Z",
+      "ai_confidence": 0.6,
+      "ai_model": "anthropic/claude-sonnet-4",
+      "extraction_metadata": {
+        "tokens_used": 979,
+        "had_transcript": false,
+        "transcript_length": 0
+      },
+      "status": "draft",
+      "id": "yt-1772207086808-x33nqd",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "rejection_reason": null,
+      "published_at": null,
+      "created_at": "2026-02-27T15:44:46.808Z"
+    }
+  ]
 }
