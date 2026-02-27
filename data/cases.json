@@ -1,0 +1,402 @@
+{
+  "useCases": [
+    {
+      "id": "uc001",
+      "title": "**Thiết lập OpenClaw** cho lần đầu sử dụng",
+      "description": "Hướng dẫn cài đặt OpenClaw từ đầu: cài Node.js, chạy gateway, kết nối Telegram, và gửi tin nhắn đầu tiên cho agent.",
+      "prompt": "Hãy hướng dẫn tôi cài đặt OpenClaw từ đầu. Tôi đang dùng macOS. Tôi muốn kết nối với Telegram và bắt đầu chat với agent. Giải thích từng bước một cách chi tiết.",
+      "category": "setup",
+      "tags": ["installation", "telegram", "getting-started", "macos"],
+      "source": {
+        "type": "article",
+        "url": "https://docs.openclaw.ai/getting-started",
+        "creator": "OpenClaw Team"
+      },
+      "addedAt": "2026-02-27",
+      "difficulty": "beginner",
+      "timeEstimate": "30 phút",
+      "roi": "Mở khóa toàn bộ hệ sinh thái AI agents"
+    },
+    {
+      "id": "uc002",
+      "title": "**Tạo team agents** cho startup",
+      "description": "Setup nhiều agents chuyên biệt: 1 developer (xử lý GitHub), 1 marketer (viết content), 1 PM (quản lý tasks), và 1 sysadmin (monitor servers). Mỗi agent có personality riêng.",
+      "prompt": "Giúp tôi thiết lập 4 agents: Developer (Bernard - xử lý GitHub issues), Marketer (Vale - viết content), PM (Gumbo - quản lý tasks), và SysAdmin (Claw - monitor systems). Mỗi agent cần personality riêng và kết nối Slack riêng.",
+      "category": "setup",
+      "tags": ["multi-agent", "team", "slack", "roles"],
+      "source": {
+        "type": "youtube",
+        "url": "https://www.youtube.com/watch?v=bzWI3Dil9Ig",
+        "creator": "Brian Casel",
+        "channel": "Brian Casel",
+        "videoTitle": "My OpenClaw Agent Team Setup",
+        "timestamp": 45
+      },
+      "addedAt": "2026-02-27",
+      "difficulty": "intermediate",
+      "timeEstimate": "2 giờ",
+      "roi": "Tiết kiệm 15h/tuần cho team nhỏ"
+    },
+    {
+      "id": "uc003",
+      "title": "**Auto-fix GitHub issues** với developer agent",
+      "description": "Agent tự động pick up bugs từ GitHub Issues, tạo branch, code fix, chạy tests, và mở Pull Request để review. Founder chỉ cần review + merge.",
+      "prompt": "Tôi có backlog GitHub issues với label 'bug' và 'good-first-issue'. Hãy giúp tôi: 1) Đọc issue, 2) Tạo branch mới, 3) Code fix, 4) Chạy tests, 5) Mở PR với description chi tiết. Tôi sẽ review sau.",
+      "category": "development",
+      "tags": ["github", "automation", "pull-requests", "bugs"],
+      "source": {
+        "type": "youtube",
+        "url": "https://www.youtube.com/watch?v=bzWI3Dil9Ig",
+        "creator": "Brian Casel",
+        "timestamp": 620
+      },
+      "addedAt": "2026-02-27",
+      "difficulty": "expert",
+      "timeEstimate": "1 giờ setup + auto sau đó",
+      "roi": "Xử lý 5-10 bugs/tuần tự động"
+    },
+    {
+      "id": "uc004",
+      "title": "**Viết blog post** từ outline",
+      "description": "Đưa outline hoặc bullet points cho agent, nhận lại full blog post 1500+ từ với intro hấp dẫn, body có cấu trúc, và CTA mạnh mẽ. SEO-friendly.",
+      "prompt": "Tôi có outline này cho blog post: [paste outline]. Hãy viết thành bài blog 1500 từ với: 1) Intro hấp dẫn hook readers, 2) 3-5 sections với subheadings, 3) Ví dụ thực tế, 4) CTA cuối bài. Tone: chuyên nghiệp nhưng friendly.",
+      "category": "content",
+      "tags": ["writing", "blog", "seo", "content-creation"],
+      "source": {
+        "type": "community",
+        "url": "https://github.com/openclaw/openclaw/discussions/42",
+        "creator": "MateClaw Team"
+      },
+      "addedAt": "2026-02-27",
+      "difficulty": "beginner",
+      "timeEstimate": "10 phút",
+      "roi": "Tiết kiệm 2-3h viết/bài"
+    },
+    {
+      "id": "uc005",
+      "title": "**Monitor production** 24/7 với health checks",
+      "description": "Agent ping health endpoint mỗi 5 phút, nếu down → gửi alert qua Telegram ngay lập tức, thử rollback version trước, và notify on-call engineer.",
+      "prompt": "Setup monitoring cho https://myapp.com/api/health. Mỗi 5 phút check một lần. Nếu status != 200 hoặc response time >2s, hãy: 1) Alert tôi qua Telegram, 2) Check logs 10 phút gần nhất, 3) Nếu có, rollback tới deploy trước đó, 4) Notify team.",
+      "category": "development",
+      "tags": ["monitoring", "devops", "alerts", "production"],
+      "source": {
+        "type": "github",
+        "url": "https://github.com/openclaw/openclaw/issues/128",
+        "creator": "DevOps Community"
+      },
+      "addedAt": "2026-02-27",
+      "difficulty": "intermediate",
+      "timeEstimate": "1 giờ",
+      "roi": "Tránh downtime, phát hiện sớm bugs production"
+    },
+    {
+      "id": "uc006",
+      "title": "**Social media scheduler** đa nền tảng",
+      "description": "Viết 1 content piece, agent tự động adapt cho Twitter (280 chars), LinkedIn (professional tone), Instagram (visual + emojis), và schedule posts tối ưu theo timezone.",
+      "prompt": "Tôi có content này: [paste content]. Hãy: 1) Viết lại cho Twitter (1 thread 5 tweets), 2) LinkedIn post (professional, 200 từ), 3) Instagram caption (casual, emojis, hashtags), 4) Schedule posts vào khung giờ engagement cao nhất (GMT+7).",
+      "category": "marketing",
+      "tags": ["social-media", "automation", "scheduling", "cross-platform"],
+      "source": {
+        "type": "twitter",
+        "url": "https://twitter.com/mateclaw/status/1234567890",
+        "creator": "@mateclaw"
+      },
+      "addedAt": "2026-02-27",
+      "difficulty": "beginner",
+      "timeEstimate": "5 phút",
+      "roi": "Đăng 3 nền tảng trong thời gian 1 nền tảng"
+    },
+    {
+      "id": "uc007",
+      "title": "**Tự động reply** email khách hàng",
+      "description": "Agent đọc inbox, phân loại (support/sales/spam), draft reply theo template, và chỉ gửi sau khi human approve. Học từ approved replies.",
+      "prompt": "Connect email của tôi. Với mỗi email mới: 1) Phân loại (Support/Sales/Spam), 2) Nếu Support: draft reply dựa trên knowledge base, 3) Nếu Sales: draft personalized pitch, 4) Show draft cho tôi approve trước khi gửi. Học từ những reply tôi approve.",
+      "category": "customer-support",
+      "tags": ["email", "automation", "customer-service", "ai-assistance"],
+      "source": {
+        "type": "reddit",
+        "url": "https://www.reddit.com/r/OpenClaw/comments/abc123",
+        "creator": "u/openclaw_user"
+      },
+      "addedAt": "2026-02-27",
+      "difficulty": "intermediate",
+      "timeEstimate": "1.5 giờ",
+      "roi": "Reply 80% emails trong <5 phút"
+    },
+    {
+      "id": "uc008",
+      "title": "**Phân tích competitor** hàng tuần",
+      "description": "Agent track 5 competitors, scrape pricing pages, blog posts, social media, và tạo weekly report so sánh features, messaging, và chiến lược.",
+      "prompt": "Track 5 competitors: [list URLs]. Mỗi tuần: 1) Scrape pricing pages, 2) Đọc blog posts mới, 3) Check social media activity, 4) Tạo report so sánh: features mới, changes về giá, messaging trends. Format: Markdown table + insights.",
+      "category": "analytics",
+      "tags": ["competitive-analysis", "research", "automation", "reports"],
+      "source": {
+        "type": "web",
+        "url": "https://bizmate.ai/blog/competitive-intelligence",
+        "creator": "BizMate Team"
+      },
+      "addedAt": "2026-02-27",
+      "difficulty": "expert",
+      "timeEstimate": "2 giờ setup",
+      "roi": "Luôn update về thị trường, không bỏ lỡ trends"
+    },
+    {
+      "id": "uc009",
+      "title": "**Daily standup** tự động cho remote team",
+      "description": "Mỗi sáng 9h, agent hỏi từng team member: 'Hôm qua làm gì? Hôm nay plan gì? Có blocker không?' → tổng hợp thành summary gửi team Slack.",
+      "prompt": "Setup daily standup automation: 1) Mỗi sáng 9h GMT+7, DM từng member hỏi: yesterday/today/blockers, 2) Thu thập responses, 3) Tạo summary report, 4) Post vào #standup channel. Nhắc nhở members chưa reply sau 30 phút.",
+      "category": "automation",
+      "tags": ["standup", "team", "slack", "async"],
+      "source": {
+        "type": "linkedin",
+        "url": "https://www.linkedin.com/posts/mateclaw-ai-123",
+        "creator": "MateClaw Team"
+      },
+      "addedAt": "2026-02-27",
+      "difficulty": "intermediate",
+      "timeEstimate": "45 phút",
+      "roi": "Tiết kiệm 30 phút meeting mỗi ngày"
+    },
+    {
+      "id": "uc010",
+      "title": "**Tạo presentation slides** từ transcript",
+      "description": "Upload transcript video/meeting, agent extract key points, tạo slide outline, generate visual suggestions, và export thành Google Slides hoặc PowerPoint.",
+      "prompt": "Tôi có transcript meeting này: [paste]. Hãy: 1) Extract 5-7 key takeaways, 2) Tạo slide structure (title, agenda, main points, conclusion), 3) Suggest visuals cho mỗi slide, 4) Export thành Google Slides. Design: minimal, professional.",
+      "category": "content",
+      "tags": ["presentations", "slides", "automation", "design"],
+      "source": {
+        "type": "youtube",
+        "url": "https://www.youtube.com/watch?v=xyz789",
+        "creator": "Productivity AI",
+        "timestamp": 320
+      },
+      "addedAt": "2026-02-27",
+      "difficulty": "intermediate",
+      "timeEstimate": "15 phút",
+      "roi": "Slides trong 15 phút thay vì 2 giờ"
+    },
+    {
+      "id": "uc011",
+      "title": "**Lead scoring** tự động từ CRM data",
+      "description": "Agent phân tích leads trong CRM (company size, engagement, budget signals), assign score 0-100, prioritize hot leads, và suggest next actions cho sales team.",
+      "prompt": "Connect CRM của tôi. Với mỗi lead mới: 1) Analyze: company size, industry, website traffic, engagement history, 2) Assign score 0-100, 3) Phân loại: Hot/Warm/Cold, 4) Suggest next action (call/email/nurture), 5) Notify sales rep nếu score >80.",
+      "category": "sales",
+      "tags": ["crm", "lead-scoring", "sales", "automation"],
+      "source": {
+        "type": "article",
+        "url": "https://medium.com/@mateclaw/ai-lead-scoring",
+        "creator": "MateClaw on Medium"
+      },
+      "addedAt": "2026-02-27",
+      "difficulty": "expert",
+      "timeEstimate": "3 giờ",
+      "roi": "Tăng conversion rate 20-30%"
+    },
+    {
+      "id": "uc012",
+      "title": "**Code review** tự động cho PRs",
+      "description": "Mỗi khi có PR mới, agent review code, check style guide, suggest improvements, tìm potential bugs, và comment trực tiếp trên GitHub. Dev vẫn final approve.",
+      "prompt": "Khi có PR mới trên repo [repo-name]: 1) Review code changes, 2) Check coding standards, 3) Tìm potential bugs hoặc security issues, 4) Suggest improvements (performance, readability), 5) Comment findings trên PR. Prioritize critical issues.",
+      "category": "development",
+      "tags": ["code-review", "github", "quality", "automation"],
+      "source": {
+        "type": "github",
+        "url": "https://github.com/openclaw/discussions/56",
+        "creator": "Engineering Community"
+      },
+      "addedAt": "2026-02-27",
+      "difficulty": "expert",
+      "timeEstimate": "2 giờ setup",
+      "roi": "Catch bugs sớm, giảm review time 40%"
+    },
+    {
+      "id": "uc013",
+      "title": "**Newsletter curation** hàng tuần",
+      "description": "Agent thu thập top content từ RSS feeds, Twitter lists, Reddit, filter theo relevance, viết intro cho mỗi link, và draft newsletter sẵn sàng gửi.",
+      "prompt": "Curate weekly newsletter: 1) Scan 10 RSS feeds, Twitter list @ai-tools, r/OpenClaw, 2) Tìm top 5-7 stories hay nhất, 3) Viết 2-3 câu intro cho mỗi link, 4) Draft email với structure: intro, curated links, outro + CTA. Tone: friendly, insightful.",
+      "category": "content",
+      "tags": ["newsletter", "curation", "automation", "email"],
+      "source": {
+        "type": "web",
+        "url": "https://robonuggets.com/newsletter-automation",
+        "creator": "RoboNuggets"
+      },
+      "addedAt": "2026-02-27",
+      "difficulty": "beginner",
+      "timeEstimate": "30 phút",
+      "roi": "Newsletter chất lượng trong nửa thời gian"
+    },
+    {
+      "id": "uc014",
+      "title": "**A/B test analyzer** cho landing pages",
+      "description": "Connect analytics, agent track A/B test results, tính statistical significance, tạo reports với recommendations, và auto-disable losing variants.",
+      "prompt": "Tôi đang chạy A/B test landing page (variant A vs B). Connect Google Analytics và: 1) Track conversion rates daily, 2) Tính statistical significance, 3) Khi đạt 95% confidence: recommend winner, 4) Auto-pause losing variant, 5) Weekly report với insights.",
+      "category": "growth",
+      "tags": ["ab-testing", "analytics", "optimization", "conversion"],
+      "source": {
+        "type": "hackernews",
+        "url": "https://news.ycombinator.com/item?id=12345678",
+        "creator": "HN Community"
+      },
+      "addedAt": "2026-02-27",
+      "difficulty": "intermediate",
+      "timeEstimate": "2 giờ",
+      "roi": "Optimize conversion, data-driven decisions"
+    },
+    {
+      "id": "uc015",
+      "title": "**Meeting notes** tự động từ recording",
+      "description": "Upload Zoom/Google Meet recording, agent transcribe, extract action items, assign owners, tạo summary, và post vào Notion + notify attendees.",
+      "prompt": "Tôi có meeting recording: [link]. Hãy: 1) Transcribe toàn bộ, 2) Extract key decisions, 3) List action items với owners, 4) Tạo summary (3-5 bullets), 5) Create Notion page, 6) Notify attendees với action items của họ.",
+      "category": "automation",
+      "tags": ["meetings", "transcription", "notes", "productivity"],
+      "source": {
+        "type": "youtube",
+        "url": "https://www.youtube.com/watch?v=meeting-notes",
+        "creator": "Productivity Hacks",
+        "timestamp": 180
+      },
+      "addedAt": "2026-02-27",
+      "difficulty": "beginner",
+      "timeEstimate": "5 phút",
+      "roi": "Zero time cho note-taking, 100% accuracy"
+    },
+    {
+      "id": "uc016",
+      "title": "**Bug triaging** tự động từ error logs",
+      "description": "Agent monitor error logs (Sentry, LogRocket), group similar errors, assign severity, create GitHub issues cho critical bugs, và notify on-call dev.",
+      "prompt": "Connect Sentry. Khi có error mới: 1) Group với similar errors, 2) Assign severity (critical/high/medium/low), 3) Nếu critical: create GitHub issue ngay + notify on-call, 4) Nếu medium: batch vào weekly bug report. Include stack trace + reproduction steps.",
+      "category": "development",
+      "tags": ["error-monitoring", "bug-tracking", "automation", "devops"],
+      "source": {
+        "type": "github",
+        "url": "https://github.com/openclaw/discussions/89",
+        "creator": "DevOps Team"
+      },
+      "addedAt": "2026-02-27",
+      "difficulty": "expert",
+      "timeEstimate": "2.5 giờ",
+      "roi": "Fix critical bugs nhanh hơn 80%"
+    },
+    {
+      "id": "uc017",
+      "title": "**Customer onboarding** sequence automation",
+      "description": "Khi có user sign up, agent gửi personalized onboarding emails (day 1/3/7), track engagement, adjust messaging based on user actions, và notify CS nếu user stuck.",
+      "prompt": "Setup onboarding sequence: 1) Day 1: Welcome + quick start guide, 2) Day 3: Feature highlight + case study, 3) Day 7: Check-in + offer help. Track: email opens, feature usage. Nếu user không login sau 5 ngày → notify CS team cho intervention.",
+      "category": "customer-support",
+      "tags": ["onboarding", "email", "automation", "customer-success"],
+      "source": {
+        "type": "linkedin",
+        "url": "https://www.linkedin.com/posts/saas-growth-123",
+        "creator": "SaaS Growth Experts"
+      },
+      "addedAt": "2026-02-27",
+      "difficulty": "intermediate",
+      "timeEstimate": "1.5 giờ",
+      "roi": "Activation rate tăng 25%"
+    },
+    {
+      "id": "uc018",
+      "title": "**Invoice generation** từ timesheets",
+      "description": "Agent đọc timesheet (Toggl, Harvest), tính total hours, apply rates, generate PDF invoice theo template, và gửi email cho client với payment link.",
+      "prompt": "Connect Toggl. Cuối mỗi tháng: 1) Fetch timesheet data cho [client-name], 2) Tính total hours × hourly rate, 3) Generate invoice PDF (template: professional), 4) Email client với invoice + Stripe payment link, 5) Track payment status.",
+      "category": "finance",
+      "tags": ["invoicing", "accounting", "automation", "freelance"],
+      "source": {
+        "type": "web",
+        "url": "https://bizmate.ai/use-cases/invoicing",
+        "creator": "BizMate"
+      },
+      "addedAt": "2026-02-27",
+      "difficulty": "beginner",
+      "timeEstimate": "30 phút",
+      "roi": "Billing chính xác 100%, không missed invoices"
+    },
+    {
+      "id": "uc019",
+      "title": "**SEO audit** tự động cho blog",
+      "description": "Agent crawl website, check meta tags, headings structure, broken links, page speed, mobile-friendliness, và tạo prioritized report với recommendations.",
+      "prompt": "Audit SEO cho https://myblog.com: 1) Crawl all pages, 2) Check: meta descriptions, title tags, H1-H6 structure, alt text, internal links, 3) Test page speed + mobile score, 4) Find broken links, 5) Generate report: issues by priority + fix recommendations.",
+      "category": "marketing",
+      "tags": ["seo", "audit", "optimization", "technical"],
+      "source": {
+        "type": "reddit",
+        "url": "https://www.reddit.com/r/SEO/comments/seo-automation",
+        "creator": "r/SEO Community"
+      },
+      "addedAt": "2026-02-27",
+      "difficulty": "intermediate",
+      "timeEstimate": "1 giờ",
+      "roi": "Tìm & fix 90% SEO issues nhanh"
+    },
+    {
+      "id": "uc020",
+      "title": "**Personal assistant** cho calendar & email",
+      "description": "Agent quản lý calendar (schedule meetings, find slots, send invites), prioritize emails, draft replies, set reminders, và báo cáo daily agenda mỗi sáng.",
+      "prompt": "Làm personal assistant của tôi: 1) Manage calendar: suggest meeting times, send invites, block focus time, 2) Triage emails: urgent → notify, FYI → summarize daily, 3) Draft replies cho routine emails, 4) Mỗi sáng 8h: gửi daily agenda + priorities.",
+      "category": "automation",
+      "tags": ["personal-assistant", "calendar", "email", "productivity"],
+      "source": {
+        "type": "twitter",
+        "url": "https://twitter.com/productivity/status/98765",
+        "creator": "@productivity"
+      },
+      "addedAt": "2026-02-27",
+      "difficulty": "beginner",
+      "timeEstimate": "1 giờ",
+      "roi": "Tiết kiệm 5-8h admin work/tuần"
+    }
+  ],
+  "categories": {
+    "setup": {
+      "label": "🤖 AI Agent Setup",
+      "color": "blue",
+      "description": "Cài đặt, cấu hình, và tùy chỉnh OpenClaw agents"
+    },
+    "development": {
+      "label": "💻 Development & Coding",
+      "color": "purple",
+      "description": "Build apps, debug code, manage GitHub workflows"
+    },
+    "marketing": {
+      "label": "📢 Marketing & SEO",
+      "color": "pink",
+      "description": "SEO, social media, content distribution, ad campaigns"
+    },
+    "content": {
+      "label": "🎬 Content Creation",
+      "color": "orange",
+      "description": "Blog posts, newsletters, presentations, creative writing"
+    },
+    "automation": {
+      "label": "🔄 Workflow Automation",
+      "color": "green",
+      "description": "Cron jobs, API integrations, process automation"
+    },
+    "customer-support": {
+      "label": "💬 Customer Support",
+      "color": "cyan",
+      "description": "Chatbots, email support, ticket management, onboarding"
+    },
+    "analytics": {
+      "label": "📊 Analytics & Reports",
+      "color": "indigo",
+      "description": "Data analysis, dashboards, competitive intelligence"
+    },
+    "finance": {
+      "label": "💰 Finance & Accounting",
+      "color": "yellow",
+      "description": "Invoicing, expense tracking, financial reports"
+    },
+    "sales": {
+      "label": "🎯 Sales & CRM",
+      "color": "red",
+      "description": "Lead scoring, outreach automation, pipeline management"
+    },
+    "growth": {
+      "label": "📈 Growth & Optimization",
+      "color": "emerald",
+      "description": "A/B testing, conversion optimization, growth experiments"
+    }
+  }
+}
