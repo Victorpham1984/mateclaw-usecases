@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { verifyAuth } from "@/lib/admin-auth";
-import { updateCase, deleteCase } from "@/lib/cases-db";
+import { updateCase, deleteCase, readCases } from "@/lib/cases-db";
+import { updateCasesViaGitHub } from "@/lib/github";
 
 async function guard() {
   if (!(await verifyAuth())) {
@@ -37,7 +38,17 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
     }
 
     const cases = updateCase(id, updates);
-    return NextResponse.json({ cases });
+
+    let gitSynced = false;
+    try {
+      const title = updates.title || id;
+      await updateCasesViaGitHub(cases, `[Admin] Edit case: ${title}`);
+      gitSynced = true;
+    } catch (error) {
+      console.error("GitHub sync failed:", error);
+    }
+
+    return NextResponse.json({ cases, gitSynced });
   } catch (e: unknown) {
     const msg = e instanceof Error ? e.message : "Unknown error";
     return NextResponse.json({ error: msg }, { status: 404 });
@@ -51,7 +62,16 @@ export async function DELETE(_req: NextRequest, { params }: { params: Promise<{ 
   const { id } = await params;
   try {
     const cases = deleteCase(id);
-    return NextResponse.json({ cases });
+
+    let gitSynced = false;
+    try {
+      await updateCasesViaGitHub(cases, `[Admin] Delete case: ${id}`);
+      gitSynced = true;
+    } catch (error) {
+      console.error("GitHub sync failed:", error);
+    }
+
+    return NextResponse.json({ cases, gitSynced });
   } catch (e: unknown) {
     const msg = e instanceof Error ? e.message : "Unknown error";
     return NextResponse.json({ error: msg }, { status: 404 });

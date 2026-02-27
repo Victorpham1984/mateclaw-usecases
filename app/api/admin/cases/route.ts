@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { verifyAuth } from "@/lib/admin-auth";
 import { readCases, addCase, getNextId } from "@/lib/cases-db";
+import { updateCasesViaGitHub } from "@/lib/github";
 import type { UseCase } from "@/lib/types";
 
 async function guard() {
@@ -53,5 +54,15 @@ export async function POST(req: NextRequest) {
   };
 
   const updated = addCase(newCase);
-  return NextResponse.json({ cases: updated, added: newCase });
+
+  // Commit to GitHub for persistence
+  let gitSynced = false;
+  try {
+    await updateCasesViaGitHub(updated, `[Admin] Add case: ${newCase.title}`);
+    gitSynced = true;
+  } catch (error) {
+    console.error("GitHub sync failed:", error);
+  }
+
+  return NextResponse.json({ cases: updated, added: newCase, gitSynced });
 }

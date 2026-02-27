@@ -97,7 +97,8 @@ export default function AdminPage() {
     if (res.ok) {
       setCases(data.cases);
       setShowForm(false);
-      setMsg(editId ? "✅ Updated" : "✅ Added");
+      const syncStatus = data.gitSynced ? "& committed to GitHub ✨" : "(⚠️ GitHub sync failed, will retry on next deploy)";
+      setMsg(editId ? `✅ Updated ${syncStatus}` : `✅ Added ${syncStatus}`);
     } else {
       setMsg(`❌ ${data.error}`);
     }
@@ -107,7 +108,11 @@ export default function AdminPage() {
   const handleDelete = async (id: string) => {
     const res = await fetch(`/api/admin/cases/${id}`, { method: "DELETE" });
     const data = await res.json();
-    if (res.ok) { setCases(data.cases); setMsg("🗑 Deleted"); }
+    if (res.ok) {
+      setCases(data.cases);
+      const syncStatus = data.gitSynced ? "& committed to GitHub" : "(⚠️ GitHub sync pending)";
+      setMsg(`🗑 Deleted ${syncStatus}`);
+    }
     setDeleteConfirm(null);
   };
 
@@ -223,7 +228,7 @@ export default function AdminPage() {
 
       {/* Note about SSG */}
       <div className="px-6 pb-4">
-        <p className="text-xs text-[#8b949e]">⚠️ Changes saved to cases.json. On Vercel (serverless), file writes won&apos;t persist across deploys. For production, commit changes to git or use a database.</p>
+        <p className="text-xs text-[#8b949e]">💾 Changes are saved locally and committed to GitHub automatically. Vercel will auto-rebuild (~60 sec). Refresh homepage to see updates.</p>
       </div>
 
       {/* Form Modal */}
