@@ -19,6 +19,64 @@ function parseBold(text: string) {
   );
 }
 
+const SOURCE_CONFIG: Record<string, { icon: string; label: string; color: string; iconColor: string }> = {
+  youtube: {
+    icon: "▶",
+    label: "YouTube",
+    color: "bg-red-500/20 text-red-500 border-red-500/40",
+    iconColor: "text-red-500",
+  },
+  github: {
+    icon: "⚡",
+    label: "GitHub",
+    color: "bg-purple-500/20 text-purple-400 border-purple-500/40",
+    iconColor: "text-purple-400",
+  },
+  x: {
+    icon: "𝕏",
+    label: "X",
+    color: "bg-gray-500/20 text-gray-300 border-gray-500/40",
+    iconColor: "text-gray-300",
+  },
+  twitter: {
+    icon: "𝕏",
+    label: "X",
+    color: "bg-gray-500/20 text-gray-300 border-gray-500/40",
+    iconColor: "text-gray-300",
+  },
+  reddit: {
+    icon: "🤖",
+    label: "Reddit",
+    color: "bg-orange-500/20 text-orange-400 border-orange-500/40",
+    iconColor: "text-orange-400",
+  },
+  article: {
+    icon: "📄",
+    label: "Article",
+    color: "bg-gray-500/20 text-gray-400 border-gray-500/40",
+    iconColor: "text-gray-400",
+  },
+  community: {
+    icon: "👥",
+    label: "Community",
+    color: "bg-[#FFD460]/20 text-[#FFD460] border-[#FFD460]/40",
+    iconColor: "text-[#FFD460]",
+  },
+  web: {
+    icon: "🔗",
+    label: "Web",
+    color: "bg-gray-500/20 text-gray-400 border-gray-500/40",
+    iconColor: "text-gray-400",
+  },
+};
+
+const DEFAULT_SOURCE = {
+  icon: "🔗",
+  label: "Source",
+  color: "bg-gray-500/20 text-gray-400 border-gray-500/40",
+  iconColor: "text-gray-400",
+};
+
 const difficultyConfig = {
   beginner: { label: "Beginner", color: "bg-emerald-500/20 text-emerald-400 border-emerald-500/30" },
   intermediate: { label: "Intermediate", color: "bg-amber-500/20 text-amber-400 border-amber-500/30" },
@@ -50,6 +108,7 @@ export default function CaseCard({ useCase, onTagClick, onCategoryClick }: Props
     setTimeout(() => setCopied(false), 2000);
   };
 
+  const sourceConfig = SOURCE_CONFIG[useCase.source.type || ""] || DEFAULT_SOURCE;
   const desc = useCase.description;
   const truncated = desc.length > 150;
   const displayDesc = expanded || !truncated ? desc : desc.slice(0, 150) + "...";
@@ -125,22 +184,29 @@ export default function CaseCard({ useCase, onTagClick, onCategoryClick }: Props
         ))}
       </div>
 
-      {/* Footer: source + copy */}
+      {/* Footer: source badge + copy */}
       <div className="flex items-center justify-between mt-auto pt-2 border-t border-[#30363d] relative z-10">
         <a
           href={useCase.source.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-1.5 text-xs text-[#8b949e] hover:text-[#FFD460] transition-colors"
+          className="flex items-center gap-2 group/source min-w-0"
         >
-          <ArrowSquareOut size={12} />
-          <span className="truncate max-w-[140px]">
-            {useCase.source.creator || "Source"}
+          <span
+            className={`flex items-center gap-1 px-2 py-1 rounded-md border text-xs font-medium ${sourceConfig.color} transition-all group-hover/source:scale-105 shrink-0`}
+          >
+            <span className={sourceConfig.iconColor}>{sourceConfig.icon}</span>
+            <span>{sourceConfig.label}</span>
           </span>
+          {useCase.source.creator && (
+            <span className="text-xs text-[#8b949e] group-hover/source:text-[#FFD460] transition-colors truncate max-w-[120px]">
+              {useCase.source.creator}
+            </span>
+          )}
         </a>
         <button
           onClick={handleCopy}
-          className={`flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
+          className={`flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg transition-all cursor-pointer shrink-0 ${
             copied
               ? "bg-emerald-500/20 text-emerald-400"
               : "bg-[#FFD460]/10 text-[#FFD460] hover:bg-[#FFD460]/20"

@@ -50,6 +50,25 @@ function stripBold(text: string): string {
   return text.replace(/\*\*(.*?)\*\*/g, "$1");
 }
 
+const SOURCE_CONFIG: Record<string, { icon: string; label: string; color: string; iconColor: string }> = {
+  youtube: { icon: "▶", label: "YouTube", color: "bg-red-500/20 text-red-500 border-red-500/40", iconColor: "text-red-500" },
+  github: { icon: "⚡", label: "GitHub", color: "bg-purple-500/20 text-purple-400 border-purple-500/40", iconColor: "text-purple-400" },
+  x: { icon: "𝕏", label: "X", color: "bg-gray-500/20 text-gray-300 border-gray-500/40", iconColor: "text-gray-300" },
+  twitter: { icon: "𝕏", label: "X", color: "bg-gray-500/20 text-gray-300 border-gray-500/40", iconColor: "text-gray-300" },
+  reddit: { icon: "🤖", label: "Reddit", color: "bg-orange-500/20 text-orange-400 border-orange-500/40", iconColor: "text-orange-400" },
+  article: { icon: "📄", label: "Article", color: "bg-gray-500/20 text-gray-400 border-gray-500/40", iconColor: "text-gray-400" },
+  community: { icon: "👥", label: "Community", color: "bg-[#FFD460]/20 text-[#FFD460] border-[#FFD460]/40", iconColor: "text-[#FFD460]" },
+  web: { icon: "🔗", label: "Web", color: "bg-gray-500/20 text-gray-400 border-gray-500/40", iconColor: "text-gray-400" },
+};
+
+const DEFAULT_SOURCE = { icon: "🔗", label: "Source", color: "bg-gray-500/20 text-gray-400 border-gray-500/40", iconColor: "text-gray-400" };
+
+function formatTimestamp(seconds: number): string {
+  const mins = Math.floor(seconds / 60);
+  const secs = seconds % 60;
+  return `${mins}:${secs.toString().padStart(2, "0")}`;
+}
+
 const difficultyConfig = {
   beginner: { label: "Beginner", color: "bg-emerald-500/20 text-emerald-400 border-emerald-500/30" },
   intermediate: { label: "Intermediate", color: "bg-amber-500/20 text-amber-400 border-amber-500/30" },
@@ -318,17 +337,26 @@ export default function CaseDetailPage({ id }: { id: string }) {
             )}
           </div>
 
-          {/* Creator + source */}
+          {/* Creator + source badge */}
           <div className="flex items-center gap-2 text-sm text-[#8b949e]">
-            <span>by</span>
             <a
               href={useCase.source.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1 text-[#FFD460] hover:underline"
+              className="flex items-center gap-2 group/source"
             >
-              {useCase.source.creator || "Source"}
-              <ArrowSquareOut size={12} />
+              <span className={`flex items-center gap-1 px-2 py-1 rounded-md border text-xs font-medium ${(SOURCE_CONFIG[useCase.source.type || ""] || DEFAULT_SOURCE).color} transition-all group-hover/source:scale-105`}>
+                <span className={(SOURCE_CONFIG[useCase.source.type || ""] || DEFAULT_SOURCE).iconColor}>
+                  {(SOURCE_CONFIG[useCase.source.type || ""] || DEFAULT_SOURCE).icon}
+                </span>
+                <span>{(SOURCE_CONFIG[useCase.source.type || ""] || DEFAULT_SOURCE).label}</span>
+              </span>
+              {useCase.source.creator && (
+                <span className="text-[#FFD460] group-hover/source:underline">
+                  {useCase.source.creator}
+                </span>
+              )}
+              <ArrowSquareOut size={12} className="text-[#8b949e]" />
             </a>
           </div>
         </div>
@@ -378,6 +406,57 @@ export default function CaseDetailPage({ id }: { id: string }) {
             <p className="text-sm text-[#8b949e] leading-relaxed">{(useCase as any).expectedResults}</p>
           </section>
         )}
+
+        {/* Rich source section */}
+        {useCase.source.type === "youtube" && (
+          <section className="mt-8 p-6 rounded-xl border border-[#30363d] bg-[#161b22]">
+            <div className="flex items-start gap-4">
+              <div className="text-4xl text-red-500">▶</div>
+              <div className="flex-1">
+                <p className="text-sm text-gray-400 mb-1">Watch the original tutorial</p>
+                <a
+                  href={useCase.source.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-lg text-[#FFD460] hover:underline font-semibold"
+                >
+                  {(useCase.source as any).videoTitle || "YouTube Video"}
+                </a>
+                {useCase.source.creator && (
+                  <p className="text-sm text-gray-500 mt-1">by {useCase.source.creator}</p>
+                )}
+                {(useCase.source as any).timestamp && (
+                  <p className="text-xs text-gray-600 mt-1">
+                    ⏱️ Use case shown at {formatTimestamp((useCase.source as any).timestamp)}
+                  </p>
+                )}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {useCase.source.type && useCase.source.type !== "youtube" && (() => {
+          const sc = SOURCE_CONFIG[useCase.source.type || ""] || DEFAULT_SOURCE;
+          return (
+            <section className="mt-8 p-4 rounded-xl border border-[#30363d] bg-[#161b22]">
+              <div className="flex items-center gap-3">
+                <span className={`text-2xl ${sc.iconColor}`}>{sc.icon}</span>
+                <div>
+                  <p className="text-xs text-gray-400">Source</p>
+                  <a
+                    href={useCase.source.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#FFD460] hover:underline"
+                  >
+                    {sc.label}
+                    {useCase.source.creator && ` by ${useCase.source.creator}`}
+                  </a>
+                </div>
+              </div>
+            </section>
+          );
+        })()}
 
         <hr className="border-[#30363d] my-10" />
 
