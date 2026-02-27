@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import Fuse from "fuse.js";
 import { MagnifyingGlass, X, Cube, UsersThree, FolderOpen } from "@phosphor-icons/react";
 import useCaseData from "@/data/cases.json";
@@ -16,13 +17,28 @@ const fuse = new Fuse(allCases, {
   includeScore: true,
 });
 
-export default function Home() {
+export default function Page() {
+  return (
+    <Suspense>
+      <Home />
+    </Suspense>
+  );
+}
+
+function Home() {
+  const searchParams = useSearchParams();
   const [query, setQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [activeTag, setActiveTag] = useState<string | null>(null);
   const [mounted, setMounted] = useState(false);
 
-  useEffect(() => setMounted(true), []);
+  useEffect(() => {
+    setMounted(true);
+    const cat = searchParams.get("category");
+    const tag = searchParams.get("tag");
+    if (cat) setActiveCategory(cat);
+    if (tag) setActiveTag(tag);
+  }, [searchParams]);
 
   const filtered = useMemo(() => {
     let results = allCases;

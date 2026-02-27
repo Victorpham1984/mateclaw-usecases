@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useCallback } from "react";
+import Link from "next/link";
 import { Copy, Check, ArrowSquareOut, Clock, Lightning } from "@phosphor-icons/react";
 import type { UseCase } from "@/lib/types";
 import { CATEGORIES } from "@/lib/categories";
@@ -84,9 +85,11 @@ export default function CaseCard({ useCase, onTagClick, onCategoryClick }: Props
       </div>
 
       {/* Title */}
-      <h3 className="text-base font-semibold leading-snug text-[#e6edf3] relative z-10">
-        {parseBold(useCase.title)}
-      </h3>
+      <Link href={`/cases/${useCase.id}`} className="relative z-10">
+        <h3 className="text-base font-semibold leading-snug text-[#e6edf3] group-hover:text-[#FFD460] transition-colors">
+          {parseBold(useCase.title)}
+        </h3>
+      </Link>
 
       {/* Description */}
       <p className="text-sm text-[#8b949e] leading-relaxed relative z-10">
