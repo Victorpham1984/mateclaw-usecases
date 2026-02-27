@@ -1,65 +1,224 @@
-import Image from "next/image";
+"use client";
+
+import { useState, useMemo, useEffect } from "react";
+import Fuse from "fuse.js";
+import { MagnifyingGlass, X, Cube, UsersThree, FolderOpen } from "@phosphor-icons/react";
+import useCaseData from "@/data/cases.json";
+import type { UseCase } from "@/lib/types";
+import { CATEGORIES, CATEGORY_KEYS } from "@/lib/categories";
+import CaseCard from "./components/CaseCard";
+
+const allCases = useCaseData.useCases as UseCase[];
+
+const fuse = new Fuse(allCases, {
+  keys: ["title", "description", "tags", "prompt", "source.creator"],
+  threshold: 0.3,
+  includeScore: true,
+});
 
 export default function Home() {
+  const [query, setQuery] = useState("");
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  const [activeTag, setActiveTag] = useState<string | null>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
+
+  const filtered = useMemo(() => {
+    let results = allCases;
+
+    if (query.trim()) {
+      results = fuse.search(query).map((r) => r.item);
+    }
+
+    if (activeCategory) {
+      results = results.filter((c) => c.category === activeCategory);
+    }
+
+    if (activeTag) {
+      results = results.filter((c) => c.tags.includes(activeTag));
+    }
+
+    return results;
+  }, [query, activeCategory, activeTag]);
+
+  const stats = useMemo(() => {
+    const creators = new Set(allCases.map((c) => c.source.creator).filter(Boolean));
+    return {
+      total: allCases.length,
+      categories: CATEGORY_KEYS.length,
+      creators: creators.size,
+    };
+  }, []);
+
+  const handleCategoryClick = (cat: string) => {
+    setActiveCategory((prev) => (prev === cat ? null : cat));
+    setActiveTag(null);
+  };
+
+  const handleTagClick = (tag: string) => {
+    setActiveTag((prev) => (prev === tag ? null : tag));
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <div className="min-h-screen bg-[#0d1117]">
+      {/* Hero */}
+      <header className="relative overflow-hidden">
+        {/* Glow effect behind hero */}
+        <div className="absolute top-[-200px] left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-[#FFD460]/[0.04] rounded-full blur-[120px] pointer-events-none" />
+        
+        <div className="relative max-w-6xl mx-auto px-4 pt-16 pb-10 sm:pt-24 sm:pb-14">
+          <div className="text-center">
+            <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-[#e6edf3] mb-3">
+              <span className="text-[#FFD460]">MateClaw</span> Use Cases
+            </h1>
+            <p className="text-base sm:text-lg text-[#8b949e] max-w-2xl mx-auto mb-8">
+              Playbook thực chiến với OpenClaw AI agents — copy prompt & bắt đầu ngay
+            </p>
+
+            {/* Stats */}
+            <div
+              className={`flex items-center justify-center gap-6 sm:gap-10 mb-10 transition-opacity duration-500 ${
+                mounted ? "opacity-100" : "opacity-0"
+              }`}
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+              <div className="flex items-center gap-2 text-sm text-[#8b949e]">
+                <Cube size={18} className="text-[#FFD460]" />
+                <span>
+                  <strong className="text-[#e6edf3]">{stats.total}</strong> use cases
+                </span>
+              </div>
+              <div className="flex items-center gap-2 text-sm text-[#8b949e]">
+                <FolderOpen size={18} className="text-[#FFD460]" />
+                <span>
+                  <strong className="text-[#e6edf3]">{stats.categories}</strong> categories
+                </span>
+              </div>
+              <div className="flex items-center gap-2 text-sm text-[#8b949e]">
+                <UsersThree size={18} className="text-[#FFD460]" />
+                <span>
+                  <strong className="text-[#e6edf3]">{stats.creators}</strong> creators
+                </span>
+              </div>
+            </div>
+
+            {/* Search */}
+            <div className="relative max-w-xl mx-auto mb-8">
+              <MagnifyingGlass
+                size={18}
+                className="absolute left-4 top-1/2 -translate-y-1/2 text-[#8b949e]"
+              />
+              <input
+                type="text"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Tìm kiếm use case, tag, prompt..."
+                className="w-full pl-11 pr-10 py-3 rounded-xl bg-[#161b22] border border-[#30363d] text-[#e6edf3] placeholder-[#484f58] focus:outline-none focus:border-[#FFD460]/50 focus:ring-1 focus:ring-[#FFD460]/20 transition-all text-sm"
+              />
+              {query && (
+                <button
+                  onClick={() => setQuery("")}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#8b949e] hover:text-[#e6edf3] cursor-pointer"
+                >
+                  <X size={16} />
+                </button>
+              )}
+            </div>
+
+            {/* Category filters */}
+            <div className="flex flex-wrap items-center justify-center gap-2 mb-2">
+              <button
+                onClick={() => {
+                  setActiveCategory(null);
+                  setActiveTag(null);
+                }}
+                className={`chip text-xs px-3 py-1.5 rounded-full border cursor-pointer ${
+                  !activeCategory && !activeTag
+                    ? "active"
+                    : "border-[#30363d] text-[#8b949e]"
+                }`}
+              >
+                Tất cả
+              </button>
+              {CATEGORY_KEYS.map((key) => (
+                <button
+                  key={key}
+                  onClick={() => handleCategoryClick(key)}
+                  className={`chip text-xs px-3 py-1.5 rounded-full border cursor-pointer ${
+                    activeCategory === key
+                      ? "active"
+                      : "border-[#30363d] text-[#8b949e]"
+                  }`}
+                >
+                  {CATEGORIES[key].label}
+                </button>
+              ))}
+            </div>
+
+            {/* Active tag indicator */}
+            {activeTag && (
+              <div className="flex items-center justify-center gap-2 mt-3">
+                <span className="text-xs text-[#8b949e]">Filter by tag:</span>
+                <span className="text-xs px-2 py-0.5 rounded-full bg-[#FFD460]/20 text-[#FFD460] border border-[#FFD460]/30">
+                  #{activeTag}
+                </span>
+                <button
+                  onClick={() => setActiveTag(null)}
+                  className="text-[#8b949e] hover:text-[#e6edf3] cursor-pointer"
+                >
+                  <X size={14} />
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      </header>
+
+      {/* Grid */}
+      <main className="max-w-6xl mx-auto px-4 pb-20">
+        <div className="flex items-center justify-between mb-6">
+          <p className="text-sm text-[#8b949e]">
+            {filtered.length} kết quả
+            {query && <span className="text-[#484f58]"> cho &ldquo;{query}&rdquo;</span>}
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
+
+        {filtered.length === 0 ? (
+          <div className="text-center py-20">
+            <p className="text-[#8b949e] text-lg mb-2">Không tìm thấy use case nào</p>
+            <p className="text-[#484f58] text-sm">Thử tìm kiếm với từ khóa khác</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {filtered.map((uc) => (
+              <CaseCard
+                key={uc.id}
+                useCase={uc}
+                onTagClick={handleTagClick}
+                onCategoryClick={handleCategoryClick}
+              />
+            ))}
+          </div>
+        )}
+      </main>
+
+      {/* Footer */}
+      <footer className="border-t border-[#30363d] py-8">
+        <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-xs text-[#484f58]">
+            Built with 💛 by{" "}
+            <span className="text-[#FFD460]">BizMate</span> — Powered by OpenClaw
+          </p>
           <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            href="https://github.com/nicenemo/mateclaw-usecases"
             target="_blank"
             rel="noopener noreferrer"
+            className="text-xs text-[#484f58] hover:text-[#8b949e] transition-colors"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
+            Contribute on GitHub
           </a>
         </div>
-      </main>
+      </footer>
     </div>
   );
 }
