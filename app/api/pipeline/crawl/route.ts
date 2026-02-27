@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { verifyAdminAuth, createAuthResponse } from "@/lib/pipeline/auth";
 import { runFullPipeline, processSingleSource } from "@/lib/pipeline/orchestrator";
-import { readSources } from "@/lib/youtube-data";
+import { readSourcesFromGitHub } from "@/lib/youtube-data";
 
 export const dynamic = "force-dynamic";
 export const maxDuration = 300; // 5 min for Vercel
@@ -16,8 +16,8 @@ export async function POST(request: NextRequest) {
     let results;
 
     if (source_id) {
-      // Process single source
-      const sources = readSources();
+      // Process single source - read from GitHub for accuracy
+      const sources = await readSourcesFromGitHub();
       const source = sources.find((s) => s.id === source_id);
 
       if (!source) {

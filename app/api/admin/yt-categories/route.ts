@@ -2,12 +2,10 @@ import { NextRequest, NextResponse } from "next/server";
 import { verifyAdminAuth, createAuthResponse } from "@/lib/pipeline/auth";
 import {
   readCategories,
-  addCategory,
-  updateCategory,
-  writeCategories,
   readDrafts,
-  writeDrafts,
-  commitSingleFile,
+  addCategoryViaGitHub,
+  updateCategoryViaGitHub,
+  mergeCategoryViaGitHub,
 } from "@/lib/youtube-data";
 
 export const dynamic = "force-dynamic";
@@ -47,71 +45,59 @@ export async function GET(request: NextRequest) {
   return NextResponse.json(enriched);
 }
 
-// POST /api/admin/yt-categories - Create category
+// POST /api/admin/yt-categories - Create category (via GitHub API)
 export async function POST(request: NextRequest) {
   if (!verifyAdminAuth(request)) return createAuthResponse();
 
-  const body = await request.json();
+  try {
+    const body = await request.json();
 
-  if (!body.name) {
-    return NextResponse.json({ error: "Missing name" }, { status: 400 });
+    if (!body.name) {
+      return NextResponse.json({ error: "Missing name" }, { status: 400 });
+    }
+
+    const cat = await addCategoryViaGitHub({
+      name: body.name,
+      description: body.description,
+      icon: body.icon,
+      color: body.color,
+      status: body.status,
+    });
+
+    return NextResponse.json(cat, { status: 201 });
+  } catch (error) {
+    console.error("Failed to add category:", error);
+    return NextResponse.json(
+      { error: error instanceof Error ? error.message : "Failed to add category" },
+      { status: 500 }
+    );
   }
-
-  const cat = addCategory({
-    name: body.name,
-    description: body.description,
-    icon: body.icon,
-    color: body.color,
-    status: body.status,
-  });
-
-  // Commit to GitHub
-  await commitSingleFile(
-    "youtube-categories.json",
-    `[YouTube Pipeline] Add category: ${cat.name}`
-  );
-
-  return NextResponse.json(cat, { status: 201 });
 }
 
-// PATCH /api/admin/yt-categories - Update category
+// PATCH /api/admin/yt-categories - Update category (via GitHub API)
 export async function PATCH(request: NextRequest) {
   if (!verifyAdminAuth(request)) return createAuthResponse();
 
-  const body = await request.json();
-  const { id, ...updates } = body;
+  try {
+    const body = await request.json();
+    const { id, ...updates } = body;
 
-  if (!id) {
-    return NextResponse.json({ error: "Missing id" }, { status: 400 });
+    if (!id) {
+      return NextResponse.json({ error: "Missing id" }, { status: 400 });
+    }
+
+    // If merging into another category
+    if (updates.merge_into) {
+      await mergeCategoryViaGitHub(id, updates.merge_into);
+      return NextResponse.json({ success: true, merged: true });
+    }
+
+    const cat = await updateCategoryViaGitHub(id, updates);
+    return NextResponse.json(cat);
+  } catch (error) {
+    console.error("Failed to update category:", error);
+    const msg = error instanceof Error ? error.message : "Failed to update category";
+    const status = msg.includes("not found") ? 404 : 500;
+    return NextResponse.json({ error: msg }, { status });
   }
-
-  // If merging into another category
-  if (updates.merge_into) {
-    const drafts = readDrafts();
-    const updated = drafts.map((d) =>
-      d.category_id === id ? { ...d, category_id: updates.merge_into } : d
-    );
-    writeDrafts(updated);
-
-    updateCategory(id, { status: "archived" as any });
-
-    // Commit both files
-    await commitSingleFile("youtube-drafts.json", `[YouTube Pipeline] Merge category ${id} → ${updates.merge_into}`);
-    await commitSingleFile("youtube-categories.json", `[YouTube Pipeline] Archive merged category ${id}`);
-
-    return NextResponse.json({ success: true, merged: true });
-  }
-
-  const cat = updateCategory(id, updates);
-  if (!cat) {
-    return NextResponse.json({ error: "Category not found" }, { status: 404 });
-  }
-
-  // Commit to GitHub
-  await commitSingleFile(
-    "youtube-categories.json",
-    `[YouTube Pipeline] Update category: ${cat.name}`
-  );
-
-  return NextResponse.json(cat);
 }

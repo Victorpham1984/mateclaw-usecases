@@ -1,18 +1,16 @@
 // Pipeline Orchestrator
 // Coordinates: fetch videos → get transcripts → extract use cases → save drafts
-// Storage: file-based JSON + GitHub commits (zero Supabase)
+// Storage: All writes go through GitHub API (Vercel-safe, no EROFS)
 
 import {
-  readSources,
-  updateSource,
-  readDrafts,
-  addDraft,
-  hasVideoBeenProcessed,
-  readCategories,
+  readSourcesFromGitHub,
+  readDraftsFromGitHub,
+  addDraftsViaGitHub,
+  updateSourceViaGitHub,
+  addCrawlLogViaGitHub,
   getCategoryMap,
-  addCrawlEntry,
-  updateCrawlEntry,
-  commitYouTubeData,
+  type YTDraft,
+  type YTCrawlLog,
 } from "@/lib/youtube-data";
 import { fetchVideos, getTranscript, type YouTubeVideo } from "./youtube";
 import { extractUseCases, extractFromDescription } from "./extractor";
@@ -43,8 +41,7 @@ export async function processSingleSource(source: {
     errors: [],
   };
 
-  // Create crawl log entry
-  const crawlLog = addCrawlEntry(source.id);
+  const startedAt = new Date().toISOString();
 
   try {
     // Fetch videos (only those after last crawl)
@@ -52,11 +49,40 @@ export async function processSingleSource(source: {
     const videos = await fetchVideos(source.type, source.youtube_id, 15, publishedAfter);
     result.videos_found = videos.length;
 
+    // Read existing drafts from GitHub for dedup
+    const existingDrafts = await readDraftsFromGitHub();
+    const processedVideoIds = new Set(existingDrafts.map((d) => d.source_video_id));
+
     // Filter out already-processed videos
-    const newVideos = videos.filter((v) => !hasVideoBeenProcessed(v.videoId));
+    const newVideos = videos.filter((v) => !processedVideoIds.has(v.videoId));
+
+    if (newVideos.length === 0) {
+      console.log(`No new videos for source ${source.name}`);
+      // Still update last_crawled_at and log
+      await updateSourceViaGitHub(
+        source.id,
+        { last_crawled_at: new Date().toISOString() },
+        `[Pipeline] Crawl ${source.name}: no new videos`
+      );
+      await addCrawlLogViaGitHub({
+        id: `crawl-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+        source_id: source.id,
+        status: "completed",
+        videos_found: result.videos_found,
+        videos_processed: 0,
+        use_cases_created: 0,
+        errors: [],
+        started_at: startedAt,
+        completed_at: new Date().toISOString(),
+      });
+      return result;
+    }
 
     // Get category map for matching
     const categoryMap = getCategoryMap();
+
+    // Collect all drafts in memory (batch commit later)
+    const draftsToAdd: Omit<YTDraft, "id" | "created_at" | "reviewed_at" | "reviewed_by" | "rejection_reason" | "published_at">[] = [];
 
     // Process each new video
     for (const video of newVideos) {
@@ -81,7 +107,7 @@ export async function processSingleSource(source: {
           );
         }
 
-        // Save each use case as draft
+        // Collect each use case for batch commit
         for (const uc of extraction.use_cases) {
           // Try to match category
           const categoryKey = uc.suggested_category.toLowerCase();
@@ -97,7 +123,7 @@ export async function processSingleSource(source: {
             }
           }
 
-          addDraft({
+          draftsToAdd.push({
             title: uc.title,
             description: uc.description,
             detailed_content: uc.detailed_content,
@@ -136,32 +162,53 @@ export async function processSingleSource(source: {
       }
     }
 
-    // Update source last_crawled_at
-    updateSource(source.id, { last_crawled_at: new Date().toISOString() });
+    // Batch commit all drafts to GitHub (single commit)
+    if (draftsToAdd.length > 0) {
+      await addDraftsViaGitHub(
+        draftsToAdd,
+        `[Pipeline] Crawl ${source.name}: ${draftsToAdd.length} new drafts from ${result.videos_processed} videos`
+      );
+    }
 
-    // Update crawl log
-    updateCrawlEntry(crawlLog.id, {
+    // Update source last_crawled_at via GitHub
+    await updateSourceViaGitHub(
+      source.id,
+      { last_crawled_at: new Date().toISOString() },
+      `[Pipeline] Update last_crawled_at: ${source.name}`
+    );
+
+    // Write crawl log via GitHub
+    await addCrawlLogViaGitHub({
+      id: `crawl-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+      source_id: source.id,
+      status: "completed",
       videos_found: result.videos_found,
       videos_processed: result.videos_processed,
       use_cases_created: result.use_cases_created,
       errors: result.errors,
+      started_at: startedAt,
       completed_at: new Date().toISOString(),
-      status: "completed",
     });
-
-    // Commit to GitHub
-    if (result.use_cases_created > 0) {
-      await commitYouTubeData(
-        `[YouTube Pipeline] Crawl ${source.name}: ${result.use_cases_created} new drafts`
-      );
-    }
   } catch (err) {
     const msg = err instanceof Error ? err.message : String(err);
-    updateCrawlEntry(crawlLog.id, {
-      errors: [{ videoId: "source-level", error: msg }],
-      completed_at: new Date().toISOString(),
-      status: "failed",
-    });
+
+    // Try to log the failure
+    try {
+      await addCrawlLogViaGitHub({
+        id: `crawl-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+        source_id: source.id,
+        status: "failed",
+        videos_found: result.videos_found,
+        videos_processed: result.videos_processed,
+        use_cases_created: result.use_cases_created,
+        errors: [{ videoId: "source-level", error: msg }],
+        started_at: startedAt,
+        completed_at: new Date().toISOString(),
+      });
+    } catch (logErr) {
+      console.error("Failed to write crawl log:", logErr);
+    }
+
     throw err;
   }
 
@@ -170,7 +217,8 @@ export async function processSingleSource(source: {
 
 // Run pipeline for all enabled sources
 export async function runFullPipeline(): Promise<PipelineResult[]> {
-  const sources = readSources().filter((s) => s.enabled);
+  // Read sources from GitHub (not bundled file) for accuracy
+  const sources = (await readSourcesFromGitHub()).filter((s) => s.enabled);
   if (sources.length === 0) return [];
 
   const results: PipelineResult[] = [];

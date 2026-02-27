@@ -2,10 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 import { verifyAdminAuth, createAuthResponse } from "@/lib/pipeline/auth";
 import {
   readSources,
-  addSource,
-  updateSource,
-  deleteSource,
-  commitSingleFile,
+  addSourceViaGitHub,
+  updateSourceViaGitHub,
+  deleteSourceViaGitHub,
 } from "@/lib/youtube-data";
 
 export const dynamic = "force-dynamic";
@@ -21,83 +20,87 @@ export async function GET(request: NextRequest) {
   return NextResponse.json(sources);
 }
 
-// POST /api/admin/yt-sources - Create source
+// POST /api/admin/yt-sources - Create source (via GitHub API)
 export async function POST(request: NextRequest) {
   if (!verifyAdminAuth(request)) return createAuthResponse();
 
-  const body = await request.json();
+  try {
+    const body = await request.json();
 
-  if (!body.name || !body.youtube_id || !body.type) {
+    if (!body.name || !body.youtube_id || !body.type) {
+      return NextResponse.json(
+        { error: "Missing required fields: name, youtube_id, type" },
+        { status: 400 }
+      );
+    }
+
+    const source = await addSourceViaGitHub(
+      {
+        name: body.name,
+        type: body.type,
+        youtube_id: body.youtube_id,
+        url: body.url || null,
+        description: body.description || null,
+        enabled: body.enabled !== false,
+      },
+      `[YouTube Pipeline] Add source: ${body.name}`
+    );
+
+    return NextResponse.json(source, { status: 201 });
+  } catch (error) {
+    console.error("Failed to add source:", error);
     return NextResponse.json(
-      { error: "Missing required fields: name, youtube_id, type" },
-      { status: 400 }
+      { error: error instanceof Error ? error.message : "Failed to add source" },
+      { status: 500 }
     );
   }
-
-  const source = addSource({
-    name: body.name,
-    type: body.type,
-    youtube_id: body.youtube_id,
-    url: body.url || null,
-    description: body.description || null,
-    enabled: body.enabled !== false,
-  });
-
-  // Commit to GitHub
-  await commitSingleFile(
-    "youtube-sources.json",
-    `[YouTube Pipeline] Add source: ${source.name}`
-  );
-
-  return NextResponse.json(source, { status: 201 });
 }
 
-// PATCH /api/admin/yt-sources - Update source
+// PATCH /api/admin/yt-sources - Update source (via GitHub API)
 export async function PATCH(request: NextRequest) {
   if (!verifyAdminAuth(request)) return createAuthResponse();
 
-  const body = await request.json();
-  const { id, ...updates } = body;
+  try {
+    const body = await request.json();
+    const { id, ...updates } = body;
 
-  if (!id) {
-    return NextResponse.json({ error: "Missing id" }, { status: 400 });
+    if (!id) {
+      return NextResponse.json({ error: "Missing id" }, { status: 400 });
+    }
+
+    const updated = await updateSourceViaGitHub(id, updates);
+    return NextResponse.json(updated);
+  } catch (error) {
+    console.error("Failed to update source:", error);
+    const msg = error instanceof Error ? error.message : "Failed to update source";
+    const status = msg.includes("not found") ? 404 : 500;
+    return NextResponse.json({ error: msg }, { status });
   }
-
-  const updated = updateSource(id, updates);
-  if (!updated) {
-    return NextResponse.json({ error: "Source not found" }, { status: 404 });
-  }
-
-  // Commit to GitHub
-  await commitSingleFile(
-    "youtube-sources.json",
-    `[YouTube Pipeline] Update source: ${updated.name}`
-  );
-
-  return NextResponse.json(updated);
 }
 
 // DELETE /api/admin/yt-sources
 export async function DELETE(request: NextRequest) {
   if (!verifyAdminAuth(request)) return createAuthResponse();
 
-  const { searchParams } = new URL(request.url);
-  const id = searchParams.get("id");
+  try {
+    const { searchParams } = new URL(request.url);
+    const id = searchParams.get("id");
 
-  if (!id) {
-    return NextResponse.json({ error: "Missing id" }, { status: 400 });
+    if (!id) {
+      return NextResponse.json({ error: "Missing id" }, { status: 400 });
+    }
+
+    const deleted = await deleteSourceViaGitHub(id);
+    if (!deleted) {
+      return NextResponse.json({ error: "Source not found" }, { status: 404 });
+    }
+
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error("Failed to delete source:", error);
+    return NextResponse.json(
+      { error: error instanceof Error ? error.message : "Failed to delete source" },
+      { status: 500 }
+    );
   }
-
-  const deleted = deleteSource(id);
-  if (!deleted) {
-    return NextResponse.json({ error: "Source not found" }, { status: 404 });
-  }
-
-  // Commit to GitHub
-  await commitSingleFile(
-    "youtube-sources.json",
-    `[YouTube Pipeline] Delete source: ${id}`
-  );
-
-  return NextResponse.json({ success: true });
 }
