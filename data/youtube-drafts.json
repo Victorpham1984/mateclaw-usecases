@@ -110,43 +110,6 @@
       "rejection_reason": "short",
       "published_at": null,
       "created_at": "2026-02-27T15:44:46.808Z"
-    },
-    {
-      "title": "Instagram Automation with Open Claw",
-      "description": "Transform chaotic Instagram management into automated workflows using Open Claw platform for streamlined social media operations.",
-      "detailed_content": "## Instagram Automation with Open Claw\n\nThis use case focuses on transforming disorganized Instagram management into a streamlined, automated system using the Open Claw platform. The approach addresses the common challenge of managing Instagram content, engagement, and growth manually, which often leads to inconsistent posting, missed opportunities, and inefficient time management.\n\n### How It Works\n\nThe Open Claw platform appears to provide automation tools specifically designed for Instagram management. While specific implementation details aren't available from the limited content, the system likely involves setting up automated workflows for content scheduling, engagement tracking, and possibly follower interaction management.\n\n### Benefits and Applications\n\nBy implementing Instagram automation through Open Claw, users can expect to achieve more consistent posting schedules, better engagement rates, and reduced manual workload. This automation approach is particularly valuable for content creators, small businesses, and social media managers who need to maintain active Instagram presence without dedicating excessive time to manual management tasks.\n\n### Technical Implementation\n\nThe solution appears to integrate Claude AI capabilities, suggesting that the automation includes intelligent content generation, response management, or analytical insights powered by AI technology.",
-      "category_id": "cat-marketing",
-      "suggested_category": null,
-      "tags": [
-        "instagram-automation",
-        "social-media",
-        "open-claw",
-        "claude-ai",
-        "content-management",
-        "workflow-automation"
-      ],
-      "difficulty": "intermediate",
-      "source_id": "yt-1772206123032-42kwm1",
-      "source_video_id": "fIxsGwvR2eQ",
-      "source_video_title": "Transforme Seu Instagram Do Caos à Automação com Open Claw- #OpenClaw #ClaudeCode",
-      "source_video_url": "https://www.youtube.com/watch?v=fIxsGwvR2eQ",
-      "source_channel_name": "Diego Fornalha | Claude Code | OpenClaw",
-      "source_channel_id": "UCeY0SKw3BIsJzVZ3W08r4tA",
-      "source_published_at": "2026-02-24T20:20:47Z",
-      "ai_confidence": 0.6,
-      "ai_model": "anthropic/claude-sonnet-4",
-      "extraction_metadata": {
-        "tokens_used": 979,
-        "had_transcript": false,
-        "transcript_length": 0
-      },
-      "status": "approved",
-      "id": "yt-1772207086808-x33nqd",
-      "reviewed_at": "2026-02-27T15:51:35.786Z",
-      "reviewed_by": "admin",
-      "rejection_reason": null,
-      "published_at": null,
-      "created_at": "2026-02-27T15:44:46.808Z"
     }
   ]
 }
