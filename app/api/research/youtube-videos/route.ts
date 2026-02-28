@@ -1,10 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { verifyAuth } from "@/lib/admin-auth";
 import { searchVideos } from "@/lib/research/youtube-search";
-import { readCases, addCase, getNextId } from "@/lib/cases-db";
-import { updateCasesViaGitHub } from "@/lib/github";
+import { readCases, getNextId } from "@/lib/cases-db";
+import { updateFileViaGitHub } from "@/lib/github-file";
 import { buildApprovedVideoIndex, filterAlreadyApproved } from "@/lib/research/dedup";
-import type { UseCase } from "@/lib/types";
+import { readSessions, createSession, buildSessionsPayload, addApprovedToSession } from "@/lib/research/sessions";
+import { readDrafts, createDraft, buildDraftsPayload } from "@/lib/drafts";
+import { getApprovedIndex, addToIndex, buildIndexPayload, rebuildIndex } from "@/lib/research/approved-index";
 import type { ResearchVideo } from "@/lib/research/youtube-search";
 
 async function guard() {
@@ -27,10 +29,24 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "keyword is required" }, { status: 400 });
     }
 
+    // Load approved index for dedup
+    let approvedIds = getApprovedIndex();
+    // Also merge from cases.json (in case index is stale)
+    const cases = readCases();
+    const caseIds = buildApprovedVideoIndex(cases);
+    caseIds.forEach((id) => approvedIds.add(id));
+    // Also merge draft videoIds
+    const drafts = readDrafts();
+    drafts.forEach((d) => { if (d.status === "draft") approvedIds.add(d.videoId); });
+
+    // Fetch extra to compensate for expected dedup filtering
+    const targetCount = maxResults || 25;
+    const fetchCount = Math.min(targetCount + approvedIds.size, 50);
+
     // Search YouTube
     let videos = await searchVideos({
       keyword: keyword.trim(),
-      maxResults: maxResults || 25,
+      maxResults: fetchCount,
       language,
       videoDuration: videoDuration || "any",
       publishedAfter,
@@ -50,14 +66,41 @@ export async function POST(req: NextRequest) {
       videos = videos.filter((v) => v.engagementRate >= minEngagement);
     }
 
-    // Dedup against existing cases
-    const cases = readCases();
-    const approvedIds = buildApprovedVideoIndex(cases);
+    // Dedup against approved index
     const { filtered, hiddenCount } = filterAlreadyApproved(videos, approvedIds);
 
+    // Limit to target count
+    const finalVideos = filtered.slice(0, targetCount);
+
+    // Save as research session
+    const session = createSession(
+      keyword.trim(),
+      { language, videoDuration, minViews, minSubscribers: minSubscribers, order },
+      finalVideos,
+      videos.length,
+      hiddenCount
+    );
+
+    // Save session to GitHub
+    const sessions = readSessions();
+    sessions.push(session);
+    // Keep only last 50 sessions
+    const trimmed = sessions.slice(-50);
+    try {
+      await updateFileViaGitHub(
+        "data/research-sessions.json",
+        buildSessionsPayload(trimmed),
+        `[Research] Search: "${keyword.trim()}" (${finalVideos.length} videos)`
+      );
+    } catch (e) {
+      console.warn("Failed to save session:", e);
+      // Non-fatal — search still works
+    }
+
     return NextResponse.json({
-      searchId: `vs_${Date.now()}`,
-      videos: filtered,
+      searchId: session.id,
+      sessionId: session.id,
+      videos: finalVideos,
       totalFound: videos.length + hiddenCount,
       hiddenCount,
     });
@@ -70,64 +113,72 @@ export async function POST(req: NextRequest) {
   }
 }
 
-// PATCH: Bulk approve videos
+// PATCH: Bulk approve videos → save to DRAFTS (not cases)
 export async function PATCH(req: NextRequest) {
   const err = await guard();
   if (err) return err;
 
   try {
     const body = await req.json();
-    const { videos, category, keyword } = body as {
+    const { videos, category, keyword, sessionId } = body as {
       videos: ResearchVideo[];
       category?: string;
       keyword?: string;
+      sessionId?: string;
     };
 
     if (!videos || !Array.isArray(videos) || videos.length === 0) {
       return NextResponse.json({ error: "videos array is required" }, { status: 400 });
     }
 
-    let cases = readCases();
-    const approved: string[] = [];
-    const failed: string[] = [];
+    // Create drafts
+    let drafts = readDrafts();
+    const newDrafts = [];
+    const approvedVideoIds: string[] = [];
 
     for (const video of videos) {
+      // Skip if already a draft
+      if (drafts.some((d) => d.videoId === video.videoId && d.status === "draft")) continue;
+      const draft = createDraft(video, sessionId || "unknown");
+      if (category) draft.category = category;
+      newDrafts.push(draft);
+      approvedVideoIds.push(video.videoId);
+    }
+
+    drafts = [...drafts, ...newDrafts];
+
+    // Save drafts to GitHub
+    await updateFileViaGitHub(
+      "data/drafts.json",
+      buildDraftsPayload(drafts),
+      `[Drafts] Approve ${newDrafts.length} videos from "${keyword || "search"}"`
+    );
+
+    // Update approved index
+    const currentIndex = rebuildIndex();
+    const updatedIndex = addToIndex(currentIndex, approvedVideoIds);
+    await updateFileViaGitHub(
+      "data/approved-video-index.json",
+      buildIndexPayload(updatedIndex),
+      `[Index] Add ${approvedVideoIds.length} video(s)`
+    );
+
+    // Update session's approvedVideoIds
+    if (sessionId) {
       try {
-        const newCase: UseCase = {
-          id: getNextId(cases),
-          title: `**${video.title}**`,
-          description: video.description || video.title,
-          prompt: `Watch this video and extract actionable use cases: ${video.title}`,
-          category: (category as any) || "automation",
-          tags: ["youtube", "video-research"],
-          source: {
-            type: "youtube",
-            url: `https://www.youtube.com/watch?v=${video.videoId}`,
-            creator: video.channel.channelName,
-            channel: video.channel.channelName,
-            videoTitle: video.title,
-          },
-          addedAt: new Date().toISOString().split("T")[0],
-          difficulty: "beginner",
-          timeEstimate: video.duration,
-          roi: `${formatNumber(video.viewCount)} views • ${video.engagementRate}% engagement`,
-        };
-        cases.push(newCase);
-        approved.push(video.videoId);
-      } catch (e: any) {
-        failed.push(video.videoId);
+        let sessions = readSessions();
+        sessions = addApprovedToSession(sessions, sessionId, approvedVideoIds);
+        await updateFileViaGitHub(
+          "data/research-sessions.json",
+          buildSessionsPayload(sessions),
+          `[Research] Mark ${approvedVideoIds.length} approved in session`
+        );
+      } catch (e) {
+        console.warn("Failed to update session:", e);
       }
     }
 
-    // Commit to GitHub (no local file writes — Vercel is read-only)
-    if (approved.length > 0) {
-      await updateCasesViaGitHub(
-        cases,
-        `[Research] Approve videos: ${keyword || "search"} (${approved.length} videos)`
-      );
-    }
-
-    return NextResponse.json({ approved: approved.length, failed });
+    return NextResponse.json({ approved: newDrafts.length, failed: [] });
   } catch (error: any) {
     console.error("Bulk approve error:", error);
     return NextResponse.json(
@@ -135,12 +186,4 @@ export async function PATCH(req: NextRequest) {
       { status: 500 }
     );
   }
-}
-
-function formatNumber(num: string): string {
-  const n = parseInt(num, 10);
-  if (isNaN(n)) return num;
-  if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1)}M`;
-  if (n >= 1_000) return `${(n / 1_000).toFixed(1)}K`;
-  return String(n);
 }
