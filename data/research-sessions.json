@@ -492,6 +492,497 @@
       "approvedVideoIds": [
         "OwHnp9CFT68"
       ]
+    },
+    {
+      "id": "rs_1772296858228",
+      "keyword": "OpenClaw",
+      "filters": {
+        "language": "en",
+        "videoDuration": "long",
+        "minSubscribers": 1000,
+        "order": "viewCount"
+      },
+      "videos": [
+        {
+          "videoId": "Qkqe-uRhQJE",
+          "title": "ClawdBot is the most powerful AI tool I’ve ever used in my life. Here’s how to set it up",
+          "description": "ClawdBot is a 24/7 AI agent employee and it is the most powerful technology I've ever used. Here's how it works and how to set it ...",
+          "thumbnailUrl": "https://i.ytimg.com/vi/Qkqe-uRhQJE/hqdefault.jpg",
+          "publishedAt": "2026-01-24T19:27:52Z",
+          "duration": "27:46",
+          "videoType": "long",
+          "viewCount": "825548",
+          "likeCount": "24861",
+          "commentCount": "1574",
+          "engagementRate": 3.2,
+          "channel": {
+            "channelId": "UCfQNB91qRP_5ILeu_S_bSkg",
+            "channelName": "Alex Finn",
+            "subscriberCount": "133000",
+            "channelUrl": "https://youtube.com/@alexfinnofficial"
+          }
+        },
+        {
+          "videoId": "4uzGDAoNOZc",
+          "title": "OpenClaw Creator: Why 80% Of Apps Will Disappear",
+          "description": "You've probably already heard all about OpenClaw (formerly Clawdbot/Moltbot). The viral sensation is an open-source AI ...",
+          "thumbnailUrl": "https://i.ytimg.com/vi/4uzGDAoNOZc/hqdefault.jpg",
+          "publishedAt": "2026-02-07T15:00:13Z",
+          "duration": "22:36",
+          "videoType": "long",
+          "viewCount": "735363",
+          "likeCount": "17185",
+          "commentCount": "785",
+          "engagementRate": 2.44,
+          "channel": {
+            "channelId": "UCcefcZRL2oaA_uBNeo5UOWg",
+            "channelName": "Y Combinator",
+            "subscriberCount": "2170000",
+            "channelUrl": "https://youtube.com/@ycombinator"
+          }
+        },
+        {
+          "videoId": "8lF7HmQ_RgY",
+          "title": "The creator of Clawd: &quot;I ship code I don&#39;t read&quot;",
+          "description": "Peter Steinberger ships more code than I've seen a single person do: in January, he was at more than 6600 commits alone.",
+          "thumbnailUrl": "https://i.ytimg.com/vi/8lF7HmQ_RgY/hqdefault.jpg",
+          "publishedAt": "2026-01-28T17:33:46Z",
+          "duration": "1:54:05",
+          "videoType": "long",
+          "viewCount": "480925",
+          "likeCount": "5590",
+          "commentCount": "422",
+          "engagementRate": 1.25,
+          "channel": {
+            "channelId": "UCPbwhExawYrn9xxI21TFfyw",
+            "channelName": "The Pragmatic Engineer",
+            "subscriberCount": "463000",
+            "channelUrl": "https://youtube.com/@pragmaticengineer"
+          }
+        },
+        {
+          "videoId": "ps7kqEXkwEs",
+          "title": "OpenClaw: Ja, der Hype ist gerechtfertigt",
+          "description": "Ob OpenClaw, Moltbot oder ClawdBot: Keno findet, der Hype ist komplett gerechtfertigt. === Anzeige / Sponsorenhinweis ...",
+          "thumbnailUrl": "https://i.ytimg.com/vi/ps7kqEXkwEs/hqdefault.jpg",
+          "publishedAt": "2026-01-30T20:42:24Z",
+          "duration": "36:57",
+          "videoType": "long",
+          "viewCount": "366922",
+          "likeCount": "13770",
+          "commentCount": "1634",
+          "engagementRate": 4.2,
+          "channel": {
+            "channelId": "UC1t9VFj-O6YUDPQxaVg-NkQ",
+            "channelName": "c't 3003",
+            "subscriberCount": "237000",
+            "channelUrl": "https://youtube.com/@ct3003"
+          }
+        },
+        {
+          "videoId": "U8kXfk8enrY",
+          "title": "Clawdbot/OpenClaw Clearly Explained (and how to use it)",
+          "description": "I sit down with Alex Finn to break down how he sets up Moltbot (formally Clawdbot) as a proactive AI employee he treats like a ...",
+          "thumbnailUrl": "https://i.ytimg.com/vi/U8kXfk8enrY/hqdefault.jpg",
+          "publishedAt": "2026-01-27T19:00:34Z",
+          "duration": "35:14",
+          "videoType": "long",
+          "viewCount": "313866",
+          "likeCount": "6889",
+          "commentCount": "808",
+          "engagementRate": 2.45,
+          "channel": {
+            "channelId": "UCPjNBjflYl0-HQtUvOx0Ibw",
+            "channelName": "Greg Isenberg",
+            "subscriberCount": "559000",
+            "channelUrl": "https://youtube.com/@gregisenberg"
+          }
+        },
+        {
+          "videoId": "n1sfrc-RjyM",
+          "title": "OpenClaw Full Tutorial for Beginners – How to Set Up and Use OpenClaw (ClawdBot / MoltBot)",
+          "description": "This course provides a comprehensive introduction to OpenClaw, a proactive autonomous agent and messaging gateway that ...",
+          "thumbnailUrl": "https://i.ytimg.com/vi/n1sfrc-RjyM/hqdefault.jpg",
+          "publishedAt": "2026-02-04T11:01:21Z",
+          "duration": "54:45",
+          "videoType": "long",
+          "viewCount": "291143",
+          "likeCount": "6490",
+          "commentCount": "421",
+          "engagementRate": 2.37,
+          "channel": {
+            "channelId": "UC8butISFwT-Wl7EV0hUK0BQ",
+            "channelName": "freeCodeCamp.org",
+            "subscriberCount": "11500000",
+            "channelUrl": "https://youtube.com/@freecodecamp"
+          }
+        },
+        {
+          "videoId": "p9acrso71KU",
+          "title": "Clawdbot to Moltbot to OpenClaw: The 72 Hours That Broke Everything (The Full Breakdown)",
+          "description": "What's really happening with the fastest-growing open source project in GitHub history? The common story is that Moltbot (now ...",
+          "thumbnailUrl": "https://i.ytimg.com/vi/p9acrso71KU/hqdefault.jpg",
+          "publishedAt": "2026-02-02T15:01:32Z",
+          "duration": "22:02",
+          "videoType": "long",
+          "viewCount": "285501",
+          "likeCount": "10016",
+          "commentCount": "1096",
+          "engagementRate": 3.89,
+          "channel": {
+            "channelId": "UC0C-17n9iuUQPylguM1d-lQ",
+            "channelName": "AI News & Strategy Daily | Nate B Jones",
+            "subscriberCount": "225000",
+            "channelUrl": "https://youtube.com/@natebjones"
+          }
+        },
+        {
+          "videoId": "AcwK1Uuwc0U",
+          "title": "How OpenClaw&#39;s Creator Uses AI to Run His Life in 40 Minutes | Peter Steinberger",
+          "description": "Peter is the creator of OpenClaw (formerly Molt - the name keeps changing ), the hottest AI right now with 2M visitors in a week.",
+          "thumbnailUrl": "https://i.ytimg.com/vi/AcwK1Uuwc0U/hqdefault.jpg",
+          "publishedAt": "2026-02-01T14:00:15Z",
+          "duration": "37:44",
+          "videoType": "long",
+          "viewCount": "275016",
+          "likeCount": "5745",
+          "commentCount": "524",
+          "engagementRate": 2.28,
+          "channel": {
+            "channelId": "UCnpBg7yqNauHtlNSpOl5-cg",
+            "channelName": "Peter Yang",
+            "subscriberCount": "68300",
+            "channelUrl": "https://youtube.com/@peteryangyt"
+          }
+        },
+        {
+          "videoId": "q-sClVMYY4w",
+          "title": "OpenClaw: 160,000 Developers Are Building Something OpenAI &amp; Google Can&#39;t Stop. Where Do You Stand?",
+          "description": "What's really happening with AI agents in the wild? The common story is that agents either work perfectly or fail ...",
+          "thumbnailUrl": "https://i.ytimg.com/vi/q-sClVMYY4w/hqdefault.jpg",
+          "publishedAt": "2026-02-12T15:01:33Z",
+          "duration": "25:13",
+          "videoType": "long",
+          "viewCount": "244793",
+          "likeCount": "7416",
+          "commentCount": "1487",
+          "engagementRate": 3.64,
+          "channel": {
+            "channelId": "UC0C-17n9iuUQPylguM1d-lQ",
+            "channelName": "AI News & Strategy Daily | Nate B Jones",
+            "subscriberCount": "225000",
+            "channelUrl": "https://youtube.com/@natebjones"
+          }
+        },
+        {
+          "videoId": "CBNbcbMs_Lc",
+          "title": "100 Hours Testing Clawdbot vs Claude Code (honest results)",
+          "description": "Code NATEHERK for 10% OFF Self-Hosting: https://www.hostg.xyz/SHImM Full courses + unlimited support: ...",
+          "thumbnailUrl": "https://i.ytimg.com/vi/CBNbcbMs_Lc/hqdefault.jpg",
+          "publishedAt": "2026-01-28T03:52:23Z",
+          "duration": "22:47",
+          "videoType": "long",
+          "viewCount": "230308",
+          "likeCount": "5169",
+          "commentCount": "509",
+          "engagementRate": 2.47,
+          "channel": {
+            "channelId": "UC2ojq-nuP8ceeHqiroeKhBA",
+            "channelName": "Nate Herk | AI Automation",
+            "subscriberCount": "544000",
+            "channelUrl": "https://youtube.com/@nateherk"
+          }
+        },
+        {
+          "videoId": "JlB852LGRJk",
+          "title": "OpenClaw Debate: AI Personhood, Proof of AGI, and the ‘Rights’ Framework | EP #227",
+          "description": "The Mates discuss what OpenClaw means for AI Personhood and debate whether AI should have rights. Get access to ...",
+          "thumbnailUrl": "https://i.ytimg.com/vi/JlB852LGRJk/hqdefault.jpg",
+          "publishedAt": "2026-02-05T17:38:07Z",
+          "duration": "2:13:30",
+          "videoType": "long",
+          "viewCount": "220443",
+          "likeCount": "5526",
+          "commentCount": "2077",
+          "engagementRate": 3.45,
+          "channel": {
+            "channelId": "UCvxm0qTrGN_1LMYgUaftWyQ",
+            "channelName": "Peter H. Diamandis",
+            "subscriberCount": "468000",
+            "channelUrl": "https://youtube.com/@peterdiamandis"
+          }
+        },
+        {
+          "videoId": "MPB1H9cMh8A",
+          "title": "Tout le monde parle d&#39;OpenClaw, personne ne comprend ce que c&#39;est",
+          "description": "OpenClaw, c'est le premier vrai agent IA open source gratuit : il ne se contente pas de répondre comme ChatGPT, il AGIT sur ...",
+          "thumbnailUrl": "https://i.ytimg.com/vi/MPB1H9cMh8A/hqdefault.jpg",
+          "publishedAt": "2026-02-17T09:54:29Z",
+          "duration": "21:55",
+          "videoType": "long",
+          "viewCount": "223886",
+          "likeCount": "6274",
+          "commentCount": "370",
+          "engagementRate": 2.97,
+          "channel": {
+            "channelId": "UCLKx4-_XO5sR0AO0j8ye7zQ",
+            "channelName": "Shubham SHARMA",
+            "subscriberCount": "281000",
+            "channelUrl": "https://youtube.com/@shubham_sharma"
+          }
+        },
+        {
+          "videoId": "8kNv3rjQaVA",
+          "title": "21 INSANE Use Cases For OpenClaw...",
+          "description": "Use My Prompts     https://gist.github.com/mberman84/63163d6839053fbf15091238e5ada5c2 My Files: SOUL.md: ...",
+          "thumbnailUrl": "https://i.ytimg.com/vi/8kNv3rjQaVA/hqdefault.jpg",
+          "publishedAt": "2026-02-17T18:39:11Z",
+          "duration": "33:44",
+          "videoType": "long",
+          "viewCount": "210483",
+          "likeCount": "6437",
+          "commentCount": "604",
+          "engagementRate": 3.35,
+          "channel": {
+            "channelId": "UCawZsQWqfGSbCI5yjkdVkTA",
+            "channelName": "Matthew Berman",
+            "subscriberCount": "574000",
+            "channelUrl": "https://youtube.com/@matthew_berman"
+          }
+        },
+        {
+          "videoId": "DjS9ImDoyNE",
+          "title": "OpenClaw : comprendre le phénomène qui obsède Internet",
+          "description": "OpenClaw n'est pas un chatbot de plus. C'est un agent autonome capable de coder, de trader, d'automatiser un business entier, ...",
+          "thumbnailUrl": "https://i.ytimg.com/vi/DjS9ImDoyNE/hqdefault.jpg",
+          "publishedAt": "2026-02-22T11:00:30Z",
+          "duration": "26:36",
+          "videoType": "long",
+          "viewCount": "206047",
+          "likeCount": "9492",
+          "commentCount": "426",
+          "engagementRate": 4.81,
+          "channel": {
+            "channelId": "UChlTcWDE8gd4tsl_L727NrQ",
+            "channelName": "Hasheur",
+            "subscriberCount": "803000",
+            "channelUrl": "https://youtube.com/@hasheur"
+          }
+        },
+        {
+          "videoId": "9jgcT0Fqt7U",
+          "title": "Builders Unscripted: Ep. 1 - Peter Steinberger, Creator of OpenClaw",
+          "description": "Builders Unscripted spotlights the stories behind real projects and the mindset that makes them possible: you can just build things.",
+          "thumbnailUrl": "https://i.ytimg.com/vi/9jgcT0Fqt7U/hqdefault.jpg",
+          "publishedAt": "2026-02-24T17:03:32Z",
+          "duration": "31:29",
+          "videoType": "long",
+          "viewCount": "202709",
+          "likeCount": "6658",
+          "commentCount": "441",
+          "engagementRate": 3.5,
+          "channel": {
+            "channelId": "UCXZCJLdBC09xxGZ6gcdrc6A",
+            "channelName": "OpenAI",
+            "subscriberCount": "1920000",
+            "channelUrl": "https://youtube.com/@openai"
+          }
+        },
+        {
+          "videoId": "axCreWC6AHw",
+          "title": "Master Clawdbot Under 30 Minutes!",
+          "description": "Learn more about Emergent here - https://app.emergent.sh/?via=d61151 In this video, we walk through Clawdbot, an early-stage ...",
+          "thumbnailUrl": "https://i.ytimg.com/vi/axCreWC6AHw/hqdefault.jpg",
+          "publishedAt": "2026-02-06T14:53:16Z",
+          "duration": "24:01",
+          "videoType": "long",
+          "viewCount": "201823",
+          "likeCount": "5500",
+          "commentCount": "258",
+          "engagementRate": 2.85,
+          "channel": {
+            "channelId": "UCsQoiOrh7jzKmE8NBofhTnQ",
+            "channelName": "Varun Mayya",
+            "subscriberCount": "1060000",
+            "channelUrl": "https://youtube.com/@varunmayya"
+          }
+        },
+        {
+          "videoId": "XC5oeZnMvcg",
+          "title": "ClawdBot is INSANE. Here’s 3 Ways to Make Money With It",
+          "description": "Grab the Clawdbot (aka Openclaw) installation & monetization guide https://bit.ly/4bPhbQo Become a Wildly Profitable AI ...",
+          "thumbnailUrl": "https://i.ytimg.com/vi/XC5oeZnMvcg/hqdefault.jpg",
+          "publishedAt": "2026-01-28T01:59:57Z",
+          "duration": "36:49",
+          "videoType": "long",
+          "viewCount": "186376",
+          "likeCount": "4113",
+          "commentCount": "405",
+          "engagementRate": 2.42,
+          "channel": {
+            "channelId": "UCui4jxDaMb53Gdh-AZUTPAg",
+            "channelName": "Liam Ottley",
+            "subscriberCount": "740000",
+            "channelUrl": "https://youtube.com/@liamottley"
+          }
+        },
+        {
+          "videoId": "Q7r--i9lLck",
+          "title": "OpenClaw Use Cases that are actually helpful...",
+          "description": "Try Greptile for free for 14 days! https://greptile.com/go/berman Prompts to get these use cases working: ...",
+          "thumbnailUrl": "https://i.ytimg.com/vi/Q7r--i9lLck/hqdefault.jpg",
+          "publishedAt": "2026-02-11T19:15:35Z",
+          "duration": "27:41",
+          "videoType": "long",
+          "viewCount": "186132",
+          "likeCount": "5395",
+          "commentCount": "558",
+          "engagementRate": 3.2,
+          "channel": {
+            "channelId": "UCawZsQWqfGSbCI5yjkdVkTA",
+            "channelName": "Matthew Berman",
+            "subscriberCount": "574000",
+            "channelUrl": "https://youtube.com/@matthew_berman"
+          }
+        },
+        {
+          "videoId": "_kZCoW-Qxnc",
+          "title": "100 hours of OpenClaw lessons in 35 minutes",
+          "description": "I've spent 100 hours with OpenClaw. Here is EVERYTHING I know about it. Feel free to skip around to relevant chapters.",
+          "thumbnailUrl": "https://i.ytimg.com/vi/_kZCoW-Qxnc/hqdefault.jpg",
+          "publishedAt": "2026-02-15T17:24:39Z",
+          "duration": "35:35",
+          "videoType": "long",
+          "viewCount": "166670",
+          "likeCount": "5899",
+          "commentCount": "544",
+          "engagementRate": 3.87,
+          "channel": {
+            "channelId": "UCfQNB91qRP_5ILeu_S_bSkg",
+            "channelName": "Alex Finn",
+            "subscriberCount": "133000",
+            "channelUrl": "https://youtube.com/@alexfinnofficial"
+          }
+        },
+        {
+          "videoId": "Z-FXHuiUJSU",
+          "title": "Clawdbot (OpenClaw) is everything I was hoping A.I. would be",
+          "description": "UPDATE: It's now called OpenClaw To get your own VPS to run ClawdBot on, then visit https://hostinger.com/dreamsofcode and ...",
+          "thumbnailUrl": "https://i.ytimg.com/vi/Z-FXHuiUJSU/hqdefault.jpg",
+          "publishedAt": "2026-01-25T16:30:28Z",
+          "duration": "23:15",
+          "videoType": "long",
+          "viewCount": "158561",
+          "likeCount": "5263",
+          "commentCount": "640",
+          "engagementRate": 3.72,
+          "channel": {
+            "channelId": "UCWQaM7SpSECp9FELz-cHzuQ",
+            "channelName": "Dreams of Code",
+            "subscriberCount": "201000",
+            "channelUrl": "https://youtube.com/@dreamsofcode"
+          }
+        },
+        {
+          "videoId": "C5ir_rQ4L4g",
+          "title": "I Built an AI Agent That Hacks for Me | OpenClaw + Kali Linux",
+          "description": "Building a fully autonomous AI hacking rig using OpenClaw running on a Kali Linux cloud server. Use the code ZSECURITY to ...",
+          "thumbnailUrl": "https://i.ytimg.com/vi/C5ir_rQ4L4g/hqdefault.jpg",
+          "publishedAt": "2026-02-19T11:21:28Z",
+          "duration": "40:55",
+          "videoType": "long",
+          "viewCount": "147627",
+          "likeCount": "8248",
+          "commentCount": "543",
+          "engagementRate": 5.95,
+          "channel": {
+            "channelId": "UCVPjtOVcnKaSRI8IO3KSetA",
+            "channelName": "zSecurity",
+            "subscriberCount": "607000",
+            "channelUrl": "https://youtube.com/@zsecurity"
+          }
+        },
+        {
+          "videoId": "3GrG-dOmrLU",
+          "title": "I figured out the best way to run OpenClaw",
+          "description": "Setup OpenClaw in just ONE click! http://hostinger.com/matthewb Use code MATTHEWB for 10% off! 25 HUGE OpenClaw Use ...",
+          "thumbnailUrl": "https://i.ytimg.com/vi/3GrG-dOmrLU/hqdefault.jpg",
+          "publishedAt": "2026-02-05T18:45:35Z",
+          "duration": "22:31",
+          "videoType": "long",
+          "viewCount": "145094",
+          "likeCount": "4281",
+          "commentCount": "515",
+          "engagementRate": 3.31,
+          "channel": {
+            "channelId": "UCawZsQWqfGSbCI5yjkdVkTA",
+            "channelName": "Matthew Berman",
+            "subscriberCount": "574000",
+            "channelUrl": "https://youtube.com/@matthew_berman"
+          }
+        },
+        {
+          "videoId": "NZ1mKAWJPr4",
+          "title": "50 days with OpenClaw: The hype, the reality &amp; what actually broke",
+          "description": "This is my 50-day OpenClaw review after running a self-hosted AI agent every single day. In this video I show: - 20 real OpenClaw ...",
+          "thumbnailUrl": "https://i.ytimg.com/vi/NZ1mKAWJPr4/hqdefault.jpg",
+          "publishedAt": "2026-02-20T22:34:46Z",
+          "duration": "47:58",
+          "videoType": "long",
+          "viewCount": "141956",
+          "likeCount": "5043",
+          "commentCount": "374",
+          "engagementRate": 3.82,
+          "channel": {
+            "channelId": "UCWtiKY_NPl9hGexYd5rk0kg",
+            "channelName": "VelvetShark",
+            "subscriberCount": "10000",
+            "channelUrl": "https://youtube.com/@velvetshark-com"
+          }
+        },
+        {
+          "videoId": "wKy1_KLcxcs",
+          "title": "How to code with AI agents - Advice from OpenClaw creator | Peter Steinberger and Lex Fridman",
+          "description": "Lex Fridman Podcast full episode: https://www.youtube.com/watch?v=YFjfBk8HI5o Thank you for listening ❤ Check out our ...",
+          "thumbnailUrl": "https://i.ytimg.com/vi/wKy1_KLcxcs/hqdefault.jpg",
+          "publishedAt": "2026-02-12T11:40:19Z",
+          "duration": "31:14",
+          "videoType": "long",
+          "viewCount": "139147",
+          "likeCount": "2652",
+          "commentCount": "155",
+          "engagementRate": 2.02,
+          "channel": {
+            "channelId": "UCJIfeSCssxSC_Dhc5s7woww",
+            "channelName": "Lex Clips",
+            "subscriberCount": "1610000",
+            "channelUrl": "https://youtube.com/@lexclips"
+          }
+        },
+        {
+          "videoId": "Ns5QOKsqwGY",
+          "title": "Mac Mini M4 + OpenClaw Is Dangerous",
+          "description": "I pushed the Apple Mac Mini, most affordable computer to its absolute limits by running OpenClaw, a local AI automation agent ...",
+          "thumbnailUrl": "https://i.ytimg.com/vi/Ns5QOKsqwGY/hqdefault.jpg",
+          "publishedAt": "2026-02-08T15:00:47Z",
+          "duration": "22:54",
+          "videoType": "long",
+          "viewCount": "133386",
+          "likeCount": "3397",
+          "commentCount": "254",
+          "engagementRate": 2.74,
+          "channel": {
+            "channelId": "UCC_NjLEb2Sley94py4vSYTA",
+            "channelName": "Andres Vidoza",
+            "subscriberCount": "597000",
+            "channelUrl": "https://youtube.com/@andresvidoza"
+          }
+        }
+      ],
+      "totalFound": 29,
+      "hiddenCount": 2,
+      "searchedAt": "2026-02-28T16:40:58.228Z",
+      "approvedVideoIds": []
     }
   ]
 }
