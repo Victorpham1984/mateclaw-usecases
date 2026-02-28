@@ -1,1 +1,37 @@
-{ "drafts": [] }
+{
+  "drafts": [
+    {
+      "id": "draft_1772296772547_Qkqe-uRhQJE",
+      "videoId": "Qkqe-uRhQJE",
+      "fromSessionId": "rs_1772296757355",
+      "video": {
+        "videoId": "Qkqe-uRhQJE",
+        "title": "ClawdBot is the most powerful AI tool I’ve ever used in my life. Here’s how to set it up",
+        "description": "ClawdBot is a 24/7 AI agent employee and it is the most powerful technology I've ever used. Here's how it works and how to set it ...",
+        "thumbnailUrl": "https://i.ytimg.com/vi/Qkqe-uRhQJE/hqdefault.jpg",
+        "publishedAt": "2026-01-24T19:27:52Z",
+        "duration": "27:46",
+        "videoType": "long",
+        "viewCount": "825548",
+        "likeCount": "24861",
+        "commentCount": "1574",
+        "engagementRate": 3.2,
+        "channel": {
+          "channelId": "UCfQNB91qRP_5ILeu_S_bSkg",
+          "channelName": "Alex Finn",
+          "subscriberCount": "133000",
+          "channelUrl": "https://youtube.com/@alexfinnofficial"
+        }
+      },
+      "title": "ClawdBot is the most powerful AI tool I’ve ever used in my life. Here’s how to set it up",
+      "description": "ClawdBot is a 24/7 AI agent employee and it is the most powerful technology I've ever used. Here's how it works and how to set it ...",
+      "category": "automation",
+      "tags": [
+        "youtube",
+        "video-research"
+      ],
+      "createdAt": "2026-02-28T16:39:32.547Z",
+      "status": "draft"
+    }
+  ]
+}
