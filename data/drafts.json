@@ -1,36 +1,36 @@
 {
   "drafts": [
     {
-      "id": "draft_1772296783060_MUDvwqJWWIw",
-      "videoId": "MUDvwqJWWIw",
+      "id": "draft_1772296790303_OwHnp9CFT68",
+      "videoId": "OwHnp9CFT68",
       "fromSessionId": "rs_1772296757355",
       "video": {
-        "videoId": "MUDvwqJWWIw",
-        "title": "I Played with Clawdbot all Weekend - it&#39;s insane.",
-        "description": "Check out the Dell Pro Max Workstation with the NVIDIA RTX PRO! https://bit.ly/dell-ai-factory-with-nvidia OpenClaw is here and ...",
-        "thumbnailUrl": "https://i.ytimg.com/vi/MUDvwqJWWIw/hqdefault.jpg",
-        "publishedAt": "2026-01-26T00:19:09Z",
-        "duration": "21:12",
+        "videoId": "OwHnp9CFT68",
+        "title": "OpenClaw: Die Büchse der Pandora ist GEÖFFNET",
+        "description": "Neo ist mein Bot von OpenClaw, dem Hypetool der Stunde. Der iPhone Moment für KI Agenten. Er verwaltet meinen Kalender, ...",
+        "thumbnailUrl": "https://i.ytimg.com/vi/OwHnp9CFT68/hqdefault.jpg",
+        "publishedAt": "2026-02-08T09:00:00Z",
+        "duration": "24:58",
         "videoType": "long",
-        "viewCount": "402170",
-        "likeCount": "9234",
-        "commentCount": "1222",
-        "engagementRate": 2.6,
+        "viewCount": "394031",
+        "likeCount": "15100",
+        "commentCount": "2009",
+        "engagementRate": 4.34,
         "channel": {
-          "channelId": "UCawZsQWqfGSbCI5yjkdVkTA",
-          "channelName": "Matthew Berman",
-          "subscriberCount": "574000",
-          "channelUrl": "https://youtube.com/@matthew_berman"
+          "channelId": "UCkZ3fSYruC0IXv6p34BHciQ",
+          "channelName": "The Morpheus",
+          "subscriberCount": "213000",
+          "channelUrl": "https://youtube.com/@themorpheusvlogs"
         }
       },
-      "title": "I Played with Clawdbot all Weekend - it&#39;s insane.",
-      "description": "Check out the Dell Pro Max Workstation with the NVIDIA RTX PRO! https://bit.ly/dell-ai-factory-with-nvidia OpenClaw is here and ...",
+      "title": "OpenClaw: Die Büchse der Pandora ist GEÖFFNET",
+      "description": "Neo ist mein Bot von OpenClaw, dem Hypetool der Stunde. Der iPhone Moment für KI Agenten. Er verwaltet meinen Kalender, ...",
       "category": "automation",
       "tags": [
         "youtube",
         "video-research"
       ],
-      "createdAt": "2026-02-28T16:39:43.060Z",
+      "createdAt": "2026-02-28T16:39:50.303Z",
       "status": "draft"
     }
   ]
