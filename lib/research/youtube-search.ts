@@ -186,6 +186,189 @@ export async function getVideoStats(
   return result;
 }
 
+// ─── Research Video Type ─────────────────────────────────────
+
+export type ResearchVideo = {
+  videoId: string;
+  title: string;
+  description: string;
+  thumbnailUrl: string;
+  publishedAt: string;
+  duration: string;
+  videoType: "long" | "short";
+  viewCount: string;
+  likeCount: string;
+  commentCount: string;
+  engagementRate: number;
+  channel: {
+    channelId: string;
+    channelName: string;
+    subscriberCount: string;
+    channelUrl: string;
+  };
+};
+
+// ─── Search Videos by Keyword ────────────────────────────────
+// YouTube API quota: 100 (search) + 1 (videos.list) + 1 (channels.list) = 102 units
+
+export async function searchVideos(opts: {
+  keyword: string;
+  maxResults?: number;
+  language?: string;
+  videoDuration?: "long" | "short" | "any";
+  publishedAfter?: string;
+  order?: "relevance" | "viewCount" | "date";
+}): Promise<ResearchVideo[]> {
+  const {
+    keyword,
+    maxResults = 25,
+    language,
+    videoDuration = "any",
+    publishedAfter,
+    order = "relevance",
+  } = opts;
+  const apiKey = getApiKey();
+
+  // Step 1: Search for videos (100 quota units)
+  const searchParams = new URLSearchParams({
+    part: "snippet",
+    type: "video",
+    q: keyword,
+    maxResults: String(Math.min(maxResults, 50)),
+    order,
+    key: apiKey,
+  });
+
+  if (language && language !== "all") {
+    searchParams.set("relevanceLanguage", language);
+  }
+  if (videoDuration !== "any") {
+    searchParams.set("videoDuration", videoDuration);
+  }
+  if (publishedAfter) {
+    searchParams.set("publishedAfter", publishedAfter);
+  }
+
+  const searchRes = await fetch(`${YOUTUBE_API_BASE}/search?${searchParams}`);
+  if (!searchRes.ok) {
+    const err = await searchRes.text();
+    throw new Error(`YouTube Search API error: ${searchRes.status} - ${err}`);
+  }
+
+  const searchData = await searchRes.json();
+  const items = searchData.items || [];
+  if (items.length === 0) return [];
+
+  // Collect videoIds and channelIds
+  const videoIds: string[] = [];
+  const channelIds = new Set<string>();
+  const snippetMap = new Map<string, any>();
+
+  for (const item of items) {
+    const videoId = item.id.videoId;
+    if (!videoId) continue;
+    videoIds.push(videoId);
+    channelIds.add(item.snippet.channelId);
+    snippetMap.set(videoId, item.snippet);
+  }
+
+  // Step 2: Get video details (statistics + contentDetails) in batch (1 quota unit)
+  const videoDetailsMap = new Map<string, any>();
+  for (let i = 0; i < videoIds.length; i += 50) {
+    const batch = videoIds.slice(i, i + 50);
+    const params = new URLSearchParams({
+      part: "statistics,contentDetails",
+      id: batch.join(","),
+      key: apiKey,
+    });
+    const res = await fetch(`${YOUTUBE_API_BASE}/videos?${params}`);
+    if (res.ok) {
+      const data = await res.json();
+      for (const item of data.items || []) {
+        videoDetailsMap.set(item.id, {
+          viewCount: item.statistics?.viewCount || "0",
+          likeCount: item.statistics?.likeCount || "0",
+          commentCount: item.statistics?.commentCount || "0",
+          duration: item.contentDetails?.duration || "PT0S",
+        });
+      }
+    }
+  }
+
+  // Step 3: Get channel stats in batch (1 quota unit)
+  const channelStatsMap = await getChannelStats(Array.from(channelIds));
+
+  // Step 4: Assemble ResearchVideo objects
+  const results: ResearchVideo[] = [];
+  for (const videoId of videoIds) {
+    const snippet = snippetMap.get(videoId);
+    const details = videoDetailsMap.get(videoId);
+    if (!snippet || !details) continue;
+
+    const views = parseInt(details.viewCount, 10) || 0;
+    const likes = parseInt(details.likeCount, 10) || 0;
+    const comments = parseInt(details.commentCount, 10) || 0;
+    const engagementRate = views > 0 ? ((likes + comments) / views) * 100 : 0;
+
+    // Parse ISO 8601 duration to human-readable
+    const duration = parseIsoDuration(details.duration);
+    const durationSeconds = parseDurationToSeconds(details.duration);
+    const videoType: "long" | "short" = durationSeconds <= 60 ? "short" : "long";
+
+    const channelId = snippet.channelId;
+    const channelStats = channelStatsMap.get(channelId);
+
+    results.push({
+      videoId,
+      title: snippet.title,
+      description: snippet.description || "",
+      thumbnailUrl:
+        snippet.thumbnails?.high?.url ||
+        snippet.thumbnails?.medium?.url ||
+        snippet.thumbnails?.default?.url ||
+        "",
+      publishedAt: snippet.publishedAt,
+      duration,
+      videoType,
+      viewCount: details.viewCount,
+      likeCount: details.likeCount,
+      commentCount: details.commentCount,
+      engagementRate: Math.round(engagementRate * 100) / 100,
+      channel: {
+        channelId,
+        channelName: snippet.channelTitle || "",
+        subscriberCount: channelStats?.subscriberCount || "0",
+        channelUrl: channelStats?.customUrl
+          ? `https://youtube.com/${channelStats.customUrl}`
+          : `https://youtube.com/channel/${channelId}`,
+      },
+    });
+  }
+
+  return results;
+}
+
+// Parse ISO 8601 duration (PT1H2M3S) to human-readable (1:02:03)
+function parseIsoDuration(iso: string): string {
+  const match = iso.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
+  if (!match) return "0:00";
+  const h = parseInt(match[1] || "0", 10);
+  const m = parseInt(match[2] || "0", 10);
+  const s = parseInt(match[3] || "0", 10);
+  if (h > 0) return `${h}:${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+  return `${m}:${String(s).padStart(2, "0")}`;
+}
+
+function parseDurationToSeconds(iso: string): number {
+  const match = iso.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
+  if (!match) return 0;
+  return (
+    parseInt(match[1] || "0", 10) * 3600 +
+    parseInt(match[2] || "0", 10) * 60 +
+    parseInt(match[3] || "0", 10)
+  );
+}
+
 // ─── Full Channel Discovery Pipeline ─────────────────────────
 // Orchestrates: search → stats → filter → recent videos
 // Quota estimate: ~100 + 1 + (N * 100) units where N = qualifying channels
