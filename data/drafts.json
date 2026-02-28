@@ -1,36 +1,36 @@
 {
   "drafts": [
     {
-      "id": "draft_1772296778612_4uzGDAoNOZc",
-      "videoId": "4uzGDAoNOZc",
+      "id": "draft_1772296783060_MUDvwqJWWIw",
+      "videoId": "MUDvwqJWWIw",
       "fromSessionId": "rs_1772296757355",
       "video": {
-        "videoId": "4uzGDAoNOZc",
-        "title": "OpenClaw Creator: Why 80% Of Apps Will Disappear",
-        "description": "You've probably already heard all about OpenClaw (formerly Clawdbot/Moltbot). The viral sensation is an open-source AI ...",
-        "thumbnailUrl": "https://i.ytimg.com/vi/4uzGDAoNOZc/hqdefault.jpg",
-        "publishedAt": "2026-02-07T15:00:13Z",
-        "duration": "22:36",
+        "videoId": "MUDvwqJWWIw",
+        "title": "I Played with Clawdbot all Weekend - it&#39;s insane.",
+        "description": "Check out the Dell Pro Max Workstation with the NVIDIA RTX PRO! https://bit.ly/dell-ai-factory-with-nvidia OpenClaw is here and ...",
+        "thumbnailUrl": "https://i.ytimg.com/vi/MUDvwqJWWIw/hqdefault.jpg",
+        "publishedAt": "2026-01-26T00:19:09Z",
+        "duration": "21:12",
         "videoType": "long",
-        "viewCount": "735363",
-        "likeCount": "17185",
-        "commentCount": "785",
-        "engagementRate": 2.44,
+        "viewCount": "402170",
+        "likeCount": "9234",
+        "commentCount": "1222",
+        "engagementRate": 2.6,
         "channel": {
-          "channelId": "UCcefcZRL2oaA_uBNeo5UOWg",
-          "channelName": "Y Combinator",
-          "subscriberCount": "2170000",
-          "channelUrl": "https://youtube.com/@ycombinator"
+          "channelId": "UCawZsQWqfGSbCI5yjkdVkTA",
+          "channelName": "Matthew Berman",
+          "subscriberCount": "574000",
+          "channelUrl": "https://youtube.com/@matthew_berman"
         }
       },
-      "title": "OpenClaw Creator: Why 80% Of Apps Will Disappear",
-      "description": "You've probably already heard all about OpenClaw (formerly Clawdbot/Moltbot). The viral sensation is an open-source AI ...",
+      "title": "I Played with Clawdbot all Weekend - it&#39;s insane.",
+      "description": "Check out the Dell Pro Max Workstation with the NVIDIA RTX PRO! https://bit.ly/dell-ai-factory-with-nvidia OpenClaw is here and ...",
       "category": "automation",
       "tags": [
         "youtube",
         "video-research"
       ],
-      "createdAt": "2026-02-28T16:39:38.612Z",
+      "createdAt": "2026-02-28T16:39:43.060Z",
       "status": "draft"
     }
   ]
