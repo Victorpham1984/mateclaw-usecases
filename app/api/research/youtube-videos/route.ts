@@ -119,25 +119,12 @@ export async function PATCH(req: NextRequest) {
       }
     }
 
-    // Write all at once
+    // Commit to GitHub (no local file writes — Vercel is read-only)
     if (approved.length > 0) {
-      // Write to file
-      const { writeFileSync, copyFileSync } = await import("fs");
-      const { join } = await import("path");
-      const dataPath = join(process.cwd(), "data", "cases.json");
-      const backupPath = join(process.cwd(), "data", "cases.backup.json");
-      copyFileSync(dataPath, backupPath);
-      writeFileSync(dataPath, JSON.stringify({ useCases: cases }, null, 2), "utf-8");
-
-      // Commit to GitHub
-      try {
-        await updateCasesViaGitHub(
-          cases,
-          `[Research] Approve videos: ${keyword || "search"} (${approved.length} videos)`
-        );
-      } catch (gitErr) {
-        console.error("GitHub sync failed:", gitErr);
-      }
+      await updateCasesViaGitHub(
+        cases,
+        `[Research] Approve videos: ${keyword || "search"} (${approved.length} videos)`
+      );
     }
 
     return NextResponse.json({ approved: approved.length, failed });
