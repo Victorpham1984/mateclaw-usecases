@@ -2,16 +2,19 @@
 
 import { useState, useMemo, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
+import dynamic from "next/dynamic";
 import Fuse from "fuse.js";
 import { MagnifyingGlass, X, GithubLogo } from "@phosphor-icons/react";
-import { Doughnut } from "react-chartjs-2";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import useCaseData from "@/data/cases.json";
 import type { UseCase } from "@/lib/types";
 import { CATEGORIES, CATEGORY_KEYS } from "@/lib/categories";
 import CaseCard from "./components/CaseCard";
+import { CATEGORY_COLORS } from "./components/CategoryChart";
 
-ChartJS.register(ArcElement, Tooltip, Legend);
+const CategoryChart = dynamic(() => import("./components/CategoryChart"), {
+  ssr: false,
+  loading: () => <div className="w-[250px] h-[250px] sm:w-[300px] sm:h-[300px] mx-auto" />,
+});
 
 const allCases = useCaseData.useCases as UseCase[];
 
@@ -20,25 +23,6 @@ const fuse = new Fuse(allCases, {
   threshold: 0.3,
   includeScore: true,
 });
-
-const CATEGORY_COLORS: Record<string, string> = {
-  setup: "#3b82f6",
-  development: "#a855f7",
-  marketing: "#ec4899",
-  content: "#f97316",
-  automation: "#eab308",
-  "customer-support": "#22c55e",
-  analytics: "#06b6d4",
-  finance: "#10b981",
-  sales: "#f43f5e",
-  growth: "#f59e0b",
-  "life-admin": "#64748b",
-  "personal-growth": "#84cc16",
-  "smart-home": "#14b8a6",
-  health: "#ef4444",
-  monetization: "#eab308",
-  "e-commerce": "#6366f1",
-};
 
 export default function Page() {
   return (
@@ -90,59 +74,17 @@ function Home() {
     };
   }, []);
 
-  const categoryStats = useMemo(() => {
+  const categoryCounts = useMemo(() => {
     const counts: Record<string, number> = {};
     allCases.forEach((c) => {
       counts[c.category] = (counts[c.category] || 0) + 1;
     });
-    return counts;
+    return CATEGORY_KEYS.map((key) => ({
+      key,
+      label: CATEGORIES[key].label,
+      count: counts[key] || 0,
+    }));
   }, []);
-
-  const donutData = useMemo(() => {
-    const cats = Object.keys(categoryStats);
-    return {
-      labels: cats.map((k) => CATEGORIES[k]?.label || k),
-      datasets: [
-        {
-          data: cats.map((k) => categoryStats[k]),
-          backgroundColor: cats.map((k) => CATEGORY_COLORS[k] || "#8b949e"),
-          borderColor: "#0d1117",
-          borderWidth: 2,
-          hoverBorderColor: "#e6edf3",
-          hoverBorderWidth: 3,
-          hoverOffset: 8,
-        },
-      ],
-    };
-  }, [categoryStats]);
-
-  const donutOptions = useMemo(
-    () => ({
-      responsive: true,
-      maintainAspectRatio: true,
-      cutout: "60%",
-      plugins: {
-        legend: { display: false },
-        tooltip: {
-          backgroundColor: "#161b22",
-          titleColor: "#e6edf3",
-          bodyColor: "#8b949e",
-          borderColor: "#30363d",
-          borderWidth: 1,
-          padding: 12,
-          callbacks: {
-            label: (ctx: { label?: string; raw?: unknown; dataset?: { data?: number[] } }) => {
-              const val = ctx.raw as number;
-              const total = (ctx.dataset?.data as number[])?.reduce((a: number, b: number) => a + b, 0) || 1;
-              const pct = ((val / total) * 100).toFixed(1);
-              return `${ctx.label}: ${val} (${pct}%)`;
-            },
-          },
-        },
-      },
-    }),
-    []
-  );
 
   const handleCategoryClick = (cat: string) => {
     setActiveCategory((prev) => (prev === cat ? null : cat));
@@ -156,10 +98,12 @@ function Home() {
   return (
     <div className="min-h-screen bg-[#0d1117]">
       {/* Sticky Header */}
-      <div className="sticky top-0 z-50 bg-[#0d1117]/90 backdrop-blur-md border-b border-[#30363d]">
-        <div className="max-w-6xl mx-auto px-4 h-12 flex items-center justify-between text-xs sm:text-sm">
-          <span className="font-bold text-[#e6edf3]">OpenClaw Use Cases</span>
-          <span className="text-[#8b949e] hidden sm:inline">
+      <nav className="sticky top-0 z-50 bg-[#0d1117]/90 backdrop-blur-md border-b border-[#30363d] h-12 flex items-center px-4">
+        <div className="max-w-6xl mx-auto w-full flex items-center justify-between">
+          <span className="text-sm font-bold text-[#e6edf3]">
+            <span className="text-[#FFD460]">OpenClaw</span> Use Cases
+          </span>
+          <span className="hidden sm:block text-xs text-[#8b949e]">
             Built by BizMate ·{" "}
             <a
               href="https://www.skool.com/bizmate-ai-community-9131"
@@ -167,7 +111,7 @@ function Home() {
               rel="noopener noreferrer"
               className="text-[#FFD460] hover:underline"
             >
-              Learn how
+              Learn how at BizMate
             </a>
           </span>
           <a
@@ -179,7 +123,7 @@ function Home() {
             <GithubLogo size={20} />
           </a>
         </div>
-      </div>
+      </nav>
 
       {/* Hero */}
       <header className="relative overflow-hidden">
@@ -190,38 +134,34 @@ function Home() {
             <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-[#e6edf3] mb-3">
               <span className="text-[#FFD460]">OpenClaw</span> Use Cases
             </h1>
-            <p className="text-base sm:text-lg text-[#8b949e] max-w-2xl mx-auto mb-8">
+            <p className="text-base sm:text-lg text-[#8b949e] max-w-2xl mx-auto mb-10">
               Battle-tested playbook with OpenClaw AI agents — copy prompt & start now
             </p>
 
-            {/* Stats — BIG numbers */}
+            {/* Big Stats */}
             <div
-              className={`flex items-center justify-center gap-10 sm:gap-16 mb-10 transition-opacity duration-500 ${
+              className={`flex items-center justify-center gap-10 sm:gap-16 mb-12 transition-opacity duration-500 ${
                 mounted ? "opacity-100" : "opacity-0"
               }`}
             >
               <div className="text-center">
                 <div className="text-4xl sm:text-5xl font-bold text-[#e6edf3]">{stats.total}</div>
-                <div className="text-xs sm:text-sm text-[#8b949e] mt-1">use cases</div>
+                <div className="text-sm text-[#8b949e] mt-1">use cases</div>
               </div>
               <div className="text-center">
                 <div className="text-4xl sm:text-5xl font-bold text-[#e6edf3]">{stats.categories}</div>
-                <div className="text-xs sm:text-sm text-[#8b949e] mt-1">categories</div>
+                <div className="text-sm text-[#8b949e] mt-1">categories</div>
               </div>
               <div className="text-center">
                 <div className="text-4xl sm:text-5xl font-bold text-[#e6edf3]">{stats.creators}</div>
-                <div className="text-xs sm:text-sm text-[#8b949e] mt-1">creators</div>
+                <div className="text-sm text-[#8b949e] mt-1">creators</div>
               </div>
             </div>
 
             {/* Donut Chart */}
-            {mounted && (
-              <div className="flex justify-center mb-10">
-                <div className="w-[250px] h-[250px] sm:w-[300px] sm:h-[300px]">
-                  <Doughnut data={donutData} options={donutOptions} />
-                </div>
-              </div>
-            )}
+            <div className="mb-12">
+              <CategoryChart categoryCounts={categoryCounts} />
+            </div>
 
             {/* Upsell CTA */}
             <div className="text-center mb-8">
@@ -267,10 +207,10 @@ function Home() {
                   setActiveCategory(null);
                   setActiveTag(null);
                 }}
-                className={`text-xs px-3 py-1.5 rounded-full border cursor-pointer transition-all ${
+                className={`text-xs px-3 py-1.5 rounded-full border cursor-pointer transition-colors ${
                   !activeCategory && !activeTag
-                    ? "border-[#FFD460] bg-[#FFD460]/20 text-[#FFD460]"
-                    : "border-[#30363d] text-[#8b949e] hover:border-[#8b949e]"
+                    ? "border-[#FFD460] bg-[#FFD460]/10 text-[#FFD460]"
+                    : "border-[#30363d] text-[#8b949e] hover:border-[#484f58]"
                 }`}
               >
                 All
@@ -282,18 +222,11 @@ function Home() {
                   <button
                     key={key}
                     onClick={() => handleCategoryClick(key)}
-                    className="text-xs px-3 py-1.5 rounded-full border cursor-pointer transition-all"
+                    className="text-xs px-3 py-1.5 rounded-full border cursor-pointer transition-colors"
                     style={
                       isActive
-                        ? {
-                            borderColor: color,
-                            backgroundColor: `${color}33`,
-                            color: color,
-                          }
-                        : {
-                            borderColor: "#30363d",
-                            color: "#8b949e",
-                          }
+                        ? { borderColor: color, backgroundColor: `${color}20`, color }
+                        : { borderColor: "#30363d", color: "#8b949e" }
                     }
                     onMouseEnter={(e) => {
                       if (!isActive) {
