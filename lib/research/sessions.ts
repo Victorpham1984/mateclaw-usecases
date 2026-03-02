@@ -12,6 +12,8 @@ export type ResearchSession = {
     minViews?: number;
     minSubscribers?: number;
     order?: string;
+    publishedAfter?: string;
+    publishedBefore?: string;
   };
   videos: ResearchVideo[];
   totalFound: number;

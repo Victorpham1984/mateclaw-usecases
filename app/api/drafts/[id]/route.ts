@@ -3,7 +3,7 @@ import { verifyAuth } from "@/lib/admin-auth";
 import { readDrafts, buildDraftsPayload, updateDraftFields } from "@/lib/drafts";
 import { updateFileViaGitHub } from "@/lib/github-file";
 
-// PATCH: Update draft fields
+// PATCH: Update draft fields (including AI-generated content)
 export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   if (!(await verifyAuth())) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -16,7 +16,17 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
     if (!draft) {
       return NextResponse.json({ error: "Draft not found" }, { status: 404 });
     }
-    drafts = updateDraftFields(drafts, id, updates);
+    // Allow updating all editable fields
+    const allowed: Record<string, boolean> = {
+      title: true, description: true, category: true, tags: true,
+      summary: true, prompt: true, transcript: true, transcriptSource: true,
+      aiGenerated: true, difficulty: true, timeEstimate: true,
+    };
+    const filtered: Record<string, any> = {};
+    for (const [k, v] of Object.entries(updates)) {
+      if (allowed[k]) filtered[k] = v;
+    }
+    drafts = updateDraftFields(drafts, id, filtered as any);
     await updateFileViaGitHub(
       "data/drafts.json",
       buildDraftsPayload(drafts),

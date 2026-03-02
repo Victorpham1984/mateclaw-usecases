@@ -217,6 +217,7 @@ export async function searchVideos(opts: {
   language?: string;
   videoDuration?: "long" | "short" | "any";
   publishedAfter?: string;
+  publishedBefore?: string;
   order?: "relevance" | "viewCount" | "date";
 }): Promise<ResearchVideo[]> {
   const {
@@ -225,6 +226,7 @@ export async function searchVideos(opts: {
     language,
     videoDuration = "any",
     publishedAfter,
+    publishedBefore,
     order = "relevance",
   } = opts;
   const apiKey = getApiKey();
@@ -247,6 +249,9 @@ export async function searchVideos(opts: {
   }
   if (publishedAfter) {
     searchParams.set("publishedAfter", publishedAfter);
+  }
+  if (publishedBefore) {
+    searchParams.set("publishedBefore", publishedBefore);
   }
 
   const searchRes = await fetch(`${YOUTUBE_API_BASE}/search?${searchParams}`);

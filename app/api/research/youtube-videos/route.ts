@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
 
   try {
     const body = await req.json();
-    const { keyword, language, videoDuration, publishedAfter, order, maxResults, minViews, minSubscribers, minEngagement } = body;
+    const { keyword, language, videoDuration, publishedAfter, publishedBefore, order, maxResults, minViews, minSubscribers, minEngagement } = body;
 
     if (!keyword?.trim()) {
       return NextResponse.json({ error: "keyword is required" }, { status: 400 });
@@ -50,6 +50,7 @@ export async function POST(req: NextRequest) {
       language,
       videoDuration: videoDuration || "any",
       publishedAfter,
+      publishedBefore,
       order: order || "relevance",
     });
 
@@ -75,7 +76,7 @@ export async function POST(req: NextRequest) {
     // Save as research session
     const session = createSession(
       keyword.trim(),
-      { language, videoDuration, minViews, minSubscribers: minSubscribers, order },
+      { language, videoDuration, minViews, minSubscribers, order, publishedAfter, publishedBefore },
       finalVideos,
       videos.length,
       hiddenCount

@@ -1,15 +1,21 @@
-// Draft workflow — approved videos awaiting review/publish
+// Draft workflow — approved content awaiting review/publish
+// Source-agnostic: supports youtube, x, reddit, github
 import { readFileSync } from "fs";
 import { join } from "path";
 import type { ResearchVideo } from "./research/youtube-search";
 import type { UseCase } from "./types";
 import { readCases, getNextId } from "./cases-db";
 
+export type SourceType = "youtube" | "x" | "reddit" | "github";
+
 export type DraftCase = {
   id: string;
-  videoId: string;
+  // Multi-source fields
+  sourceType: SourceType;
+  contentId: string; // generic content identifier
+  videoId: string; // kept for backward compat (= contentId for youtube)
   fromSessionId: string;
-  video: ResearchVideo;
+  video: ResearchVideo; // TODO: generalize to `sourceData` in future
   title: string;
   description: string;
   category?: string;
@@ -17,6 +23,14 @@ export type DraftCase = {
   createdAt: string;
   publishedAt?: string;
   status: "draft" | "published";
+  // AI-generated fields
+  summary?: string;
+  prompt?: string;
+  transcript?: string;
+  transcriptSource?: "captions" | "description-only";
+  aiGenerated?: boolean;
+  difficulty?: "beginner" | "intermediate" | "expert";
+  timeEstimate?: string;
 };
 
 type DraftsFile = { drafts: DraftCase[] };
@@ -40,6 +54,8 @@ export function buildDraftsPayload(drafts: DraftCase[]): string {
 export function createDraft(video: ResearchVideo, sessionId: string): DraftCase {
   return {
     id: `draft_${Date.now()}_${video.videoId}`,
+    sourceType: "youtube",
+    contentId: video.videoId,
     videoId: video.videoId,
     fromSessionId: sessionId,
     video,
@@ -55,31 +71,45 @@ export function createDraft(video: ResearchVideo, sessionId: string): DraftCase 
 export function updateDraftFields(
   drafts: DraftCase[],
   id: string,
-  updates: Partial<Pick<DraftCase, "title" | "description" | "category" | "tags">>
+  updates: Partial<Pick<DraftCase, "title" | "description" | "category" | "tags" | "summary" | "prompt" | "transcript" | "transcriptSource" | "aiGenerated" | "difficulty" | "timeEstimate">>
 ): DraftCase[] {
   return drafts.map((d) => (d.id === id ? { ...d, ...updates } : d));
 }
 
 export function draftToUseCase(draft: DraftCase, cases: UseCase[]): UseCase {
+  const prompt = draft.prompt || `Watch this video and extract actionable use cases: ${draft.title}`;
+  const summary = draft.summary || draft.description;
+
   return {
     id: getNextId(cases),
     title: `**${draft.title}**`,
-    description: draft.description,
-    prompt: `Watch this video and extract actionable use cases: ${draft.title}`,
+    description: summary,
+    prompt,
     category: (draft.category as any) || "automation",
     tags: draft.tags || ["youtube", "video-research"],
     source: {
-      type: "youtube",
-      url: `https://www.youtube.com/watch?v=${draft.videoId}`,
-      creator: draft.video.channel.channelName,
-      channel: draft.video.channel.channelName,
+      type: draft.sourceType || "youtube",
+      url: buildSourceUrl(draft),
+      creator: draft.video?.channel?.channelName,
+      channel: draft.video?.channel?.channelName,
       videoTitle: draft.title,
     },
     addedAt: new Date().toISOString().split("T")[0],
-    difficulty: "beginner",
-    timeEstimate: draft.video.duration,
-    roi: `${formatNum(draft.video.viewCount)} views • ${draft.video.engagementRate}% engagement`,
+    difficulty: draft.difficulty || "beginner",
+    timeEstimate: draft.timeEstimate || draft.video?.duration,
+    roi: draft.video ? `${formatNum(draft.video.viewCount)} views • ${draft.video.engagementRate}% engagement` : undefined,
   };
+}
+
+function buildSourceUrl(draft: DraftCase): string {
+  switch (draft.sourceType) {
+    case "youtube":
+      return `https://www.youtube.com/watch?v=${draft.contentId || draft.videoId}`;
+    case "github":
+      return draft.video?.channel?.channelUrl || `https://github.com/${draft.contentId}`;
+    default:
+      return draft.video?.channel?.channelUrl || "";
+  }
 }
 
 function formatNum(num: string): string {

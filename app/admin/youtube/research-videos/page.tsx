@@ -26,7 +26,7 @@ function timeAgo(dateStr: string): string {
 type SessionSummary = {
   id: string;
   keyword: string;
-  filters: Record<string, any>;
+  filters: Record<string, any> & { publishedAfter?: string; publishedBefore?: string };
   totalFound: number;
   hiddenCount: number;
   searchedAt: string;
@@ -42,6 +42,8 @@ export default function ResearchVideosPage() {
   const [minSubs, setMinSubs] = useState("1000");
   const [minViews, setMinViews] = useState("0");
   const [order, setOrder] = useState<"relevance" | "viewCount" | "date">("relevance");
+  const [publishedAfter, setPublishedAfter] = useState("");
+  const [publishedBefore, setPublishedBefore] = useState("");
 
   // State
   const [searching, setSearching] = useState(false);
@@ -87,6 +89,8 @@ export default function ResearchVideosPage() {
           order,
           minViews: parseInt(minViews, 10) || undefined,
           minSubscribers: parseInt(minSubs, 10) || undefined,
+          publishedAfter: publishedAfter ? new Date(publishedAfter).toISOString() : undefined,
+          publishedBefore: publishedBefore ? new Date(publishedBefore).toISOString() : undefined,
         }),
       });
 
@@ -258,6 +262,35 @@ export default function ResearchVideosPage() {
               <h2 className="text-lg font-bold">📜 Search History</h2>
               <button onClick={() => setShowHistory(false)} className="text-gray-500 hover:text-white text-xl">✕</button>
             </div>
+            {/* Search Log Summary */}
+            {!loadingHistory && sessions.length > 0 && (
+              <div className="mb-4 overflow-x-auto">
+                <table className="w-full text-xs">
+                  <thead>
+                    <tr className="text-gray-500 border-b border-[#1e1e30]">
+                      <th className="text-left py-1 pr-3">Keyword</th>
+                      <th className="text-left py-1 pr-3">Date Range</th>
+                      <th className="text-right py-1 pr-3">Results</th>
+                      <th className="text-right py-1">Approved</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {sessions.slice(-10).reverse().map((s) => (
+                      <tr key={`log-${s.id}`} className="border-b border-[#1e1e30]/50 text-gray-400">
+                        <td className="py-1 pr-3 font-medium">{s.keyword}</td>
+                        <td className="py-1 pr-3 text-gray-500">
+                          {s.filters.publishedAfter ? new Date(s.filters.publishedAfter).toLocaleDateString() : "—"}
+                          {" → "}
+                          {s.filters.publishedBefore ? new Date(s.filters.publishedBefore).toLocaleDateString() : "now"}
+                        </td>
+                        <td className="py-1 pr-3 text-right">{s.videoCount}</td>
+                        <td className="py-1 text-right">{s.approvedVideoIds.length}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
             {loadingHistory ? (
               <div className="text-center py-8 text-gray-400">Loading...</div>
             ) : sessions.length === 0 ? (
@@ -280,6 +313,12 @@ export default function ResearchVideosPage() {
                           {s.hiddenCount > 0 && ` • ${s.hiddenCount} hidden`}
                           {s.approvedVideoIds.length > 0 && ` • ${s.approvedVideoIds.length} approved`}
                           {" • "}{timeAgo(s.searchedAt)}
+                          {(s.filters.publishedAfter || s.filters.publishedBefore) && (
+                            <span className="ml-1 text-gray-600">
+                              📅 {s.filters.publishedAfter ? new Date(s.filters.publishedAfter).toLocaleDateString() : "—"}
+                              →{s.filters.publishedBefore ? new Date(s.filters.publishedBefore).toLocaleDateString() : "now"}
+                            </span>
+                          )}
                         </div>
                       </div>
                       <button
@@ -345,6 +384,14 @@ export default function ResearchVideosPage() {
                 <option value="viewCount">Views</option>
                 <option value="date">Date</option>
               </select>
+            </div>
+            <div>
+              <label className="text-xs text-gray-400 mb-1 block">Published After</label>
+              <input type="date" value={publishedAfter} onChange={(e) => setPublishedAfter(e.target.value)} disabled={searching} className="px-3 py-2.5 rounded-lg bg-[#0a0a0f] border border-[#2e2e40] text-sm" />
+            </div>
+            <div>
+              <label className="text-xs text-gray-400 mb-1 block">Published Before</label>
+              <input type="date" value={publishedBefore} onChange={(e) => setPublishedBefore(e.target.value)} disabled={searching} className="px-3 py-2.5 rounded-lg bg-[#0a0a0f] border border-[#2e2e40] text-sm" />
             </div>
             <button type="submit" disabled={searching || !keyword.trim()} className="px-6 py-2.5 rounded-lg bg-blue-600 text-white font-semibold text-sm hover:bg-blue-500 transition disabled:opacity-50">
               {searching ? "⏳ Searching..." : "🔍 Search"}

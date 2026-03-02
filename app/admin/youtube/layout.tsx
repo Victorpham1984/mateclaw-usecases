@@ -81,6 +81,7 @@ export default function YouTubeAdminLayout({ children }: { children: ReactNode }
     { href: "/admin/youtube", label: "Dashboard", icon: "📊" },
     { href: "/admin/youtube/research-videos", label: "Videos", icon: "🎬" },
     { href: "/admin/youtube/drafts", label: "Drafts", icon: "📝" },
+    { href: "/admin/youtube/published", label: "Published", icon: "📦" },
     { href: "/admin/youtube/categories", label: "Categories", icon: "📁" },
   ];
 
