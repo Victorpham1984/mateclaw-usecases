@@ -59,19 +59,23 @@
           "channelUrl": "https://youtube.com/@matthew_berman"
         }
       },
-      "title": "I Played with Clawdbot all Weekend",
+      "title": "I Played with Clawdbot all Weekend - it&#39;s insane.",
       "description": "Check out the Dell Pro Max Workstation with the NVIDIA RTX PRO! https://bit.ly/dell-ai-factory-with-nvidia OpenClaw is here and ...",
       "category": "automation",
       "tags": [
-        "youtube",
-        "video-research"
+        "automation",
+        "ai-agent",
+        "youtube"
       ],
       "createdAt": "2026-03-02T12:25:30.189Z",
       "status": "draft",
-      "summary": "",
-      "prompt": "",
+      "summary": "Hướng dẫn cách sử dụng OpenClaw dựa trên nội dung \"I Played with Clawdbot all Weekend - it&#39;s insane.\" bởi Matthew Berman. Bài viết này trình bày các bước cụ thể để tự động hóa công việc với AI agent.",
+      "prompt": "Dựa trên nội dung \"I Played with Clawdbot all Weekend - it&#39;s insane.\", hãy tạo một workflow tự động hóa với OpenClaw. Liệt kê từng bước cụ thể, tool cần dùng, và kết quả mong đợi.",
       "difficulty": "beginner",
-      "timeEstimate": ""
+      "timeEstimate": "15 min",
+      "aiGenerated": true,
+      "transcript": "I Played with Clawdbot all Weekend - it&#39;s insane.\n\nCheck out the Dell Pro Max Workstation with the NVIDIA RTX PRO! https://bit.ly/dell-ai-factory-with-nvidia OpenClaw is here and ...",
+      "transcriptSource": "description-only"
     }
   ]
 }
