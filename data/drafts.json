@@ -59,7 +59,7 @@
           "channelUrl": "https://youtube.com/@matthew_berman"
         }
       },
-      "title": "I Played with Clawdbot all Weekend - it&#39;s insane.",
+      "title": "I Played with Clawdbot all Weekend",
       "description": "Check out the Dell Pro Max Workstation with the NVIDIA RTX PRO! https://bit.ly/dell-ai-factory-with-nvidia OpenClaw is here and ...",
       "category": "automation",
       "tags": [
@@ -67,7 +67,11 @@
         "video-research"
       ],
       "createdAt": "2026-03-02T12:25:30.189Z",
-      "status": "draft"
+      "status": "draft",
+      "summary": "",
+      "prompt": "",
+      "difficulty": "beginner",
+      "timeEstimate": ""
     }
   ]
 }
