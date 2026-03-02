@@ -8092,6 +8092,348 @@
       "difficulty": "beginner",
       "timeEstimate": "",
       "roi": ""
+    },
+    {
+      "id": "gh337",
+      "title": "**Dynamic Dashboard with Sub-agent Spawning**",
+      "description": "Static dashboards show stale data and require constant manual updates. You want real-time visibility across multiple data sources without building a custom frontend or hitting API rate limits. This workflow creates a live dashboard that spawns sub-agents to fetch and process data in parallel: • Mo",
+      "prompt": "Static dashboards show stale data and require constant manual updates. You want real-time visibility across multiple data sources without building a custom frontend or hitting API rate limits.\n\nThis workflow creates a live dashboard that spawns sub-agents to fetch and process data in parallel:\n\n• Mo",
+      "category": "development",
+      "tags": [
+        "openclaw",
+        "automation"
+      ],
+      "source": {
+        "type": "github",
+        "url": "https://github.com/hesamsheikh/awesome-openclaw-usecases/blob/main/usecases/dynamic-dashboard.md",
+        "creator": "hesamsheikh/awesome-openclaw-usecases"
+      },
+      "addedAt": "2026-03-02",
+      "difficulty": "intermediate",
+      "timeEstimate": "",
+      "roi": ""
+    },
+    {
+      "id": "gh338",
+      "title": "**Event Guest Confirmation**",
+      "description": "You're hosting an event — a dinner party, a wedding, a company offsite — and you need to confirm attendance from a list of guests. Manually calling 20+ people is tedious: you play phone tag, forget who said what, and lose track of dietary restrictions or plus-ones. Texting works sometimes, but peopl",
+      "prompt": "Guest List — Summer BBQ, Saturday June 14th, 4 PM, 23 Oak Street\n\n- Sarah Johnson: +15551234567\n- Mike Chen: +15559876543\n- Rachel Torres: +15555551234\n- David Kim: +15558887777",
+      "category": "life-admin",
+      "tags": [
+        "works",
+        "webhook",
+        "ngrok",
+        "tier",
+        "free",
+        "tunneling"
+      ],
+      "source": {
+        "type": "github",
+        "url": "https://github.com/hesamsheikh/awesome-openclaw-usecases/blob/main/usecases/event-guest-confirmation.md",
+        "creator": "hesamsheikh/awesome-openclaw-usecases"
+      },
+      "addedAt": "2026-03-02",
+      "difficulty": "intermediate",
+      "timeEstimate": "",
+      "roi": ""
+    },
+    {
+      "id": "gh339",
+      "title": "**Habit Tracker & Accountability Coach**",
+      "description": "You've tried every habit tracker app out there. They all work for a week, then you stop opening them. The problem isn't the app — it's that tracking habits is passive. What if your agent actively reached out to you, asked how your day went, and adapted its approach based on whether you're on a strea",
+      "prompt": "I want you to be my accountability coach. Track these daily habits for me:\n\n1. Morning workout (check in at 7:30 AM)\n2. Read for 30 minutes (check in at 8:00 PM)\n3. No social media before noon (check in at 12:30 PM)\n4. Drink 8 glasses of water (check in at 6:00 PM)\n\nSend me a Telegram message at each check-in time asking if I completed\nthe habit. Keep track of my streaks in a local file.",
+      "category": "health",
+      "tags": [
+        "scheduling",
+        "check-ins",
+        "cron",
+        "timed"
+      ],
+      "source": {
+        "type": "github",
+        "url": "https://github.com/hesamsheikh/awesome-openclaw-usecases/blob/main/usecases/habit-tracker-accountability-coach.md",
+        "creator": "hesamsheikh/awesome-openclaw-usecases"
+      },
+      "addedAt": "2026-03-02",
+      "difficulty": "intermediate",
+      "timeEstimate": "",
+      "roi": ""
+    },
+    {
+      "id": "gh340",
+      "title": "**Market Research & Product Factory**",
+      "description": "You want to build a product but don't know what to build. Or you have a business and need to understand what your customers are struggling with. This workflow uses the Last 30 Days skill to mine Reddit and X for real pain points, then has OpenClaw build solutions to those problems.",
+      "prompt": "Install this skill: https://github.com/matvanhorde/last-30-days",
+      "category": "marketing",
+      "tags": [
+        "openclaw",
+        "automation"
+      ],
+      "source": {
+        "type": "github",
+        "url": "https://github.com/hesamsheikh/awesome-openclaw-usecases/blob/main/usecases/market-research-product-factory.md",
+        "creator": "hesamsheikh/awesome-openclaw-usecases"
+      },
+      "addedAt": "2026-03-02",
+      "difficulty": "intermediate",
+      "timeEstimate": "",
+      "roi": ""
+    },
+    {
+      "id": "gh341",
+      "title": "**Automated Meeting Notes & Action Items**",
+      "description": "You just finished a 45-minute team call. Now you need to write up the summary, pull out action items, and distribute them to Jira, Linear, or Todoist — manually. By the time you're done, the next meeting is starting. What if your agent handled all of that the moment the transcript lands? This use c",
+      "prompt": "I just finished a meeting. Here's the transcript:\n\n[paste transcript or point to file]\n\nPlease:\n1. Write a concise summary (max 5 bullet points) covering key decisions and topics.\n2. Extract ALL action items. For each one, identify:\n   - What needs to be done\n   - Who is responsible (match names to my team)\n   - Deadline (if mentioned, otherwise mark as \"TBD\")\n3. Create a Jira ticket for each action item, assigned to the right person.\n4. Post the full summary to #meeting-notes in Slack.",
+      "category": "life-admin",
+      "tags": [
+        "transcript",
+        "system",
+        "reading",
+        "scheduling",
+        "follow-up",
+        "cron",
+        "files"
+      ],
+      "source": {
+        "type": "github",
+        "url": "https://github.com/hesamsheikh/awesome-openclaw-usecases/blob/main/usecases/meeting-notes-action-items.md",
+        "creator": "hesamsheikh/awesome-openclaw-usecases"
+      },
+      "addedAt": "2026-03-02",
+      "difficulty": "intermediate",
+      "timeEstimate": "",
+      "roi": ""
+    },
+    {
+      "id": "gh342",
+      "title": "**Multi-Agent Specialized Team (Solo Founder Setup)**",
+      "description": "Solo founders wear every hat — strategy, development, marketing, sales, operations. Context-switching between these roles destroys deep work. Hiring is expensive and slow. What if you could spin up a small, specialized team of AI agents, each with a distinct role and personality, all controllable fr",
+      "prompt": "team/\n├── GOALS.md           # Current OKRs and priorities (all agents read)\n├── DECISIONS.md       # Key decisions log (append-only)\n├── PROJECT_STATUS.md  # Current project state (updated by all)\n├── agents/\n│   ├── milo/          # Milo's private context and notes\n│   ├── josh/          # Josh's private context\n│   ├── marketing/     # Marketing agent's research\n│   └── dev/           # Dev agent's technical notes",
+      "category": "setup",
+      "tags": [
+        "telegram",
+        "run",
+        "vps",
+        "shared",
+        "agents",
+        "skill",
+        "interface"
+      ],
+      "source": {
+        "type": "github",
+        "url": "https://github.com/hesamsheikh/awesome-openclaw-usecases/blob/main/usecases/multi-agent-team.md",
+        "creator": "hesamsheikh/awesome-openclaw-usecases"
+      },
+      "addedAt": "2026-03-02",
+      "difficulty": "intermediate",
+      "timeEstimate": "",
+      "roi": ""
+    },
+    {
+      "id": "gh343",
+      "title": "**OpenClaw + n8n Workflow Orchestration**",
+      "description": "Letting your AI agent directly manage API keys and call external services is a recipe for security incidents. Every new integration means another credential in `.env.local`, another surface for the agent to accidentally leak or misuse. This use case describes a pattern where OpenClaw delegates all",
+      "prompt": "git clone https://github.com/caprihan/openclaw-n8n-stack.git\ncd openclaw-n8n-stack\ncp .env.template .env\n# Add your Anthropic API key to .env\ndocker-compose up -d",
+      "category": "development",
+      "tags": [
+        "using",
+        "docker",
+        "fetch",
+        "webhook",
+        "pre-configured",
+        "stack",
+        "calls"
+      ],
+      "source": {
+        "type": "github",
+        "url": "https://github.com/hesamsheikh/awesome-openclaw-usecases/blob/main/usecases/n8n-workflow-orchestration.md",
+        "creator": "hesamsheikh/awesome-openclaw-usecases"
+      },
+      "addedAt": "2026-03-02",
+      "difficulty": "intermediate",
+      "timeEstimate": "",
+      "roi": ""
+    },
+    {
+      "id": "gh344",
+      "title": "**Goal-Driven Autonomous Tasks**",
+      "description": "Your AI agent is powerful but reactive — it only works when you tell it what to do. What if it knew your goals and proactively came up with tasks to move you closer to them every single day, without being asked? This workflow turns OpenClaw into a self-directed employee. You brain dump your goals o",
+      "prompt": "Here are my goals and missions. Remember all of this:\n\nCareer:\n- Grow my YouTube channel to 100k subscribers\n- Launch my SaaS product by Q3\n- Build a community around AI education\n\nPersonal:\n- Read 2 books per month\n- Learn Spanish\n\nBusiness:\n- Scale revenue to $10k/month\n- Build partnerships with 5 companies in my space\n- Automate as much of my workflow as possible\n\nUse this context for everything you do going forward.",
+      "category": "development",
+      "tags": [
+        "integration",
+        "discord",
+        "telegram"
+      ],
+      "source": {
+        "type": "github",
+        "url": "https://github.com/hesamsheikh/awesome-openclaw-usecases/blob/main/usecases/overnight-mini-app-builder.md",
+        "creator": "hesamsheikh/awesome-openclaw-usecases"
+      },
+      "addedAt": "2026-03-02",
+      "difficulty": "intermediate",
+      "timeEstimate": "",
+      "roi": ""
+    },
+    {
+      "id": "gh345",
+      "title": "**Personal CRM with Automatic Contact Discovery**",
+      "description": "Keeping track of who you've met, when, and what you discussed is impossible to do manually. Important follow-ups slip through the cracks, and you forget context before important meetings. This workflow builds and maintains a personal CRM automatically: • Daily cron job scans email and calendar for",
+      "prompt": "Keeping track of who you've met, when, and what you discussed is impossible to do manually. Important follow-ups slip through the cracks, and you forget context before important meetings.\n\nThis workflow builds and maintains a personal CRM automatically:\n\n• Daily cron job scans email and calendar for",
+      "category": "life-admin",
+      "tags": [
+        "openclaw",
+        "automation"
+      ],
+      "source": {
+        "type": "github",
+        "url": "https://github.com/hesamsheikh/awesome-openclaw-usecases/blob/main/usecases/personal-crm.md",
+        "creator": "hesamsheikh/awesome-openclaw-usecases"
+      },
+      "addedAt": "2026-03-02",
+      "difficulty": "intermediate",
+      "timeEstimate": "",
+      "roi": ""
+    },
+    {
+      "id": "gh346",
+      "title": "**Phone-Based Personal Assistant**",
+      "description": "ClawdTalk enables OpenClaw to receive and make phone calls, turning any phone into a gateway to your AI assistant. You can: - Call a phone number to speak with your AI agent via voice - Get calendar reminders, Jira updates, and web search results via voice - Integrate with Telnyx for reliable phone **Pain Point:** You want to access your AI agent from any phone without needing a smartphone app or internet browser. You need hands-free voice assistance while driving, walking, or when your hands are occupied.",
+      "prompt": "Help me set up P\nh\no\nn\ne\n-\nB\na\ns\ne\nd\n \nP\ne\nr\ns\no\nn\na\nl\n \nA\ns\ns\ni\ns\nt\na\nn\nt using OpenClaw.",
+      "category": "life-admin",
+      "tags": [
+        "openclaw",
+        "automation"
+      ],
+      "source": {
+        "type": "github",
+        "url": "https://github.com/hesamsheikh/awesome-openclaw-usecases/blob/main/usecases/phone-based-personal-assistant.md",
+        "creator": "hesamsheikh/awesome-openclaw-usecases"
+      },
+      "addedAt": "2026-03-02",
+      "difficulty": "intermediate",
+      "timeEstimate": "",
+      "roi": ""
+    },
+    {
+      "id": "gh347",
+      "title": "**Podcast Production Pipeline**",
+      "description": "You have a podcast idea, maybe even a backlog of episode topics. But between researching guests, writing outlines, drafting intros, generating show notes, and writing social media posts for promotion — the production overhead kills your momentum. What if you handed off a topic and got back a full pr",
+      "prompt": "I'm recording a podcast episode about [TOPIC]. My guest is [NAME].\n\nPlease:\n1. Research the guest — their background, recent work, hot takes, and\n   anything controversial or interesting they've said publicly.\n2. Research the topic — key trends, recent news, common misconceptions,\n   and what the audience likely already knows vs. what would surprise them.\n3. Generate an episode outline:\n   - Cold open hook (1-2 sentences to grab attention)\n   - Intro script (30 seconds, casual tone)\n   - 5-7 interview questions, ordered from easy/rapport-building to deep/provocative\n   - 2-3 \"back pocket\" questions in case the conversation stalls\n   - Closing segment with call-to-action\n\nSave everything to ~/podcast/episodes/[episode-number]/prep/",
+      "category": "content",
+      "tags": [
+        "openclaw",
+        "automation"
+      ],
+      "source": {
+        "type": "github",
+        "url": "https://github.com/hesamsheikh/awesome-openclaw-usecases/blob/main/usecases/podcast-production-pipeline.md",
+        "creator": "hesamsheikh/awesome-openclaw-usecases"
+      },
+      "addedAt": "2026-03-02",
+      "difficulty": "intermediate",
+      "timeEstimate": "",
+      "roi": ""
+    },
+    {
+      "id": "gh348",
+      "title": "**Polymarket Autopilot: Automated Paper Trading**",
+      "description": "Manually monitoring prediction markets for arbitrage opportunities and executing trades is time-consuming and requires constant attention. You want to test and refine trading strategies without risking real capital. This workflow automates paper trading on Polymarket with custom strategies: • Moni",
+      "prompt": "Manually monitoring prediction markets for arbitrage opportunities and executing trades is time-consuming and requires constant attention. You want to test and refine trading strategies without risking real capital.\n\nThis workflow automates paper trading on Polymarket with custom strategies:\n\n• Moni",
+      "category": "finance",
+      "tags": [
+        "openclaw",
+        "automation"
+      ],
+      "source": {
+        "type": "github",
+        "url": "https://github.com/hesamsheikh/awesome-openclaw-usecases/blob/main/usecases/polymarket-autopilot.md",
+        "creator": "hesamsheikh/awesome-openclaw-usecases"
+      },
+      "addedAt": "2026-03-02",
+      "difficulty": "intermediate",
+      "timeEstimate": "",
+      "roi": ""
+    },
+    {
+      "id": "gh349",
+      "title": "**Pre-Build Idea Validator**",
+      "description": "Before OpenClaw starts building anything new, it automatically checks whether the idea already exists across GitHub, Hacker News, npm, PyPI, and Product Hunt — and adjusts its approach based on what it finds.",
+      "prompt": "uvx idea-reality-mcp",
+      "category": "development",
+      "tags": [
+        "openclaw",
+        "automation"
+      ],
+      "source": {
+        "type": "github",
+        "url": "https://github.com/hesamsheikh/awesome-openclaw-usecases/blob/main/usecases/pre-build-idea-validator.md",
+        "creator": "hesamsheikh/awesome-openclaw-usecases"
+      },
+      "addedAt": "2026-03-02",
+      "difficulty": "intermediate",
+      "timeEstimate": "",
+      "roi": ""
+    },
+    {
+      "id": "gh350",
+      "title": "**Semantic Memory Search**",
+      "description": "OpenClaw's built-in memory system stores everything as markdown files — but as memories grow over weeks and months, finding that one decision from last Tuesday becomes impossible. There is no search, just scrolling through files. This use case adds **vector-powered semantic search** on top of OpenC",
+      "prompt": "pip install memsearch",
+      "category": "development",
+      "tags": [
+        "pip",
+        "python"
+      ],
+      "source": {
+        "type": "github",
+        "url": "https://github.com/hesamsheikh/awesome-openclaw-usecases/blob/main/usecases/semantic-memory-search.md",
+        "creator": "hesamsheikh/awesome-openclaw-usecases"
+      },
+      "addedAt": "2026-03-02",
+      "difficulty": "intermediate",
+      "timeEstimate": "",
+      "roi": ""
+    },
+    {
+      "id": "gh351",
+      "title": "**Todoist Task Manager: Agent Task Visibility**",
+      "description": "Maximize transparency for long-running agentic workflows by syncing internal reasoning and progress logs directly to Todoist.",
+      "prompt": "Maximize transparency for long-running agentic workflows by syncing internal reasoning and progress logs directly to Todoist.",
+      "category": "life-admin",
+      "tags": [
+        "openclaw",
+        "automation"
+      ],
+      "source": {
+        "type": "github",
+        "url": "https://github.com/hesamsheikh/awesome-openclaw-usecases/blob/main/usecases/todoist-task-manager.md",
+        "creator": "hesamsheikh/awesome-openclaw-usecases"
+      },
+      "addedAt": "2026-03-02",
+      "difficulty": "intermediate",
+      "timeEstimate": "",
+      "roi": ""
+    },
+    {
+      "id": "gh352",
+      "title": "**X Account Analysis**",
+      "description": "There are many websites designed to give you a qualitative analysis of your X account. While X already gives you an **analytics** section, it's more focused to show your numbers on your performance. But a qualitative analysis focuses on the quality of your posts, not the performance stats. Some ins",
+      "prompt": "There are many websites designed to give you a qualitative analysis of your X account. While X already gives you an **analytics** section, it's more focused to show your numbers on your performance.\n\nBut a qualitative analysis focuses on the quality of your posts, not the performance stats. Some ins",
+      "category": "marketing",
+      "tags": [
+        "openclaw",
+        "automation"
+      ],
+      "source": {
+        "type": "github",
+        "url": "https://github.com/hesamsheikh/awesome-openclaw-usecases/blob/main/usecases/x-account-analysis.md",
+        "creator": "hesamsheikh/awesome-openclaw-usecases"
+      },
+      "addedAt": "2026-03-02",
+      "difficulty": "intermediate",
+      "timeEstimate": "",
+      "roi": ""
     }
   ]
 }
