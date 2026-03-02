@@ -30,37 +30,60 @@ Output JSON only. No markdown fences. Fields:
 - timeEstimate: e.g. "5 min", "30 min", "1 hour", "2 hours"`;
 
 export async function generateContent(input: ContentInput): Promise<GeneratedContent> {
-  const apiKey = process.env.ANTHROPIC_API_KEY;
+  // Prefer OpenRouter (OPENROUTER_API_KEY), fallback to Anthropic direct (ANTHROPIC_API_KEY)
+  const openrouterKey = process.env.OPENROUTER_API_KEY;
+  const anthropicKey = process.env.ANTHROPIC_API_KEY;
+  const apiKey = openrouterKey || anthropicKey;
   
   if (!apiKey) {
     return templateGenerate(input);
   }
 
+  const useOpenRouter = !!openrouterKey;
+
   try {
     const userMsg = buildUserMessage(input);
-    
-    const res = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-api-key": apiKey,
-        "anthropic-version": "2023-06-01",
-      },
-      body: JSON.stringify({
+
+    const url = useOpenRouter
+      ? "https://openrouter.ai/api/v1/chat/completions"
+      : "https://api.anthropic.com/v1/messages";
+
+    const headers: Record<string, string> = { "Content-Type": "application/json" };
+    let body: string;
+
+    if (useOpenRouter) {
+      headers["Authorization"] = `Bearer ${openrouterKey}`;
+      body = JSON.stringify({
+        model: "anthropic/claude-3-5-haiku-20241022",
+        max_tokens: 1024,
+        messages: [
+          { role: "system", content: SYSTEM_PROMPT },
+          { role: "user", content: userMsg },
+        ],
+      });
+    } else {
+      headers["x-api-key"] = anthropicKey!;
+      headers["anthropic-version"] = "2023-06-01";
+      body = JSON.stringify({
         model: "claude-sonnet-4-20250514",
         max_tokens: 1024,
         system: SYSTEM_PROMPT,
         messages: [{ role: "user", content: userMsg }],
-      }),
-    });
+      });
+    }
+
+    const res = await fetch(url, { method: "POST", headers, body });
 
     if (!res.ok) {
-      console.warn(`Anthropic API error: ${res.status}`, await res.text());
+      console.warn(`LLM API error (${useOpenRouter ? "OpenRouter" : "Anthropic"}): ${res.status}`, await res.text());
       return templateGenerate(input);
     }
 
     const data = await res.json();
-    const text = data.content?.[0]?.text || "";
+    // OpenRouter returns OpenAI-compatible format, Anthropic returns its own
+    const text = useOpenRouter
+      ? data.choices?.[0]?.message?.content || ""
+      : data.content?.[0]?.text || "";
     
     // Parse JSON from response
     const jsonMatch = text.match(/\{[\s\S]*\}/);
