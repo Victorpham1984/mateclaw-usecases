@@ -1476,7 +1476,9 @@
       "totalFound": 31,
       "hiddenCount": 4,
       "searchedAt": "2026-03-02T12:23:31.377Z",
-      "approvedVideoIds": []
+      "approvedVideoIds": [
+        "MUDvwqJWWIw"
+      ]
     }
   ]
 }
