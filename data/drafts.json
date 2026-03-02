@@ -33,6 +33,41 @@
       "createdAt": "2026-02-28T16:41:54.343Z",
       "status": "published",
       "publishedAt": "2026-03-02T10:43:25.739Z"
+    },
+    {
+      "id": "draft_1772454330189_MUDvwqJWWIw",
+      "sourceType": "youtube",
+      "contentId": "MUDvwqJWWIw",
+      "videoId": "MUDvwqJWWIw",
+      "fromSessionId": "rs_1772454211377",
+      "video": {
+        "videoId": "MUDvwqJWWIw",
+        "title": "I Played with Clawdbot all Weekend - it&#39;s insane.",
+        "description": "Check out the Dell Pro Max Workstation with the NVIDIA RTX PRO! https://bit.ly/dell-ai-factory-with-nvidia OpenClaw is here and ...",
+        "thumbnailUrl": "https://i.ytimg.com/vi/MUDvwqJWWIw/hqdefault.jpg",
+        "publishedAt": "2026-01-26T00:19:09Z",
+        "duration": "21:12",
+        "videoType": "long",
+        "viewCount": "402979",
+        "likeCount": "9242",
+        "commentCount": "1223",
+        "engagementRate": 2.6,
+        "channel": {
+          "channelId": "UCawZsQWqfGSbCI5yjkdVkTA",
+          "channelName": "Matthew Berman",
+          "subscriberCount": "575000",
+          "channelUrl": "https://youtube.com/@matthew_berman"
+        }
+      },
+      "title": "I Played with Clawdbot all Weekend - it&#39;s insane.",
+      "description": "Check out the Dell Pro Max Workstation with the NVIDIA RTX PRO! https://bit.ly/dell-ai-factory-with-nvidia OpenClaw is here and ...",
+      "category": "automation",
+      "tags": [
+        "youtube",
+        "video-research"
+      ],
+      "createdAt": "2026-03-02T12:25:30.189Z",
+      "status": "draft"
     }
   ]
 }
