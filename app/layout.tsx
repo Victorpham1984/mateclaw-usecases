@@ -13,13 +13,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "MateClaw Use Cases — AI Agent Playbook for Business",
+  title: "OpenClaw Use Cases — AI Agent Playbook for Business",
   description:
     "20+ battle-tested use cases with OpenClaw AI agents. From initial setup to marketing automation, development, and customer support. Copy prompt & start now.",
   openGraph: {
-    title: "MateClaw Use Cases — AI Agent Playbook",
+    title: "OpenClaw Use Cases — AI Agent Playbook",
     description: "20+ battle-tested use cases with OpenClaw AI agents",
-    siteName: "MateClaw",
+    siteName: "OpenClaw",
   },
 };
 
