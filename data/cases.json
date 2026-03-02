@@ -467,6 +467,28 @@
       "difficulty": "beginner",
       "timeEstimate": "3:15:52",
       "roi": "898.0K views • 2.28% engagement"
+    },
+    {
+      "id": "uc022",
+      "title": "**ClawdBot is the most powerful AI tool I’ve ever used in my life. Here’s how to set it up**",
+      "description": "ClawdBot is a 24/7 AI agent employee and it is the most powerful technology I've ever used. Here's how it works and how to set it ...",
+      "prompt": "Watch this video and extract actionable use cases: ClawdBot is the most powerful AI tool I’ve ever used in my life. Here’s how to set it up",
+      "category": "automation",
+      "tags": [
+        "youtube",
+        "video-research"
+      ],
+      "source": {
+        "type": "youtube",
+        "url": "https://www.youtube.com/watch?v=Qkqe-uRhQJE",
+        "creator": "Alex Finn",
+        "channel": "Alex Finn",
+        "videoTitle": "ClawdBot is the most powerful AI tool I’ve ever used in my life. Here’s how to set it up"
+      },
+      "addedAt": "2026-03-02",
+      "difficulty": "beginner",
+      "timeEstimate": "27:46",
+      "roi": "825.5K views • 3.2% engagement"
     }
   ]
 }
