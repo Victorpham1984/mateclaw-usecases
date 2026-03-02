@@ -10,7 +10,13 @@ export type CategoryKey =
   | 'analytics'
   | 'finance'
   | 'sales'
-  | 'growth';
+  | 'growth'
+  | 'life-admin'
+  | 'personal-growth'
+  | 'smart-home'
+  | 'health'
+  | 'monetization'
+  | 'e-commerce';
 
 export type SourceType =
   | 'youtube'
