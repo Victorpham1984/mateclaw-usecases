@@ -3,13 +3,13 @@ import Link from "next/link";
 import AICEOTracker from "./AICEOTracker";
 
 export const metadata: Metadata = {
-  title: "AI CEO Quick Start — Your Journey from 0 to Hero in 7 Days",
+  title: "AI CEO Quick Start — Your Journey from 0 to Hero in 10 Days",
   description:
-    "Follow the path 42 CEOs already walked. BizMate + community wisdom combined. Transform from overwhelmed to AI-powered leader in 7 days.",
+    "Follow the path 42 CEOs already walked. BizMate + community wisdom combined. Transform from overwhelmed to AI-powered leader in 10 days.",
   openGraph: {
     title: "Your Journey from Overwhelmed CEO to AI-Powered Leader",
     description:
-      "42 CEOs walked this path from 0 to Hero. Each saved 20+ hours/week and unlocked $10k+ revenue. Now it's your turn.",
+      "42 CEOs walked this path from 0 to Hero in 10 days. Each saved 20+ hours/week and unlocked $10k+ revenue. Now it's your turn.",
     siteName: "MateClaw Use Cases",
   },
 };
@@ -17,15 +17,14 @@ export const metadata: Metadata = {
 const GUMROAD_URL = "https://bizmate.gumroad.com/l/ai-ceo-quick-start";
 
 const journeyMilestones = [
-  { icon: "🚀", day: "Days 1-2", title: "Setup Your Foundation", desc: "Install tools, configure AI infrastructure" },
-  { icon: "🧠", day: "Days 3-4", title: "Build Your Memory", desc: "Create knowledge systems that scale" },
-  { icon: "👥", day: "Days 5-6", title: "Recruit Your Squad", desc: "Deploy specialized AI agents" },
-  { icon: "⚙️", day: "Day 7", title: "Automate Workflows", desc: "Launch your 24/7 AI workforce" },
+  { icon: "🚀", day: "Days 1-3", title: "Foundation", desc: "30-min setup, first automation, mindset shift" },
+  { icon: "⚙️", day: "Days 4-7", title: "Scale", desc: "Memory systems, squad structure, HEARTBEAT monitoring" },
+  { icon: "💰", day: "Days 8-10", title: "Revenue", desc: "Launch workflows, 5 proven monetization paths" },
 ];
 
 const transformationStories = [
   {
-    quote: "I was at 0 — drowning in operations. Built my AI squad in 7 days. Now agents handle content, research, ops. I focus on strategy.",
+    quote: "I was at 0 — drowning in operations. Built my AI squad in 10 days. Now agents handle content, research, ops. I focus on strategy.",
     author: "Victor",
     role: "BizMate Founder",
     from: "Manual everything",
@@ -36,62 +35,42 @@ const transformationStories = [
 const journeyChapters = [
   {
     num: 1,
-    title: "Setup Your AI Infrastructure",
-    tagline: "From 0: Get your foundation right",
+    phase: "Foundation",
+    title: "Days 1-3: Master the Basics",
+    tagline: "Deploy your first AI agent",
     items: [
-      "Choose the right AI platform (you'll avoid weeks of trial & error)",
-      "8 real setup examples from CEOs who've been there",
-      "Common mistakes that keep you stuck at 0 (and how to skip them)",
+      "30-minute OpenClaw setup (Mac/Linux)",
+      "Telegram bot integration (no coding required)",
+      "First automation: file operations, web search, command execution",
+      "Understanding tools vs chatbots (the mindset shift)",
     ],
   },
   {
     num: 2,
-    title: "Build Your AI Memory System",
-    tagline: "Level up: Knowledge = power",
+    phase: "Scale",
+    title: "Days 4-7: Build Your AI Squad",
+    tagline: "Automate operations at scale",
     items: [
-      "Why memory systems create unfair competitive advantage",
-      "6 proven patterns for organizing your AI's brain",
-      "BizMate's case study: How MEMORY.md unlocks persistent context",
+      "Memory systems that actually work (QMD + Dream Cycle)",
+      "Squad structure: CEO + specialist agents",
+      "HEARTBEAT monitoring (detect issues before users do)",
+      "Cron automation (scheduled tasks, wake events)",
+      "Context management (avoid token bloat)",
     ],
   },
   {
     num: 3,
-    title: "Recruit Your AI Squad",
-    tagline: "Build your team: Scale without hiring",
+    phase: "Revenue",
+    title: "Days 8-10: Unlock Income Streams",
+    tagline: "Turn AI agents into revenue",
     items: [
-      "8 squad archetypes (coding, content, ops, research, sales)",
-      "How to delegate without micromanaging AI agents",
-      "Kyle's 5-agent coding team: real architecture breakdown",
-    ],
-  },
-  {
-    num: 4,
-    title: "Automate Your Workflows",
-    tagline: "Unlock time: 20+ hours/week back",
-    items: [
-      "7 automation patterns CEOs use daily",
-      "ROI calculations: which workflows save the most time",
-      "Brian Casel's zero-touch customer onboarding (copy his system)",
-    ],
-  },
-  {
-    num: 5,
-    title: "Unlock Revenue Paths",
-    tagline: "Reach Hero: Turn AI into income",
-    items: [
-      "5 proven ways to monetize your AI squad",
-      "Real revenue examples from the community",
-      "Pricing strategies for AI-powered services",
-    ],
-  },
-  {
-    num: 6,
-    title: "Real Examples Library",
-    tagline: "Steal their playbooks: 42 paths to Hero",
-    items: [
-      "42 use cases across 10+ industries (not theory — actual journeys)",
-      "Copy-paste prompts for each (save hundreds of hours)",
-      "Time saved + revenue unlocked + lessons learned",
+      "Launch workflow (CommandMate case study)",
+      "Customer support automation (ticket → resolution → close)",
+      "Gumroad automation — Sales tracking → email sequences",
+      "Stripe webhooks — Payment → fulfillment",
+      "Content pipeline — Research → write → schedule → post",
+      "Market research — Competitors → insights → strategy",
+      "Service productization — Consulting → automated playbooks",
     ],
   },
 ];
@@ -103,7 +82,7 @@ const faqs = [
   },
   {
     q: "How long until I see results?",
-    a: "First working agent: 24-48 hours. Full squad: 7 days. You'll start saving time immediately as you build.",
+    a: "First working agent: 24-48 hours. Full squad: 10 days. You'll start saving time immediately as you build.",
   },
   {
     q: "Is this just theory or real journeys?",
@@ -189,7 +168,7 @@ export default function AICEOPage() {
           </p>
           <CTAButton />
           <p className="mt-4 text-sm text-[#484f58]">
-            Your 7-day transformation · $29 · 30-day guarantee
+            Your 10-day transformation · $29 · 30-day guarantee
           </p>
         </div>
       </section>
@@ -223,23 +202,23 @@ export default function AICEOPage() {
             You&apos;re stuck at <span className="text-red-400">0</span>. But there&apos;s a proven path to <span className="text-[#FFD460]">Hero</span>.
           </p>
           <p className="text-sm text-[#8b949e]">
-            42 CEOs transformed in 7 days. You&apos;re next.
+            42 CEOs transformed in 10 days. You&apos;re next.
           </p>
         </div>
       </section>
 
-      {/* Your Roadmap: 0 to Hero in 7 Days */}
+      {/* Your Roadmap: 0 to Hero in 10 Days */}
       <section className="bg-[#161b22] border-y border-[#30363d]">
         <div className="max-w-5xl mx-auto px-4 py-16">
           <h2 className="text-2xl sm:text-3xl font-bold text-center mb-4">
-            Your Roadmap: <span className="text-red-400">0</span> → <span className="text-[#FFD460]">Hero</span> in 7 Days
+            Your Roadmap: <span className="text-red-400">0</span> → <span className="text-[#FFD460]">Hero</span> in 10 Days
           </h2>
           <p className="text-center text-[#8b949e] mb-12 max-w-2xl mx-auto">
             Collective wisdom of 42 CEOs (BizMate + Brian Casel + 9x + 40 more)
           </p>
           
           {/* Journey Timeline */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
             {journeyMilestones.map((milestone, idx) => (
               <div
                 key={milestone.day}
@@ -347,7 +326,7 @@ export default function AICEOPage() {
           {[
             { icon: "⏰", stat: "20+", label: "Hours saved/week (average)" },
             { icon: "💵", stat: "$10k+", label: "Revenue unlocked (community)" },
-            { icon: "🚀", stat: "7 days", label: "From 0 to Hero" },
+            { icon: "🚀", stat: "10 days", label: "From 0 to Hero" },
           ].map((item) => (
             <div key={item.label} className="text-center">
               <div className="text-3xl mb-2">{item.icon}</div>
@@ -358,11 +337,11 @@ export default function AICEOPage() {
         </div>
       </section>
 
-      {/* Your 7-Day Journey — Step by Step */}
+      {/* Your 10-Day Journey — Step by Step */}
       <section className="bg-[#161b22] border-y border-[#30363d]">
         <div className="max-w-4xl mx-auto px-4 py-16">
           <h2 className="text-2xl sm:text-3xl font-bold text-center mb-4">
-            Your 7-Day Journey — Step by Step
+            Your 10-Day Journey — Step by Step
           </h2>
           <p className="text-center text-[#8b949e] mb-12 max-w-2xl mx-auto">
             Follow the same path 42 CEOs walked from <span className="text-red-400">0</span> to <span className="text-[#FFD460]">Hero</span>
@@ -376,7 +355,7 @@ export default function AICEOPage() {
                 <summary className="cursor-pointer p-6 flex items-center justify-between hover:bg-[#161b22] transition-colors">
                   <div className="flex-1">
                     <div className="flex items-center gap-4 mb-1">
-                      <span className="text-[#FFD460] font-bold text-lg">Step {chapter.num}</span>
+                      <span className="text-[#FFD460] font-bold text-lg">{chapter.phase}</span>
                       <h3 className="font-semibold">{chapter.title}</h3>
                     </div>
                     <p className="text-xs text-[#8b949e] ml-12">{chapter.tagline}</p>
@@ -420,7 +399,7 @@ export default function AICEOPage() {
           Start Your Journey from <span className="text-red-400">0</span> to <span className="text-[#FFD460]">Hero</span>
         </h2>
         <p className="text-center text-[#8b949e] mb-12">
-          42 CEOs invested $29. You&apos;re at <span className="text-red-400">0</span> today. In 7 days, you&apos;ll be <span className="text-[#FFD460]">Hero</span>.
+          42 CEOs invested $29. You&apos;re at <span className="text-red-400">0</span> today. In 10 days, you&apos;ll be <span className="text-[#FFD460]">Hero</span>.
         </p>
         <div className="max-w-lg mx-auto">
           <div className="rounded-2xl border-2 border-[#FFD460]/30 bg-[#161b22] p-8">
@@ -489,7 +468,7 @@ export default function AICEOPage() {
             Join 42 CEOs Who Made the Journey from <span className="text-red-400">0</span> to <span className="text-[#FFD460]">Hero</span>
           </h2>
           <p className="text-[#8b949e] mb-2 max-w-lg mx-auto">
-            You&apos;re at <span className="text-red-400">0</span> today. In 7 days, you&apos;ll be <span className="text-[#FFD460]">Hero</span>.
+            You&apos;re at <span className="text-red-400">0</span> today. In 10 days, you&apos;ll be <span className="text-[#FFD460]">Hero</span>.
           </p>
           <p className="text-sm text-[#8b949e] mb-8 max-w-lg mx-auto">
             The path is proven. The roadmap is clear. Now it&apos;s your turn.
