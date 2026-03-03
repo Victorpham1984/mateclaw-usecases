@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import AICEOTracker from "./AICEOTracker";
 
 export const metadata: Metadata = {
   title: "AI CEO Quick Start — Your Journey from 0 to Hero in 7 Days",
@@ -149,6 +150,7 @@ function CTAButton({ className = "", label }: { className?: string; label?: stri
 export default function AICEOPage() {
   return (
     <div className="min-h-screen bg-[#0d1117] text-[#e6edf3]">
+      <AICEOTracker />
       {/* Nav */}
       <nav className="border-b border-[#30363d]/50 bg-[#0d1117]/80 backdrop-blur-md sticky top-0 z-50">
         <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">

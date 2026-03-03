@@ -10,6 +10,7 @@ import type { UseCase } from "@/lib/types";
 import { CATEGORIES, CATEGORY_KEYS } from "@/lib/categories";
 import CaseCard from "./components/CaseCard";
 import { CATEGORY_COLORS } from "./components/CategoryChart";
+import { trackEvent } from "@/lib/analytics";
 import ThemeToggle from "./components/ThemeToggle";
 // AnimatedBackground moved to layout.tsx
 
@@ -168,7 +169,13 @@ function Home() {
                 <input
                   type="text"
                   value={query}
-                  onChange={(e) => setQuery(e.target.value)}
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    setQuery(val);
+                    if (val.length >= 3) {
+                      trackEvent('search_used', { query: val, page: '/' });
+                    }
+                  }}
                   placeholder="Search use cases, tags, prompts..."
                   className="w-full pl-11 pr-10 py-3 rounded-xl bg-card border border-theme text-primary placeholder:text-muted/50 focus:outline-none focus:border-[#FFD460]/50 focus:ring-1 focus:ring-[#FFD460]/20 transition-all text-sm"
                 />

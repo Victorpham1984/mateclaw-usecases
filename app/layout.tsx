@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
 import AnimatedBackground from "./components/AnimatedBackground";
+import GoogleAnalytics from "./components/GoogleAnalytics";
+import ScrollTracker from "./components/ScrollTracker";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,11 +34,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <GoogleAnalytics />
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <AnimatedBackground />
+          <ScrollTracker />
           {children}
         </ThemeProvider>
       </body>
