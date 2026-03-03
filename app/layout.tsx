@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { ThemeProvider } from "next-themes";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -13,13 +14,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "OpenClaw Use Cases — AI Agent Playbook for Business",
+  title: "MateClaw — AI Agent Playbook for Business",
   description:
-    "20+ battle-tested use cases with OpenClaw AI agents. From initial setup to marketing automation, development, and customer support. Copy prompt & start now.",
+    "Battle-tested use cases with OpenClaw AI agents. From initial setup to marketing automation, development, and customer support. Copy prompt & start now.",
   openGraph: {
-    title: "OpenClaw Use Cases — AI Agent Playbook",
-    description: "20+ battle-tested use cases with OpenClaw AI agents",
-    siteName: "OpenClaw",
+    title: "MateClaw — AI Agent Playbook",
+    description: "Battle-tested use cases with OpenClaw AI agents",
+    siteName: "MateClaw",
   },
 };
 
@@ -29,11 +30,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

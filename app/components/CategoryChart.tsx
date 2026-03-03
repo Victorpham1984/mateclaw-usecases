@@ -2,6 +2,7 @@
 
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import { useTheme } from "next-themes";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -31,6 +32,8 @@ interface Props {
 }
 
 export default function CategoryChart({ categoryCounts }: Props) {
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
   const filtered = categoryCounts.filter((c) => c.count > 0);
   const total = filtered.reduce((s, c) => s + c.count, 0);
 
@@ -40,9 +43,9 @@ export default function CategoryChart({ categoryCounts }: Props) {
       {
         data: filtered.map((c) => c.count),
         backgroundColor: filtered.map((c) => CATEGORY_COLORS[c.key] || "#8b949e"),
-        borderColor: "#0d1117",
+        borderColor: isDark ? "#0d1117" : "#ffffff",
         borderWidth: 2,
-        hoverBorderColor: "#e6edf3",
+        hoverBorderColor: isDark ? "#e6edf3" : "#1a1a2e",
         hoverBorderWidth: 2,
       },
     ],
@@ -55,10 +58,10 @@ export default function CategoryChart({ categoryCounts }: Props) {
     plugins: {
       legend: { display: false },
       tooltip: {
-        backgroundColor: "#161b22",
-        titleColor: "#e6edf3",
-        bodyColor: "#8b949e",
-        borderColor: "#30363d",
+        backgroundColor: isDark ? "#161b22" : "#ffffff",
+        titleColor: isDark ? "#e6edf3" : "#1a1a2e",
+        bodyColor: isDark ? "#8b949e" : "#6b7280",
+        borderColor: isDark ? "#30363d" : "#e5e7eb",
         borderWidth: 1,
         padding: 12,
         callbacks: {
@@ -73,7 +76,7 @@ export default function CategoryChart({ categoryCounts }: Props) {
   };
 
   return (
-    <div className="w-[250px] h-[250px] sm:w-[300px] sm:h-[300px] mx-auto">
+    <div className="w-[200px] h-[200px] sm:w-[250px] sm:h-[250px] mx-auto">
       <Doughnut data={data} options={options} />
     </div>
   );

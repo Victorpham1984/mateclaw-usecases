@@ -119,19 +119,19 @@ export default function CaseCard({ useCase, onTagClick, onCategoryClick }: Props
     <div
       ref={cardRef}
       onMouseMove={handleMouseMove}
-      className="card-spotlight group rounded-xl border border-[#30363d] bg-[#161b22] p-5 flex flex-col gap-3"
+      className="card-spotlight group rounded-xl border border-theme bg-card p-5 flex flex-col gap-3"
     >
       {/* Header: category + difficulty */}
       <div className="flex items-center justify-between gap-2 relative z-10">
         <button
           onClick={() => onCategoryClick(useCase.category)}
-          className="text-xs px-2 py-0.5 rounded-full border border-[#30363d] text-[#8b949e] hover:text-[#FFD460] hover:border-[#FFD460]/30 transition-colors cursor-pointer"
+          className="text-xs px-2 py-0.5 rounded-full border border-theme text-muted hover:text-[#FFD460] hover:border-[#FFD460]/30 transition-colors cursor-pointer"
         >
           {cat?.label || useCase.category}
         </button>
         <div className="flex items-center gap-2">
           {useCase.timeEstimate && (
-            <span className="flex items-center gap-1 text-xs text-[#8b949e]">
+            <span className="flex items-center gap-1 text-xs text-muted">
               <Clock size={12} /> {useCase.timeEstimate}
             </span>
           )}
@@ -145,13 +145,13 @@ export default function CaseCard({ useCase, onTagClick, onCategoryClick }: Props
 
       {/* Title */}
       <Link href={`/cases/${useCase.id}`} className="relative z-10">
-        <h3 className="text-base font-semibold leading-snug text-[#e6edf3] group-hover:text-[#FFD460] transition-colors">
+        <h3 className="text-base font-semibold leading-snug text-primary group-hover:text-[#FFD460] transition-colors">
           {parseBold(useCase.title)}
         </h3>
       </Link>
 
       {/* Description */}
-      <p className="text-sm text-[#8b949e] leading-relaxed relative z-10">
+      <p className="text-sm text-muted leading-relaxed relative z-10">
         {displayDesc}
         {truncated && !expanded && (
           <button
@@ -177,7 +177,7 @@ export default function CaseCard({ useCase, onTagClick, onCategoryClick }: Props
           <button
             key={tag}
             onClick={() => onTagClick(tag)}
-            className="chip text-xs px-2 py-0.5 rounded-md border border-[#30363d] text-[#8b949e] cursor-pointer"
+            className="chip text-xs px-2 py-0.5 rounded-md border border-theme text-muted cursor-pointer"
           >
             #{tag}
           </button>
@@ -185,7 +185,7 @@ export default function CaseCard({ useCase, onTagClick, onCategoryClick }: Props
       </div>
 
       {/* Footer: source badge + copy */}
-      <div className="flex items-center justify-between mt-auto pt-2 border-t border-[#30363d] relative z-10">
+      <div className="flex items-center justify-between mt-auto pt-2 border-t border-theme relative z-10">
         <a
           href={useCase.source.url}
           target="_blank"
@@ -199,7 +199,7 @@ export default function CaseCard({ useCase, onTagClick, onCategoryClick }: Props
             <span>{sourceConfig.label}</span>
           </span>
           {useCase.source.creator && (
-            <span className="text-xs text-[#8b949e] group-hover/source:text-[#FFD460] transition-colors truncate max-w-[120px]">
+            <span className="text-xs text-muted group-hover/source:text-[#FFD460] transition-colors truncate max-w-[120px]">
               {useCase.source.creator}
             </span>
           )}
