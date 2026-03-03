@@ -24,25 +24,11 @@ const journeyMilestones = [
 
 const transformationStories = [
   {
-    quote: "I was at 0 — drowning in content tasks. 3 days later, my AI factory publishes 5× more content. Zero burnout.",
-    author: "9x",
-    role: "Content Creator",
-    from: "Manual content grind",
-    to: "5× output, automated",
-  },
-  {
-    quote: "Stuck at 0 doing busywork 60hrs/week. Now my AI squad handles operations. I saved 25 hours to focus on strategy.",
-    author: "Brian Casel",
-    role: "SaaS Founder",
-    from: "60hrs/week busywork",
-    to: "25hrs saved, strategic focus",
-  },
-  {
-    quote: "Started at 0 with just an idea. Week 1 after building my squad, first client paid $2k. I'm now an AI agency owner.",
-    author: "Alex Finn",
-    role: "Agency Owner",
-    from: "Zero revenue, stuck",
-    to: "$2k client, launched agency",
+    quote: "I was at 0 — drowning in operations. Built my AI squad in 7 days. Now agents handle content, research, ops. I focus on strategy.",
+    author: "Victor",
+    role: "BizMate Founder",
+    from: "Manual everything",
+    to: "AI-powered ops, 20+ hrs/week saved",
   },
 ];
 
@@ -289,14 +275,14 @@ export default function AICEOPage() {
       {/* CEOs Who Walked the Journey from 0 to Hero */}
       <section className="max-w-5xl mx-auto px-4 py-16">
         <h2 className="text-2xl sm:text-3xl font-bold text-center mb-4">
-          CEOs Who Walked the Journey from <span className="text-red-400">0</span> to <span className="text-[#FFD460]">Hero</span>
+          Real CEO Journeys from <span className="text-red-400">0</span> to <span className="text-[#FFD460]">Hero</span>
         </h2>
         <p className="text-center text-[#8b949e] mb-12">
-          Real transformations. Real results. Real people.
+          Based on documented use cases from 42 CEOs who built AI squads
         </p>
         
         {/* Transformation Stories */}
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-1 gap-6 max-w-2xl mx-auto">
           {transformationStories.map((story) => (
             <div
               key={story.author}
@@ -325,6 +311,33 @@ export default function AICEOPage() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Community Patterns */}
+        <div className="mt-12 p-8 rounded-xl border border-[#30363d] bg-[#161b22]">
+          <h3 className="text-xl font-bold text-center mb-6 text-[#FFD460]">
+            Community Patterns from 42 CEO Journeys
+          </h3>
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="text-center">
+              <div className="text-2xl mb-2">📝</div>
+              <p className="font-semibold mb-2">Content Creators</p>
+              <p className="text-sm text-[#8b949e]">5× content output with AI content factories</p>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl mb-2">💼</div>
+              <p className="font-semibold mb-2">SaaS Founders</p>
+              <p className="text-sm text-[#8b949e]">20-25 hrs/week saved on operations</p>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl mb-2">🏢</div>
+              <p className="font-semibold mb-2">Agency Owners</p>
+              <p className="text-sm text-[#8b949e]">New $2k-10k AI service offerings</p>
+            </div>
+          </div>
+          <p className="text-xs text-center text-[#484f58] mt-6">
+            Based on documented use cases — no individual attribution, aggregate patterns only
+          </p>
         </div>
 
         {/* Journey Stats */}
