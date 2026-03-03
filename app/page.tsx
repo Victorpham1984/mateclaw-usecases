@@ -11,7 +11,7 @@ import { CATEGORIES, CATEGORY_KEYS } from "@/lib/categories";
 import CaseCard from "./components/CaseCard";
 import { CATEGORY_COLORS } from "./components/CategoryChart";
 import ThemeToggle from "./components/ThemeToggle";
-import AnimatedBackground from "./components/AnimatedBackground";
+// AnimatedBackground moved to layout.tsx
 
 const CategoryChart = dynamic(() => import("./components/CategoryChart"), {
   ssr: false,
@@ -98,8 +98,7 @@ function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-main">
-      <AnimatedBackground />
+    <div className="min-h-screen">
 
       {/* Sticky Header */}
       <nav className="sticky top-0 z-50 bg-nav backdrop-blur-md border-b border-theme h-14 flex items-center px-4">
