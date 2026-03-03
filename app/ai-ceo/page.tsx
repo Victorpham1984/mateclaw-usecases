@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "AI CEO Quick Start V2 — Build Your AI Squad in 7 Days (No Coding Required)",
+  title: "AI CEO Quick Start — Build Your AI Squad in 7 Days (No Coding Required)",
   description:
     "42 real-world examples from top AI builders. 29 copy-paste prompts. 5 revenue paths. Learn how CEOs save 20+ hours/week and unlock $10k+ revenue with AI squads.",
   openGraph: {
@@ -189,7 +189,7 @@ export default function AICEOPage() {
         <div className="absolute top-[-200px] left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-[#FFD460]/[0.06] rounded-full blur-[120px] pointer-events-none" />
         <div className="relative max-w-4xl mx-auto px-4 pt-20 pb-16 text-center">
           <p className="text-[#FFD460] text-sm font-semibold tracking-wider uppercase mb-4">
-            AI CEO Quick Start V2
+            AI CEO Quick Start Guide
           </p>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight mb-6">
             Build Your AI Squad in 7 Days —{" "}
@@ -240,10 +240,10 @@ export default function AICEOPage() {
       <section className="bg-[#161b22] border-y border-[#30363d]">
         <div className="max-w-5xl mx-auto px-4 py-16">
           <h2 className="text-2xl sm:text-3xl font-bold text-center mb-4">
-            Introducing: <span className="text-[#FFD460]">AI CEO Quick Start V2</span>
+            The <span className="text-[#FFD460]">Complete AI CEO Playbook</span>
           </h2>
           <p className="text-center text-[#8b949e] mb-12 max-w-2xl mx-auto">
-            The complete playbook to build your AI workforce — from setup to revenue
+            Everything you need to build your AI workforce — from setup to revenue
           </p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {features.map((feature) => (
@@ -310,7 +310,7 @@ export default function AICEOPage() {
       <section className="bg-[#161b22] border-y border-[#30363d]">
         <div className="max-w-4xl mx-auto px-4 py-16">
           <h2 className="text-2xl sm:text-3xl font-bold text-center mb-12">
-            Inside the AI CEO Quick Start V2
+            Inside the AI CEO Quick Start
           </h2>
           <div className="space-y-6">
             {chapters.map((chapter) => (
@@ -363,7 +363,7 @@ export default function AICEOPage() {
         </h2>
         <div className="max-w-lg mx-auto">
           <div className="rounded-2xl border-2 border-[#FFD460]/30 bg-[#161b22] p-8">
-            <h3 className="text-xl font-bold mb-6 text-center">AI CEO Quick Start V2</h3>
+            <h3 className="text-xl font-bold mb-6 text-center">AI CEO Quick Start</h3>
             
             <ul className="space-y-3 mb-8">
               {pricingFeatures.map((feature) => (
@@ -430,7 +430,7 @@ export default function AICEOPage() {
           <p className="text-[#8b949e] mb-8 max-w-lg mx-auto">
             The future of work is here. Don&apos;t get left behind.
           </p>
-          <CTAButton label="Get AI CEO Quick Start V2 ($29)" />
+          <CTAButton label="Get AI CEO Quick Start ($29)" />
           
           {/* Urgency + Trust Badges */}
           <div className="mt-8 flex flex-col items-center gap-4">
