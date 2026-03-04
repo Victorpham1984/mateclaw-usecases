@@ -110,6 +110,43 @@
       "rejection_reason": "short",
       "published_at": null,
       "created_at": "2026-02-27T15:44:46.808Z"
+    },
+    {
+      "title": "Monthly Income Generation with AI Agents",
+      "description": "Using AI agents to create recurring monthly income streams through automated systems and processes.",
+      "detailed_content": "## AI Agent-Based Income Generation\n\nThis use case focuses on leveraging AI agents to create sustainable monthly income streams. The approach appears to involve using platforms like OpenClaw and Claude Code to build automated systems that can generate revenue consistently.\n\n### How It Works\nThe process likely involves setting up AI agents that can perform various tasks autonomously, such as content creation, customer service, data processing, or other value-generating activities. These agents work continuously to create income opportunities without constant manual intervention.\n\n### Tools and Platforms\n- **OpenClaw**: Mentioned as a primary platform for implementing AI agents\n- **Claude Code**: Referenced as part of the AI agent ecosystem\n- **Discord Community**: Provides support and collaboration opportunities\n\n### Benefits and Results\nThe main benefit is the potential for passive or semi-passive income generation through AI automation. By setting up these systems properly, users can potentially earn money consistently each month while the AI agents handle the operational work. This approach scales beyond traditional time-for-money models by leveraging AI capabilities.",
+      "category_id": "cat-strategy",
+      "suggested_category": null,
+      "tags": [
+        "ai-agents",
+        "passive-income",
+        "automation",
+        "openclaw",
+        "claude-code",
+        "monthly-revenue"
+      ],
+      "difficulty": "intermediate",
+      "source_id": "yt-1772206123032-42kwm1",
+      "source_video_id": "9wgvgFDRD_Y",
+      "source_video_title": "Ganhe dinheiro 2026 todo mês com AGENTES de IA - #OpenClaw #ClaudeCode",
+      "source_video_url": "https://www.youtube.com/watch?v=9wgvgFDRD_Y",
+      "source_channel_name": "Diego Fornalha | Claude Code | OpenClaw",
+      "source_channel_id": "UCeY0SKw3BIsJzVZ3W08r4tA",
+      "source_published_at": "2026-03-04T02:02:05Z",
+      "ai_confidence": 0.6,
+      "ai_model": "anthropic/claude-sonnet-4",
+      "extraction_metadata": {
+        "tokens_used": 946,
+        "had_transcript": false,
+        "transcript_length": 0
+      },
+      "status": "draft",
+      "id": "yt-1772614503833-2q1v5b",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "rejection_reason": null,
+      "published_at": null,
+      "created_at": "2026-03-04T08:55:03.833Z"
     }
   ]
 }
