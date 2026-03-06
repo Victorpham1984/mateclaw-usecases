@@ -1,6 +1,17 @@
 {
   "crawls": [
     {
+      "id": "crawl-1772786101990-chi6",
+      "source_id": "yt-1772206123032-42kwm1",
+      "status": "completed",
+      "videos_found": 0,
+      "videos_processed": 0,
+      "use_cases_created": 0,
+      "errors": [],
+      "started_at": "2026-03-06T08:35:01.179Z",
+      "completed_at": "2026-03-06T08:35:01.990Z"
+    },
+    {
       "id": "crawl-1772698060162-9h88",
       "source_id": "yt-1772206131968-5g5vwi",
       "status": "completed",
