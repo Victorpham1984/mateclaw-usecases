@@ -147,6 +147,43 @@
       "rejection_reason": null,
       "published_at": null,
       "created_at": "2026-03-04T08:55:03.833Z"
+    },
+    {
+      "title": "Automated Traffic Management with OpenClaw AI",
+      "description": "An AI-powered traffic management system that works autonomously while you sleep, handling digital marketing campaigns and traffic optimization.",
+      "detailed_content": "## Automated Traffic Management with OpenClaw\n\nThis use case involves using OpenClaw, an AI-powered system that appears to automate traffic management for digital marketing campaigns. The system is designed to work continuously, even while the user is sleeping, suggesting 24/7 autonomous operation.\n\n### How It Works\nBased on the video title and context, OpenClaw likely integrates with Claude AI to create an automated traffic management solution. The system would monitor, analyze, and optimize digital marketing campaigns in real-time without human intervention.\n\n### Key Features\n- **Autonomous Operation**: The system works independently, requiring minimal human oversight\n- **Continuous Monitoring**: Operates 24/7 to ensure optimal traffic management\n- **AI-Powered Decisions**: Uses artificial intelligence to make real-time optimization decisions\n\n### Benefits\n- Eliminates the need for constant manual monitoring of campaigns\n- Provides round-the-clock optimization for better ROI\n- Reduces human error in traffic management decisions\n- Allows marketers to focus on strategy while AI handles execution",
+      "category_id": "cat-marketing",
+      "suggested_category": null,
+      "tags": [
+        "traffic-management",
+        "automation",
+        "digital-marketing",
+        "openclaw",
+        "claude-ai",
+        "campaign-optimization"
+      ],
+      "difficulty": "intermediate",
+      "source_id": "yt-1772206123032-42kwm1",
+      "source_video_id": "-QQ4oZQjmjQ",
+      "source_video_title": "Gestor de Trafego enquanto dorme OpenClaw TRABALHA - #OpenClaw #ClaudeCode",
+      "source_video_url": "https://www.youtube.com/watch?v=-QQ4oZQjmjQ",
+      "source_channel_name": "Diego Fornalha | Claude Code | OpenClaw",
+      "source_channel_id": "UCeY0SKw3BIsJzVZ3W08r4tA",
+      "source_published_at": "2026-03-09T13:00:06Z",
+      "ai_confidence": 0.6,
+      "ai_model": "anthropic/claude-sonnet-4",
+      "extraction_metadata": {
+        "tokens_used": 971,
+        "had_transcript": false,
+        "transcript_length": 0
+      },
+      "status": "draft",
+      "id": "yt-1773131981873-a658z4",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "rejection_reason": null,
+      "published_at": null,
+      "created_at": "2026-03-10T08:39:41.873Z"
     }
   ]
 }
