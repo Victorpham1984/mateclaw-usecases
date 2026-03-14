@@ -1,6 +1,30 @@
 {
   "crawls": [
     {
+      "id": "crawl-1773476108594-e25m",
+      "source_id": "yt-1772206131968-5g5vwi",
+      "status": "completed",
+      "videos_found": 3,
+      "videos_processed": 0,
+      "use_cases_created": 0,
+      "errors": [
+        {
+          "videoId": "5dfu6NvnTZM",
+          "error": "OpenRouter API error: 402 - {\"error\":{\"message\":\"Insufficient credits. Add more using https://openrouter.ai/settings/credits\",\"code\":402}}"
+        },
+        {
+          "videoId": "lJhBWsnETFM",
+          "error": "OpenRouter API error: 402 - {\"error\":{\"message\":\"Insufficient credits. Add more using https://openrouter.ai/settings/credits\",\"code\":402}}"
+        },
+        {
+          "videoId": "YiFC3Z_bCDU",
+          "error": "OpenRouter API error: 402 - {\"error\":{\"message\":\"Insufficient credits. Add more using https://openrouter.ai/settings/credits\",\"code\":402}}"
+        }
+      ],
+      "started_at": "2026-03-14T08:15:04.301Z",
+      "completed_at": "2026-03-14T08:15:08.594Z"
+    },
+    {
       "id": "crawl-1773476103829-s0ik",
       "source_id": "yt-1772206123032-42kwm1",
       "status": "completed",
