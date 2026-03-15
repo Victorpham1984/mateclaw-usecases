@@ -1,6 +1,17 @@
 {
   "crawls": [
     {
+      "id": "crawl-1773564984856-lyos",
+      "source_id": "yt-1772206123032-42kwm1",
+      "status": "completed",
+      "videos_found": 0,
+      "videos_processed": 0,
+      "use_cases_created": 0,
+      "errors": [],
+      "started_at": "2026-03-15T08:56:24.111Z",
+      "completed_at": "2026-03-15T08:56:24.856Z"
+    },
+    {
       "id": "crawl-1773476108594-e25m",
       "source_id": "yt-1772206131968-5g5vwi",
       "status": "completed",
