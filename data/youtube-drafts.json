@@ -184,6 +184,42 @@
       "rejection_reason": null,
       "published_at": null,
       "created_at": "2026-03-10T08:39:41.873Z"
+    },
+    {
+      "title": "Building AI Agent Websites with JourneyKits",
+      "description": "Creating dedicated websites to showcase and deploy AI agents for various business applications.",
+      "detailed_content": "## AI Agent Website Development\n\nThis use case involves creating specialized websites designed to host and showcase AI agents. Based on the video title and the mentioned website (journeykits.ai), this appears to be about building platforms where AI agents can be deployed and accessed by users.\n\n### How It Works\nThe process likely involves:\n1. Designing a user-friendly interface for AI agent interaction\n2. Implementing backend systems to handle agent requests and responses\n3. Creating documentation and examples of agent capabilities\n4. Setting up deployment infrastructure for reliable agent hosting\n\n### Tools and Implementation\nWhile specific tools aren't detailed in the available information, this type of project typically involves web development frameworks, AI model APIs, and cloud hosting services. The JourneyKits platform appears to be the result of this development effort.\n\n### Benefits\nCreating dedicated websites for AI agents provides several advantages:\n- Professional presentation of AI capabilities\n- Easy access for users to interact with agents\n- Centralized platform for multiple agent types\n- Potential for monetization and scaling of AI services",
+      "category_id": "cat-automation",
+      "suggested_category": null,
+      "tags": [
+        "ai-agents",
+        "web-development",
+        "platform-building",
+        "deployment",
+        "journeykits"
+      ],
+      "difficulty": "advanced",
+      "source_id": "yt-1772206131968-5g5vwi",
+      "source_video_id": "ThJxXHzlzvI",
+      "source_video_title": "I made a website for agents",
+      "source_video_url": "https://www.youtube.com/watch?v=ThJxXHzlzvI",
+      "source_channel_name": "Matthew Berman",
+      "source_channel_id": "UCawZsQWqfGSbCI5yjkdVkTA",
+      "source_published_at": "2026-04-07T19:00:17Z",
+      "ai_confidence": 0.6,
+      "ai_model": "anthropic/claude-sonnet-4",
+      "extraction_metadata": {
+        "tokens_used": 933,
+        "had_transcript": false,
+        "transcript_length": 0
+      },
+      "status": "draft",
+      "id": "yt-1775636388217-lq5ts6",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "rejection_reason": null,
+      "published_at": null,
+      "created_at": "2026-04-08T08:19:48.217Z"
     }
   ]
 }
