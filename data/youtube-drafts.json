@@ -220,6 +220,43 @@
       "rejection_reason": null,
       "published_at": null,
       "created_at": "2026-04-08T08:19:48.217Z"
+    },
+    {
+      "title": "AI Video Generation with Higgsfield and Claude Integration",
+      "description": "Generate AI videos by connecting Higgsfield's video generation capabilities with Claude AI through their MCP (Model Context Protocol) integration.",
+      "detailed_content": "## AI Video Generation with Higgsfield-Claude Integration\n\nThis use case demonstrates how to leverage Higgsfield's AI video generation platform in combination with Claude AI through their Model Context Protocol (MCP) integration. The setup process is designed to be quick and user-friendly, taking approximately 30 seconds to establish the connection.\n\n### How It Works\n\nThe integration allows users to harness Claude's natural language processing capabilities alongside Higgsfield's video generation technology. Users can likely describe their video requirements in natural language to Claude, which then interfaces with Higgsfield to produce the corresponding AI-generated videos.\n\n### Benefits and Applications\n\nThis integration streamlines the video creation process by combining conversational AI with advanced video generation. Users can potentially create videos through simple text descriptions, making video production more accessible to non-technical users. The MCP integration suggests a seamless workflow where Claude can understand complex video requirements and translate them into actionable parameters for Higgsfield's video generation engine.\n\n### Technical Implementation\n\nThe Model Context Protocol (MCP) serves as the bridge between these two AI systems, enabling them to communicate and work together effectively. This represents a growing trend in AI tool integration, where specialized AI services can be combined to create more powerful, multi-modal solutions.",
+      "category_id": "cat-content",
+      "suggested_category": null,
+      "tags": [
+        "ai-video-generation",
+        "claude-integration",
+        "higgsfield",
+        "mcp",
+        "video-creation",
+        "ai-tools"
+      ],
+      "difficulty": "beginner",
+      "source_id": "yt-1772206131968-5g5vwi",
+      "source_video_id": "P3jYJutGqWs",
+      "source_video_title": "How to Generate those AI videos",
+      "source_video_url": "https://www.youtube.com/watch?v=P3jYJutGqWs",
+      "source_channel_name": "Matthew Berman",
+      "source_channel_id": "UCawZsQWqfGSbCI5yjkdVkTA",
+      "source_published_at": "2026-05-07T15:31:27Z",
+      "ai_confidence": 0.75,
+      "ai_model": "anthropic/claude-sonnet-4",
+      "extraction_metadata": {
+        "tokens_used": 991,
+        "had_transcript": false,
+        "transcript_length": 0
+      },
+      "status": "draft",
+      "id": "yt-1778228324124-ew6fzh",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "rejection_reason": null,
+      "published_at": null,
+      "created_at": "2026-05-08T08:18:44.125Z"
     }
   ]
 }
