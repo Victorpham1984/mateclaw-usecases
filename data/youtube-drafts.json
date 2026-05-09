@@ -257,6 +257,42 @@
       "rejection_reason": null,
       "published_at": null,
       "created_at": "2026-05-08T08:18:44.125Z"
+    },
+    {
+      "title": "Website Design Generation with Claude AI",
+      "description": "Using Claude AI to create and design new website layouts and user interfaces through AI-powered design assistance.",
+      "detailed_content": "## Website Design with Claude AI\n\nThis use case demonstrates how to leverage Claude AI for website design creation, specifically using what appears to be a tool called \"Claude Design\" or \"Claude Code\" for generating modern website layouts.\n\n### How It Works\n\nThe process likely involves using Claude AI's capabilities to:\n1. Generate HTML/CSS code for website structures\n2. Create responsive design layouts\n3. Suggest design patterns and user interface elements\n4. Provide code snippets for modern web design components\n\n### Tools and Implementation\n\nThe video references \"Claude Design\" and \"Claude Code\" tools, which appear to be specialized implementations or workflows for using Claude AI in web design contexts. The mention of \"#OpenClaw\" suggests this might be part of a larger toolkit or community project for AI-assisted development.\n\n### Benefits and Applications\n\nThis approach can significantly speed up the web design process by providing AI-generated starting points for layouts, reducing the time needed for initial design concepts, and offering modern design patterns that developers can customize and implement.",
+      "category_id": "cat-design",
+      "suggested_category": null,
+      "tags": [
+        "web-design",
+        "claude-ai",
+        "ui-design",
+        "code-generation",
+        "website-development"
+      ],
+      "difficulty": "intermediate",
+      "source_id": "yt-1772206123032-42kwm1",
+      "source_video_id": "aRhdM2Kfxn8",
+      "source_video_title": "Como fazer o novo DESIGN do seu site usando o Claude Design - #OpenClaw #claudecode",
+      "source_video_url": "https://www.youtube.com/watch?v=aRhdM2Kfxn8",
+      "source_channel_name": "Diego Fornalha | Claude Code | OpenClaw",
+      "source_channel_id": "UCeY0SKw3BIsJzVZ3W08r4tA",
+      "source_published_at": "2026-05-08T20:30:56Z",
+      "ai_confidence": 0.6,
+      "ai_model": "anthropic/claude-sonnet-4",
+      "extraction_metadata": {
+        "tokens_used": 945,
+        "had_transcript": false,
+        "transcript_length": 0
+      },
+      "status": "draft",
+      "id": "yt-1778314050986-odo02y",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "rejection_reason": null,
+      "published_at": null,
+      "created_at": "2026-05-09T08:07:30.986Z"
     }
   ]
 }
