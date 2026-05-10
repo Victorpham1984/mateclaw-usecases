@@ -293,6 +293,43 @@
       "rejection_reason": null,
       "published_at": null,
       "created_at": "2026-05-09T08:07:30.986Z"
+    },
+    {
+      "title": "AI Player Behavior Analysis in Gaming",
+      "description": "Using AI to analyze and understand player behavior patterns in video games like Eve Online for insights and optimization.",
+      "detailed_content": "## AI-Powered Player Behavior Analysis in Gaming\n\nDeepMind's investment in Eve Online represents a significant development in applying AI to gaming environments. This use case involves deploying advanced AI systems to analyze complex player interactions and behaviors within massively multiplayer online games.\n\n### How It Works\nThe AI system would collect and process vast amounts of player data including movement patterns, decision-making processes, social interactions, and strategic choices. Machine learning algorithms would then identify trends, predict player behavior, and potentially optimize game mechanics or create more intelligent NPCs.\n\n### Potential Applications\nThis technology could revolutionize game development by providing deeper insights into player psychology, enabling dynamic difficulty adjustment, creating more realistic AI opponents, and improving overall game balance. The complex social and economic systems in games like Eve Online provide rich datasets for training sophisticated AI models.\n\n### Industry Impact\nThis represents a broader trend of AI integration into gaming, where artificial intelligence moves beyond simple game mechanics to understanding and potentially influencing complex virtual ecosystems and player communities.",
+      "category_id": "cat-data",
+      "suggested_category": null,
+      "tags": [
+        "gaming-ai",
+        "player-analytics",
+        "deepmind",
+        "behavior-analysis",
+        "game-optimization",
+        "machine-learning"
+      ],
+      "difficulty": "advanced",
+      "source_id": "yt-1772206131968-5g5vwi",
+      "source_video_id": "1a_k48eco2c",
+      "source_video_title": "AI is taking over video games",
+      "source_video_url": "https://www.youtube.com/watch?v=1a_k48eco2c",
+      "source_channel_name": "Matthew Berman",
+      "source_channel_id": "UCawZsQWqfGSbCI5yjkdVkTA",
+      "source_published_at": "2026-05-09T18:04:22Z",
+      "ai_confidence": 0.65,
+      "ai_model": "anthropic/claude-sonnet-4",
+      "extraction_metadata": {
+        "tokens_used": 907,
+        "had_transcript": false,
+        "transcript_length": 0
+      },
+      "status": "draft",
+      "id": "yt-1778403202200-s8v833",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "rejection_reason": null,
+      "published_at": null,
+      "created_at": "2026-05-10T08:53:22.200Z"
     }
   ]
 }
