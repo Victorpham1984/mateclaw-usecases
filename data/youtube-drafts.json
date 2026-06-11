@@ -330,6 +330,42 @@
       "rejection_reason": null,
       "published_at": null,
       "created_at": "2026-05-10T08:53:22.200Z"
+    },
+    {
+      "title": "Advanced AI Video Generation with Supercomputer Technology",
+      "description": "Using Higgsfield Supercomputer platform for next-level AI-powered video creation and generation.",
+      "detailed_content": "## Advanced AI Video Generation with Supercomputer Technology\n\nThis use case involves leveraging Higgsfield's Supercomputer platform to create high-quality AI-generated videos that represent the next evolution in video generation technology. The platform appears to offer advanced capabilities beyond traditional AI video tools.\n\n### How It Works\nWhile specific technical details aren't available from the limited information, the use case involves accessing the Higgsfield Supercomputer platform to generate videos using advanced AI models. The \"supercomputer\" designation suggests this platform may offer enhanced processing power, better quality outputs, or more sophisticated AI models compared to standard video generation tools.\n\n### Benefits and Applications\nThis technology could be valuable for content creators, marketers, and businesses looking to produce high-quality video content efficiently. The \"next level\" positioning suggests improved video quality, better coherence, or new capabilities not available in current AI video generation tools.\n\n### Getting Started\nUsers can access this technology through the Higgsfield platform, with the video providing a direct link for viewers to try the service themselves.",
+      "category_id": "cat-content",
+      "suggested_category": null,
+      "tags": [
+        "ai-video-generation",
+        "supercomputer",
+        "higgsfield",
+        "video-creation",
+        "advanced-ai"
+      ],
+      "difficulty": "intermediate",
+      "source_id": "yt-1772206131968-5g5vwi",
+      "source_video_id": "GclDWye2kgk",
+      "source_video_title": "Supercomputer is the next level of AI video generation",
+      "source_video_url": "https://www.youtube.com/watch?v=GclDWye2kgk",
+      "source_channel_name": "Matthew Berman",
+      "source_channel_id": "UCawZsQWqfGSbCI5yjkdVkTA",
+      "source_published_at": "2026-06-10T17:10:35Z",
+      "ai_confidence": 0.6,
+      "ai_model": "anthropic/claude-sonnet-4",
+      "extraction_metadata": {
+        "tokens_used": 942,
+        "had_transcript": false,
+        "transcript_length": 0
+      },
+      "status": "draft",
+      "id": "yt-1781165187745-f2gkvd",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "rejection_reason": null,
+      "published_at": null,
+      "created_at": "2026-06-11T08:06:27.745Z"
     }
   ]
 }
