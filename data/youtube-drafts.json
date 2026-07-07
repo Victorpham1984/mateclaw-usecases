@@ -404,6 +404,42 @@
       "rejection_reason": null,
       "published_at": null,
       "created_at": "2026-07-07T08:09:06.329Z"
+    },
+    {
+      "title": "AI Cost Optimization Strategies",
+      "description": "Techniques and methods to reduce AI usage costs by approximately 50% through optimization strategies.",
+      "detailed_content": "## AI Cost Optimization\n\nThis use case focuses on implementing strategies to significantly reduce AI operational costs, potentially cutting expenses in half. While specific techniques aren't detailed in the available content, this typically involves optimizing AI model usage, choosing cost-effective alternatives, and implementing efficient workflows.\n\n### Common Cost Reduction Approaches\n\nCost optimization in AI usually involves several key strategies: selecting appropriate model sizes for specific tasks, using prompt engineering to reduce token usage, implementing caching mechanisms, and choosing between different AI service providers based on pricing models.\n\n### Implementation Benefits\n\nBy implementing proper cost optimization strategies, organizations and individuals can maintain AI capabilities while significantly reducing operational expenses. This makes AI tools more accessible and sustainable for long-term use, especially for businesses operating on tight budgets or individuals exploring AI applications.\n\n### Tools and Considerations\n\nThe video mentions Genspark as a potential solution, which appears to offer free credits for new users. Effective cost optimization requires understanding different pricing models, monitoring usage patterns, and selecting the most cost-effective tools for specific use cases.",
+      "category_id": "cat-strategy",
+      "suggested_category": null,
+      "tags": [
+        "cost-optimization",
+        "ai-efficiency",
+        "budget-management",
+        "genspark",
+        "ai-tools"
+      ],
+      "difficulty": "intermediate",
+      "source_id": "yt-1772206131968-5g5vwi",
+      "source_video_id": "1KKB_UiW6ls",
+      "source_video_title": "Cut your AI cost IN HALF (EASY)",
+      "source_video_url": "https://www.youtube.com/watch?v=1KKB_UiW6ls",
+      "source_channel_name": "Matthew Berman",
+      "source_channel_id": "UCawZsQWqfGSbCI5yjkdVkTA",
+      "source_published_at": "2026-07-07T00:29:07Z",
+      "ai_confidence": 0.6,
+      "ai_model": "anthropic/claude-sonnet-4",
+      "extraction_metadata": {
+        "tokens_used": 899,
+        "had_transcript": false,
+        "transcript_length": 0
+      },
+      "status": "draft",
+      "id": "yt-1783411756649-x17kwt",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "rejection_reason": null,
+      "published_at": null,
+      "created_at": "2026-07-07T08:09:16.649Z"
     }
   ]
 }
