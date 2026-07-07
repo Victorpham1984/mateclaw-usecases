@@ -366,6 +366,44 @@
       "rejection_reason": null,
       "published_at": null,
       "created_at": "2026-06-11T08:06:27.745Z"
+    },
+    {
+      "title": "Setting Up AI Agents with SSH Configuration on Hostinger",
+      "description": "Configure and deploy AI agents on Hostinger hosting platform using SSH connections for initial setup and management.",
+      "detailed_content": "## AI Agent Deployment on Hosting Platforms\n\nThis use case focuses on the technical setup and configuration of AI agents on web hosting services, specifically using Hostinger as the hosting provider. The process involves establishing secure SSH (Secure Shell) connections to remotely access and configure server environments for AI agent deployment.\n\n### Implementation Process\n\nThe setup process typically involves connecting to the hosting server via SSH, which allows for secure command-line access to configure the necessary environment for AI agents. This includes installing dependencies, setting up runtime environments, and configuring network access for the AI agents to function properly.\n\n### Tools and Technologies\n\nThe use case mentions Hermes and Claude Code as part of the AI agent ecosystem being deployed. SSH configuration is essential for secure server management, while Hostinger provides the hosting infrastructure. This combination allows for scalable deployment of AI agents in a production environment.\n\n### Benefits and Applications\n\nDeploying AI agents on hosting platforms enables 24/7 availability, scalable processing power, and professional deployment capabilities. This approach is particularly valuable for businesses looking to implement AI solutions that need to be accessible remotely and operate continuously without local hardware dependencies.",
+      "category_id": "cat-automation",
+      "suggested_category": null,
+      "tags": [
+        "ai-agents",
+        "ssh-configuration",
+        "hostinger",
+        "deployment",
+        "server-setup",
+        "hermes",
+        "claude-code"
+      ],
+      "difficulty": "advanced",
+      "source_id": "yt-1772206123032-42kwm1",
+      "source_video_id": "6WYJGCSyquY",
+      "source_video_title": "Aula Gratuita Agentes de IA config inicial SHH hostinger - #Hermes #ClaudeCode",
+      "source_video_url": "https://www.youtube.com/watch?v=6WYJGCSyquY",
+      "source_channel_name": "Diego Fornalha | Claude Code | OpenClaw",
+      "source_channel_id": "UCeY0SKw3BIsJzVZ3W08r4tA",
+      "source_published_at": "2026-07-07T02:41:55Z",
+      "ai_confidence": 0.6,
+      "ai_model": "anthropic/claude-sonnet-4",
+      "extraction_metadata": {
+        "tokens_used": 988,
+        "had_transcript": false,
+        "transcript_length": 0
+      },
+      "status": "draft",
+      "id": "yt-1783411746329-nx5tf5",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "rejection_reason": null,
+      "published_at": null,
+      "created_at": "2026-07-07T08:09:06.329Z"
     }
   ]
 }
