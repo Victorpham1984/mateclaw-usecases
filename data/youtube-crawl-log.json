@@ -1,6 +1,17 @@
 {
   "crawls": [
     {
+      "id": "crawl-1783930624485-c1n5",
+      "source_id": "yt-1772206123032-42kwm1",
+      "status": "completed",
+      "videos_found": 0,
+      "videos_processed": 0,
+      "use_cases_created": 0,
+      "errors": [],
+      "started_at": "2026-07-13T08:17:03.370Z",
+      "completed_at": "2026-07-13T08:17:04.485Z"
+    },
+    {
       "id": "crawl-1783845166179-hp89",
       "source_id": "yt-1772206131968-5g5vwi",
       "status": "completed",
@@ -538,17 +549,6 @@
       "errors": [],
       "started_at": "2026-06-18T08:22:15.329Z",
       "completed_at": "2026-06-18T08:22:16.453Z"
-    },
-    {
-      "id": "crawl-1781770934510-xafp",
-      "source_id": "yt-1772206123032-42kwm1",
-      "status": "completed",
-      "videos_found": 0,
-      "videos_processed": 0,
-      "use_cases_created": 0,
-      "errors": [],
-      "started_at": "2026-06-18T08:22:13.464Z",
-      "completed_at": "2026-06-18T08:22:14.510Z"
     }
   ]
 }
