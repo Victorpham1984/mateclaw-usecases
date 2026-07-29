@@ -440,6 +440,43 @@
       "rejection_reason": null,
       "published_at": null,
       "created_at": "2026-07-07T08:09:16.649Z"
+    },
+    {
+      "title": "AI-Powered Meeting Memory and Recall System",
+      "description": "Using AI tools like Genspark to capture, process, and recall information from business meetings more effectively than human memory.",
+      "detailed_content": "## AI Meeting Memory vs Human Memory\n\nThis use case explores the comparison between AI-powered memory systems and human cognitive recall for business meetings. The concept involves using AI tools, specifically Genspark, to create a \"second brain\" that can capture and retain meeting information with higher accuracy than natural human memory.\n\n### How It Works\nThe AI system likely processes meeting content through audio transcription, key point extraction, and structured information storage. Unlike human memory which can be selective, biased, or fade over time, the AI maintains consistent access to all discussed details.\n\n### Benefits and Applications\nThis approach could significantly improve business productivity by ensuring no critical meeting details are lost, enabling better follow-up actions, and providing searchable meeting archives. The AI acts as a reliable backup to human memory, potentially catching important details that participants might miss or forget.\n\n### Tools and Technology\nThe primary tool mentioned is Genspark, which appears to offer meeting memory and recall capabilities as part of a broader AI-powered productivity suite.",
+      "category_id": "cat-strategy",
+      "suggested_category": null,
+      "tags": [
+        "meeting-notes",
+        "memory-enhancement",
+        "productivity",
+        "genspark",
+        "second-brain",
+        "business-meetings"
+      ],
+      "difficulty": "beginner",
+      "source_id": "yt-1772206131968-5g5vwi",
+      "source_video_id": "_fKCXHH6e74",
+      "source_video_title": "I Tested an AI Brain vs My Actual Brain #secondbrain #aishorts #test",
+      "source_video_url": "https://www.youtube.com/watch?v=_fKCXHH6e74",
+      "source_channel_name": "Matthew Berman",
+      "source_channel_id": "UCawZsQWqfGSbCI5yjkdVkTA",
+      "source_published_at": "2026-07-28T17:29:28Z",
+      "ai_confidence": 0.6,
+      "ai_model": "anthropic/claude-sonnet-4",
+      "extraction_metadata": {
+        "tokens_used": 936,
+        "had_transcript": false,
+        "transcript_length": 0
+      },
+      "status": "draft",
+      "id": "yt-1785312360168-aql0zj",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "rejection_reason": null,
+      "published_at": null,
+      "created_at": "2026-07-29T08:06:00.168Z"
     }
   ]
 }
