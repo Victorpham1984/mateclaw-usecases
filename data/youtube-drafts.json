@@ -477,6 +477,43 @@
       "rejection_reason": null,
       "published_at": null,
       "created_at": "2026-07-29T08:06:00.168Z"
+    },
+    {
+      "title": "Creating Films with AI Influencers",
+      "description": "Using AI-generated virtual influencers to create film content, combining artificial intelligence with video production techniques.",
+      "detailed_content": "## Creating Films with AI Influencers\n\nThis use case explores the emerging field of using AI-generated virtual influencers as characters or hosts in film and video content. The concept involves leveraging artificial intelligence to create realistic digital personas that can be used in various types of video productions.\n\n### How It Works\n\nThe process typically involves using AI avatar generation tools, deepfake technology, or virtual character creation platforms to develop consistent digital personas. These AI influencers can be designed with specific characteristics, personalities, and visual appearances that align with the content creator's vision.\n\n### Implementation Steps\n\n1. **Character Design**: Define the AI influencer's appearance, personality traits, and voice characteristics\n2. **AI Model Training**: Use appropriate AI tools to generate consistent visual representations\n3. **Content Creation**: Develop scripts and scenarios featuring the AI influencer\n4. **Video Production**: Combine AI-generated content with traditional filming techniques\n5. **Post-Production**: Edit and refine the final film content\n\n### Benefits and Applications\n\nThis approach offers several advantages including cost-effective content creation, consistent character availability, creative freedom in character design, and the ability to create content without traditional casting constraints. It's particularly useful for content creators, marketers, and filmmakers looking to explore innovative storytelling methods.",
+      "category_id": "cat-content",
+      "suggested_category": null,
+      "tags": [
+        "ai-influencers",
+        "video-production",
+        "virtual-characters",
+        "content-creation",
+        "filmmaking",
+        "digital-personas"
+      ],
+      "difficulty": "intermediate",
+      "source_id": "yt-1772206123032-42kwm1",
+      "source_video_id": "cI4dM4i9VWg",
+      "source_video_title": "Como Fazer filmes com influenciadores IA - Episódio 01",
+      "source_video_url": "https://www.youtube.com/watch?v=cI4dM4i9VWg",
+      "source_channel_name": "Diego Fornalha | Claude Code | OpenClaw",
+      "source_channel_id": "UCeY0SKw3BIsJzVZ3W08r4tA",
+      "source_published_at": "2026-08-31T02:27:14Z",
+      "ai_confidence": 0.7,
+      "ai_model": "anthropic/claude-sonnet-4",
+      "extraction_metadata": {
+        "tokens_used": 1015,
+        "had_transcript": false,
+        "transcript_length": 0
+      },
+      "status": "draft",
+      "id": "yt-1788166605992-y8q4hs",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "rejection_reason": null,
+      "published_at": null,
+      "created_at": "2026-08-31T08:56:45.992Z"
     }
   ]
 }
