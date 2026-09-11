@@ -514,6 +514,42 @@
       "rejection_reason": null,
       "published_at": null,
       "created_at": "2026-08-31T08:56:45.992Z"
+    },
+    {
+      "title": "Automated Video Production with GROK Bot in Under 1 Hour",
+      "description": "Using GROK bot to rapidly produce videos with minimal manual effort, streamlining the entire video creation workflow.",
+      "detailed_content": "## Rapid Video Production with GROK Bot\n\nThis use case demonstrates how to leverage GROK bot technology to produce complete videos in under one hour, significantly reducing the traditional time investment required for video content creation.\n\n### How It Works\n\nThe process involves setting up and configuring a GROK bot that can automate various aspects of video production. While specific technical details aren't available from the limited transcript, the approach likely includes automated script generation, voice synthesis, visual content creation, and video assembly.\n\n### Benefits and Applications\n\n- **Time Efficiency**: Reduces video production time from hours or days to under 60 minutes\n- **Scalability**: Enables content creators to produce more videos with less manual effort\n- **Consistency**: Maintains quality standards across multiple video productions\n- **Cost-Effective**: Reduces the need for extensive video production teams or expensive software\n\nThis approach is particularly valuable for content creators, marketers, and businesses looking to scale their video content production without proportionally increasing their time investment or production costs.",
+      "category_id": "cat-content",
+      "suggested_category": null,
+      "tags": [
+        "video-production",
+        "automation",
+        "grok-bot",
+        "content-creation",
+        "time-saving"
+      ],
+      "difficulty": "intermediate",
+      "source_id": "yt-1772206123032-42kwm1",
+      "source_video_id": "pgbDWwxCcsY",
+      "source_video_title": "Em Menos de 1 HORA Produzir Vídeos GROK bot - Agora está Muito Fácil",
+      "source_video_url": "https://www.youtube.com/watch?v=pgbDWwxCcsY",
+      "source_channel_name": "Diego Fornalha | Claude Code | OpenClaw",
+      "source_channel_id": "UCeY0SKw3BIsJzVZ3W08r4tA",
+      "source_published_at": "2026-09-10T23:59:09Z",
+      "ai_confidence": 0.6,
+      "ai_model": "anthropic/claude-sonnet-4",
+      "extraction_metadata": {
+        "tokens_used": 972,
+        "had_transcript": false,
+        "transcript_length": 0
+      },
+      "status": "draft",
+      "id": "yt-1789116180998-jl26vb",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "rejection_reason": null,
+      "published_at": null,
+      "created_at": "2026-09-11T08:43:00.998Z"
     }
   ]
 }
