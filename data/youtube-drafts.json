@@ -587,6 +587,43 @@
       "rejection_reason": null,
       "published_at": null,
       "created_at": "2026-09-11T08:43:23.271Z"
+    },
+    {
+      "title": "Multi-Computer AI Processing with NVIDIA PAIR",
+      "description": "Use NVIDIA PAIR to connect multiple computers for distributed local AI processing and enhanced performance.",
+      "detailed_content": "## Multi-Computer AI Processing with NVIDIA PAIR\n\nNVIDIA PAIR (Personal AI Router) is a networking solution that allows users to connect multiple computers together to create a more powerful local AI processing environment. This use case focuses on leveraging distributed computing resources for AI workloads.\n\n### How It Works\n\nThe NVIDIA PAIR device acts as a central hub that connects multiple computers in a local network, allowing them to share AI processing tasks. Users can distribute AI workloads across different machines, potentially combining the GPU power of multiple systems for faster inference and training.\n\n### Benefits and Applications\n\nThis setup enables users to run larger AI models that might not fit on a single machine, improve processing speeds through parallel computing, and create a more robust local AI infrastructure. It's particularly useful for developers, researchers, and enthusiasts who want to maintain privacy by keeping AI processing local while still achieving enterprise-level performance.\n\n### Technical Implementation\n\nThe system likely uses NVIDIA's networking protocols and software to coordinate tasks between connected machines, managing resource allocation and load balancing automatically. This allows for seamless scaling of AI capabilities without relying on cloud services.",
+      "category_id": "cat-automation",
+      "suggested_category": null,
+      "tags": [
+        "nvidia",
+        "local-ai",
+        "distributed-computing",
+        "networking",
+        "gpu-acceleration",
+        "privacy"
+      ],
+      "difficulty": "advanced",
+      "source_id": "yt-1772206131968-5g5vwi",
+      "source_video_id": "Z4no-hhcuas",
+      "source_video_title": "NVIDIA PAIR Connects Your Computers for Local AI",
+      "source_video_url": "https://www.youtube.com/watch?v=Z4no-hhcuas",
+      "source_channel_name": "Matthew Berman",
+      "source_channel_id": "UCawZsQWqfGSbCI5yjkdVkTA",
+      "source_published_at": "2026-09-18T22:04:08Z",
+      "ai_confidence": 0.6,
+      "ai_model": "anthropic/claude-sonnet-4",
+      "extraction_metadata": {
+        "tokens_used": 947,
+        "had_transcript": false,
+        "transcript_length": 0
+      },
+      "status": "draft",
+      "id": "yt-1789807390197-0padye",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "rejection_reason": null,
+      "published_at": null,
+      "created_at": "2026-09-19T08:43:10.197Z"
     }
   ]
 }
