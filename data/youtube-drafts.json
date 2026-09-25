@@ -624,6 +624,43 @@
       "rejection_reason": null,
       "published_at": null,
       "created_at": "2026-09-19T08:43:10.197Z"
+    },
+    {
+      "title": "WhatsApp Sales Automation with Grok Bot",
+      "description": "Using Grok Bot to automate sales processes and increase conversions through WhatsApp messaging.",
+      "detailed_content": "## WhatsApp Sales Automation with Grok Bot\n\nThis use case involves implementing Grok Bot to enhance sales performance through WhatsApp automation. Based on the video title and context, this appears to be a comprehensive approach to leveraging AI-powered chatbots for sales optimization on WhatsApp.\n\n### How It Works\n\nThe implementation likely involves setting up Grok Bot to handle various aspects of the sales funnel through WhatsApp:\n- Automated lead qualification and initial customer interactions\n- Product recommendations based on customer inquiries\n- Order processing and payment facilitation\n- Follow-up sequences to nurture prospects\n\n### Benefits and Applications\n\nThis automation approach can significantly scale sales operations by providing 24/7 customer support, instant responses to inquiries, and consistent follow-up processes. The integration with WhatsApp leverages the platform's widespread adoption and familiar interface, making it easier for customers to engage with the sales process.\n\n### Implementation Considerations\n\nSuccess with this approach requires careful setup of conversation flows, integration with existing CRM systems, and ongoing optimization based on customer interactions and conversion metrics.",
+      "category_id": "cat-customer",
+      "suggested_category": null,
+      "tags": [
+        "whatsapp-automation",
+        "sales-bot",
+        "grok-bot",
+        "customer-engagement",
+        "lead-generation",
+        "chatbot"
+      ],
+      "difficulty": "intermediate",
+      "source_id": "yt-1772206123032-42kwm1",
+      "source_video_id": "TVo3j5aH4OE",
+      "source_video_title": "Vender mais no WhastApp usando GROK BOT - #grokbot",
+      "source_video_url": "https://www.youtube.com/watch?v=TVo3j5aH4OE",
+      "source_channel_name": "Diego Fornalha | Grok Bot",
+      "source_channel_id": "UCeY0SKw3BIsJzVZ3W08r4tA",
+      "source_published_at": "2026-09-25T01:14:31Z",
+      "ai_confidence": 0.6,
+      "ai_model": "anthropic/claude-sonnet-4",
+      "extraction_metadata": {
+        "tokens_used": 976,
+        "had_transcript": false,
+        "transcript_length": 0
+      },
+      "status": "draft",
+      "id": "yt-1790325779456-1mqn64",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "rejection_reason": null,
+      "published_at": null,
+      "created_at": "2026-09-25T08:42:59.456Z"
     }
   ]
 }
