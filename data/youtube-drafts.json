@@ -661,6 +661,44 @@
       "rejection_reason": null,
       "published_at": null,
       "created_at": "2026-09-25T08:42:59.456Z"
+    },
+    {
+      "title": "Personal Task Management with Meta's Muse AI Assistant",
+      "description": "Use Meta's Muse AI to manage and work through your to-do list by texting it like a friend and asking it to complete real tasks for you.",
+      "detailed_content": "## Personal Task Management with Meta's Muse\n\nMeta's Muse represents a new approach to AI-powered task management, allowing users to interact with the AI assistant through natural text conversations as if they were messaging a friend. This conversational interface makes task delegation feel more intuitive and accessible.\n\n### How It Works\nUsers can text Muse directly with their to-do items and requests, using natural language to describe what they need accomplished. The AI assistant can then take action on these tasks, potentially handling various types of work that would normally require manual effort from the user.\n\n### Key Features\nThe system appears designed to handle \"real work\" rather than just providing information or suggestions. This suggests Muse can take concrete actions to complete tasks, though the specific capabilities would depend on what integrations and permissions are available. The personalized aspect indicates the AI can adapt to individual user preferences and working styles.\n\n### Benefits\nThis approach to task management could significantly reduce the cognitive load of organizing and executing daily tasks, allowing users to focus on higher-level work while the AI handles routine items from their to-do lists.",
+      "category_id": "cat-automation",
+      "suggested_category": null,
+      "tags": [
+        "task-management",
+        "personal-assistant",
+        "meta",
+        "muse",
+        "productivity",
+        "automation",
+        "conversational-ai"
+      ],
+      "difficulty": "beginner",
+      "source_id": "yt-1772206131968-5g5vwi",
+      "source_video_id": "OODvXcQJyVo",
+      "source_video_title": "Muse from Meta Can Work Through Your To-Do List",
+      "source_video_url": "https://www.youtube.com/watch?v=OODvXcQJyVo",
+      "source_channel_name": "Matthew Berman",
+      "source_channel_id": "UCawZsQWqfGSbCI5yjkdVkTA",
+      "source_published_at": "2026-10-01T16:59:24Z",
+      "ai_confidence": 0.6,
+      "ai_model": "anthropic/claude-sonnet-4",
+      "extraction_metadata": {
+        "tokens_used": 958,
+        "had_transcript": false,
+        "transcript_length": 0
+      },
+      "status": "draft",
+      "id": "yt-1790930597165-xctgwj",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "rejection_reason": null,
+      "published_at": null,
+      "created_at": "2026-10-02T08:43:17.165Z"
     }
   ]
 }
