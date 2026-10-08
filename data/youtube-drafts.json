@@ -699,6 +699,42 @@
       "rejection_reason": null,
       "published_at": null,
       "created_at": "2026-10-02T08:43:17.165Z"
+    },
+    {
+      "title": "Accessing Nano Banana 2.1 Model in Google AI Studio",
+      "description": "Learn how to locate and use the Nano Banana 2.1 AI model within Google's AI Studio platform for development projects.",
+      "detailed_content": "## Finding Nano Banana 2.1 in Google AI Studio\n\nThis use case focuses on navigating Google AI Studio to access the Nano Banana 2.1 model, which appears to be a specific AI model available through Google's platform. Google AI Studio serves as a development environment where users can experiment with various AI models and build applications.\n\n### How to Access the Model\n\nThe process likely involves logging into Google AI Studio, navigating through the model selection interface, and locating the Nano Banana 2.1 model among the available options. This could be part of Google's model garden or a specific section dedicated to experimental or specialized models.\n\n### Practical Applications\n\nOnce located, users can integrate this model into their projects for various AI tasks. The specific capabilities of Nano Banana 2.1 would determine its optimal use cases, whether for text generation, analysis, or other AI-powered functions within the Google AI ecosystem.\n\n### Benefits for Developers\n\nAccessing models through Google AI Studio provides developers with a streamlined environment for testing and implementing AI capabilities without needing to set up complex infrastructure locally.",
+      "category_id": "cat-code",
+      "suggested_category": null,
+      "tags": [
+        "google-ai-studio",
+        "nano-banana",
+        "model-access",
+        "ai-development",
+        "google-platform"
+      ],
+      "difficulty": "beginner",
+      "source_id": "yt-1772206131968-5g5vwi",
+      "source_video_id": "EItxPNgKOX4",
+      "source_video_title": "How to Find Nano Banana 2.1 in Google AI Studio",
+      "source_video_url": "https://www.youtube.com/watch?v=EItxPNgKOX4",
+      "source_channel_name": "Matthew Berman",
+      "source_channel_id": "UCawZsQWqfGSbCI5yjkdVkTA",
+      "source_published_at": "2026-10-07T20:23:22Z",
+      "ai_confidence": 0.6,
+      "ai_model": "anthropic/claude-sonnet-4",
+      "extraction_metadata": {
+        "tokens_used": 965,
+        "had_transcript": false,
+        "transcript_length": 0
+      },
+      "status": "draft",
+      "id": "yt-1791446430131-hdjrgx",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "rejection_reason": null,
+      "published_at": null,
+      "created_at": "2026-10-08T08:00:30.131Z"
     }
   ]
 }
