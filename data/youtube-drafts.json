@@ -735,6 +735,43 @@
       "rejection_reason": null,
       "published_at": null,
       "created_at": "2026-10-08T08:00:30.131Z"
+    },
+    {
+      "title": "AI-Powered Game Development and Recreation",
+      "description": "Using AI tools to rebuild or recreate classic video games like Super Mario World from scratch.",
+      "detailed_content": "## AI-Powered Game Recreation\n\nThis use case involves leveraging artificial intelligence to rebuild classic video games, specifically demonstrated with Super Mario World. The process likely involves using AI for multiple aspects of game development including sprite generation, level design, physics simulation, and potentially code generation.\n\n### How It Works\n\nWhile specific details aren't available from the limited content, this type of project typically involves:\n1. **Asset Generation**: Using AI image generators to create sprites, backgrounds, and visual elements that match the original game's style\n2. **Code Generation**: Employing AI coding assistants to write game logic, physics engines, and gameplay mechanics\n3. **Level Design**: Potentially using AI to analyze and recreate level layouts or generate new levels in the same style\n4. **Audio Recreation**: Using AI audio tools to recreate or generate similar sound effects and music\n\n### Benefits and Applications\n\nThis approach demonstrates how AI can accelerate game development workflows, help indie developers create games with limited resources, and serve as a learning tool for understanding game mechanics. It showcases the potential for AI to handle both creative and technical aspects of game development, making game creation more accessible to non-programmers while also serving as a powerful prototyping tool for experienced developers.",
+      "category_id": "cat-content",
+      "suggested_category": null,
+      "tags": [
+        "game-development",
+        "ai-recreation",
+        "sprite-generation",
+        "code-generation",
+        "creative-ai",
+        "retro-gaming"
+      ],
+      "difficulty": "advanced",
+      "source_id": "yt-1772206131968-5g5vwi",
+      "source_video_id": "FTaPMTB-LxI",
+      "source_video_title": "I&#39;m Rebuilding Super Mario World With AI",
+      "source_video_url": "https://www.youtube.com/watch?v=FTaPMTB-LxI",
+      "source_channel_name": "Matthew Berman",
+      "source_channel_id": "UCawZsQWqfGSbCI5yjkdVkTA",
+      "source_published_at": "2026-10-12T16:21:04Z",
+      "ai_confidence": 0.7,
+      "ai_model": "anthropic/claude-sonnet-4",
+      "extraction_metadata": {
+        "tokens_used": 968,
+        "had_transcript": false,
+        "transcript_length": 0
+      },
+      "status": "draft",
+      "id": "yt-1791878428275-djh3b1",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "rejection_reason": null,
+      "published_at": null,
+      "created_at": "2026-10-13T08:00:28.275Z"
     }
   ]
 }
