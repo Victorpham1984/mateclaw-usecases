@@ -1,6 +1,22 @@
 {
   "crawls": [
     {
+      "id": "crawl-1792137616578-o6x5",
+      "source_id": "yt-1772206131968-5g5vwi",
+      "status": "completed",
+      "videos_found": 1,
+      "videos_processed": 0,
+      "use_cases_created": 0,
+      "errors": [
+        {
+          "videoId": "6VDjFXM1FbM",
+          "error": "OpenRouter API error: 404 - {\"error\":{\"message\":\"No endpoints found for anthropic/claude-sonnet-4.\",\"code\":404},\"user_id\":\"user_2u21dLqUaWcL1eUwWezHoR3W1y9\"}"
+        }
+      ],
+      "started_at": "2026-10-16T08:00:13.558Z",
+      "completed_at": "2026-10-16T08:00:16.578Z"
+    },
+    {
       "id": "crawl-1792137612430-fsyc",
       "source_id": "yt-1772206123032-42kwm1",
       "status": "completed",
@@ -538,17 +554,6 @@
       "errors": [],
       "started_at": "2026-09-22T08:42:51.921Z",
       "completed_at": "2026-09-22T08:42:53.065Z"
-    },
-    {
-      "id": "crawl-1789980178685-ujzs",
-      "source_id": "yt-1772206131968-5g5vwi",
-      "status": "completed",
-      "videos_found": 1,
-      "videos_processed": 1,
-      "use_cases_created": 0,
-      "errors": [],
-      "started_at": "2026-09-21T08:42:53.408Z",
-      "completed_at": "2026-09-21T08:42:58.685Z"
     }
   ]
 }
