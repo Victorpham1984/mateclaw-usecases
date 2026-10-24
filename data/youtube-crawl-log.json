@@ -1,6 +1,34 @@
 {
   "crawls": [
     {
+      "id": "crawl-1792828819871-fxae",
+      "source_id": "yt-1772206131968-5g5vwi",
+      "status": "completed",
+      "videos_found": 4,
+      "videos_processed": 0,
+      "use_cases_created": 0,
+      "errors": [
+        {
+          "videoId": "5sEVvu4mQ8g",
+          "error": "OpenRouter API error: 404 - {\"error\":{\"message\":\"anthropic/claude-sonnet-4 is no longer available on OpenRouter: no provider serves this model anymore. See available models at https://openrouter.ai/models\",\"code\":404},\"user_id\":\"user_2u21dLqUaWcL1eUwWezHoR3W1y9\"}"
+        },
+        {
+          "videoId": "7fZ1rFcm1nA",
+          "error": "OpenRouter API error: 404 - {\"error\":{\"message\":\"anthropic/claude-sonnet-4 is no longer available on OpenRouter: no provider serves this model anymore. See available models at https://openrouter.ai/models\",\"code\":404},\"user_id\":\"user_2u21dLqUaWcL1eUwWezHoR3W1y9\"}"
+        },
+        {
+          "videoId": "f8uIINtoJCM",
+          "error": "OpenRouter API error: 404 - {\"error\":{\"message\":\"anthropic/claude-sonnet-4 is no longer available on OpenRouter: no provider serves this model anymore. See available models at https://openrouter.ai/models\",\"code\":404},\"user_id\":\"user_2u21dLqUaWcL1eUwWezHoR3W1y9\"}"
+        },
+        {
+          "videoId": "fHY0sjAejcA",
+          "error": "OpenRouter API error: 404 - {\"error\":{\"message\":\"anthropic/claude-sonnet-4 is no longer available on OpenRouter: no provider serves this model anymore. See available models at https://openrouter.ai/models\",\"code\":404},\"user_id\":\"user_2u21dLqUaWcL1eUwWezHoR3W1y9\"}"
+        }
+      ],
+      "started_at": "2026-10-24T08:00:13.565Z",
+      "completed_at": "2026-10-24T08:00:19.871Z"
+    },
+    {
       "id": "crawl-1792828812755-kmdd",
       "source_id": "yt-1772206123032-42kwm1",
       "status": "completed",
@@ -592,17 +620,6 @@
       "errors": [],
       "started_at": "2026-09-30T08:42:51.219Z",
       "completed_at": "2026-09-30T08:42:52.607Z"
-    },
-    {
-      "id": "crawl-1790671399011-7z2v",
-      "source_id": "yt-1772206131968-5g5vwi",
-      "status": "completed",
-      "videos_found": 2,
-      "videos_processed": 2,
-      "use_cases_created": 0,
-      "errors": [],
-      "started_at": "2026-09-29T08:43:07.868Z",
-      "completed_at": "2026-09-29T08:43:19.011Z"
     }
   ]
 }
