@@ -1,6 +1,22 @@
 {
   "crawls": [
     {
+      "id": "crawl-1793088016119-9yp4",
+      "source_id": "yt-1772206131968-5g5vwi",
+      "status": "completed",
+      "videos_found": 1,
+      "videos_processed": 0,
+      "use_cases_created": 0,
+      "errors": [
+        {
+          "videoId": "JI3bbZNdyeA",
+          "error": "OpenRouter API error: 404 - {\"error\":{\"message\":\"anthropic/claude-sonnet-4 is no longer available on OpenRouter: no provider serves this model anymore. See available models at https://openrouter.ai/models\",\"code\":404},\"user_id\":\"user_2u21dLqUaWcL1eUwWezHoR3W1y9\"}"
+        }
+      ],
+      "started_at": "2026-10-27T08:00:13.429Z",
+      "completed_at": "2026-10-27T08:00:16.119Z"
+    },
+    {
       "id": "crawl-1793088012407-f6a1",
       "source_id": "yt-1772206123032-42kwm1",
       "status": "completed",
@@ -623,17 +639,6 @@
       "errors": [],
       "started_at": "2026-10-03T08:42:51.268Z",
       "completed_at": "2026-10-03T08:42:52.573Z"
-    },
-    {
-      "id": "crawl-1790930598917-43qm",
-      "source_id": "yt-1772206131968-5g5vwi",
-      "status": "completed",
-      "videos_found": 1,
-      "videos_processed": 1,
-      "use_cases_created": 1,
-      "errors": [],
-      "started_at": "2026-10-02T08:43:08.745Z",
-      "completed_at": "2026-10-02T08:43:18.917Z"
     }
   ]
 }
