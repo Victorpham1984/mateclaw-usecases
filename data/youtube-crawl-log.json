@@ -1,6 +1,26 @@
 {
   "crawls": [
     {
+      "id": "crawl-1794384017357-3pen",
+      "source_id": "yt-1772206131968-5g5vwi",
+      "status": "completed",
+      "videos_found": 2,
+      "videos_processed": 0,
+      "use_cases_created": 0,
+      "errors": [
+        {
+          "videoId": "ZBJV-hA-tLM",
+          "error": "OpenRouter API error: 404 - {\"error\":{\"message\":\"anthropic/claude-sonnet-4 is no longer available on OpenRouter: no provider serves this model anymore. See available models at https://openrouter.ai/models\",\"code\":404},\"user_id\":\"user_2u21dLqUaWcL1eUwWezHoR3W1y9\"}"
+        },
+        {
+          "videoId": "L2acYRMzig8",
+          "error": "OpenRouter API error: 404 - {\"error\":{\"message\":\"anthropic/claude-sonnet-4 is no longer available on OpenRouter: no provider serves this model anymore. See available models at https://openrouter.ai/models\",\"code\":404},\"user_id\":\"user_2u21dLqUaWcL1eUwWezHoR3W1y9\"}"
+        }
+      ],
+      "started_at": "2026-11-11T08:00:14.661Z",
+      "completed_at": "2026-11-11T08:00:17.357Z"
+    },
+    {
       "id": "crawl-1794384013183-0a10",
       "source_id": "yt-1772206123032-42kwm1",
       "status": "completed",
@@ -706,26 +726,6 @@
       "errors": [],
       "started_at": "2026-10-18T08:00:10.931Z",
       "completed_at": "2026-10-18T08:00:12.238Z"
-    },
-    {
-      "id": "crawl-1792224017573-25ro",
-      "source_id": "yt-1772206131968-5g5vwi",
-      "status": "completed",
-      "videos_found": 2,
-      "videos_processed": 0,
-      "use_cases_created": 0,
-      "errors": [
-        {
-          "videoId": "YMulO01LMBE",
-          "error": "OpenRouter API error: 404 - {\"error\":{\"message\":\"No endpoints found for anthropic/claude-sonnet-4.\",\"code\":404},\"user_id\":\"user_2u21dLqUaWcL1eUwWezHoR3W1y9\"}"
-        },
-        {
-          "videoId": "vdU8mYN_-hE",
-          "error": "OpenRouter API error: 404 - {\"error\":{\"message\":\"No endpoints found for anthropic/claude-sonnet-4.\",\"code\":404},\"user_id\":\"user_2u21dLqUaWcL1eUwWezHoR3W1y9\"}"
-        }
-      ],
-      "started_at": "2026-10-17T08:00:14.073Z",
-      "completed_at": "2026-10-17T08:00:17.573Z"
     }
   ]
 }
