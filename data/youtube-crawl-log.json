@@ -1,6 +1,30 @@
 {
   "crawls": [
     {
+      "id": "crawl-1794556816075-yxts",
+      "source_id": "yt-1772206131968-5g5vwi",
+      "status": "completed",
+      "videos_found": 3,
+      "videos_processed": 0,
+      "use_cases_created": 0,
+      "errors": [
+        {
+          "videoId": "yVaVR2Ywfik",
+          "error": "OpenRouter API error: 404 - {\"error\":{\"message\":\"anthropic/claude-sonnet-4 is no longer available on OpenRouter: no provider serves this model anymore. See available models at https://openrouter.ai/models\",\"code\":404},\"user_id\":\"user_2u21dLqUaWcL1eUwWezHoR3W1y9\"}"
+        },
+        {
+          "videoId": "Sjdvu4nHfDk",
+          "error": "OpenRouter API error: 404 - {\"error\":{\"message\":\"anthropic/claude-sonnet-4 is no longer available on OpenRouter: no provider serves this model anymore. See available models at https://openrouter.ai/models\",\"code\":404},\"user_id\":\"user_2u21dLqUaWcL1eUwWezHoR3W1y9\"}"
+        },
+        {
+          "videoId": "G11-Vmw7-PQ",
+          "error": "OpenRouter API error: 404 - {\"error\":{\"message\":\"anthropic/claude-sonnet-4 is no longer available on OpenRouter: no provider serves this model anymore. See available models at https://openrouter.ai/models\",\"code\":404},\"user_id\":\"user_2u21dLqUaWcL1eUwWezHoR3W1y9\"}"
+        }
+      ],
+      "started_at": "2026-11-13T08:00:12.882Z",
+      "completed_at": "2026-11-13T08:00:16.075Z"
+    },
+    {
       "id": "crawl-1794556812022-7bfz",
       "source_id": "yt-1772206123032-42kwm1",
       "status": "completed",
@@ -718,22 +742,6 @@
       "errors": [],
       "started_at": "2026-10-20T08:00:11.562Z",
       "completed_at": "2026-10-20T08:00:12.955Z"
-    },
-    {
-      "id": "crawl-1792396817079-o6gw",
-      "source_id": "yt-1772206131968-5g5vwi",
-      "status": "completed",
-      "videos_found": 1,
-      "videos_processed": 0,
-      "use_cases_created": 0,
-      "errors": [
-        {
-          "videoId": "RS9vWYlJeH8",
-          "error": "OpenRouter API error: 404 - {\"error\":{\"message\":\"No endpoints found for anthropic/claude-sonnet-4.\",\"code\":404},\"user_id\":\"user_2u21dLqUaWcL1eUwWezHoR3W1y9\"}"
-        }
-      ],
-      "started_at": "2026-10-19T08:00:14.290Z",
-      "completed_at": "2026-10-19T08:00:17.079Z"
     }
   ]
 }
