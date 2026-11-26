@@ -1,6 +1,30 @@
 {
   "crawls": [
     {
+      "id": "crawl-1795680018092-h0j4",
+      "source_id": "yt-1772206131968-5g5vwi",
+      "status": "completed",
+      "videos_found": 3,
+      "videos_processed": 0,
+      "use_cases_created": 0,
+      "errors": [
+        {
+          "videoId": "ngZ1_I_RWS0",
+          "error": "OpenRouter API error: 404 - {\"error\":{\"message\":\"anthropic/claude-sonnet-4 is no longer available on OpenRouter: no provider serves this model anymore. See available models at https://openrouter.ai/models\",\"code\":404},\"user_id\":\"user_2u21dLqUaWcL1eUwWezHoR3W1y9\"}"
+        },
+        {
+          "videoId": "nMPyC3s4Q-0",
+          "error": "OpenRouter API error: 404 - {\"error\":{\"message\":\"anthropic/claude-sonnet-4 is no longer available on OpenRouter: no provider serves this model anymore. See available models at https://openrouter.ai/models\",\"code\":404},\"user_id\":\"user_2u21dLqUaWcL1eUwWezHoR3W1y9\"}"
+        },
+        {
+          "videoId": "iA0ns69dZGM",
+          "error": "OpenRouter API error: 404 - {\"error\":{\"message\":\"anthropic/claude-sonnet-4 is no longer available on OpenRouter: no provider serves this model anymore. See available models at https://openrouter.ai/models\",\"code\":404},\"user_id\":\"user_2u21dLqUaWcL1eUwWezHoR3W1y9\"}"
+        }
+      ],
+      "started_at": "2026-11-26T08:00:14.116Z",
+      "completed_at": "2026-11-26T08:00:18.092Z"
+    },
+    {
       "id": "crawl-1795680013029-2kzy",
       "source_id": "yt-1772206123032-42kwm1",
       "status": "completed",
@@ -680,17 +704,6 @@
       "errors": [],
       "started_at": "2026-11-02T08:00:10.925Z",
       "completed_at": "2026-11-02T08:00:12.218Z"
-    },
-    {
-      "id": "crawl-1793520014454-wo3d",
-      "source_id": "yt-1772206131968-5g5vwi",
-      "status": "completed",
-      "videos_found": 0,
-      "videos_processed": 0,
-      "use_cases_created": 0,
-      "errors": [],
-      "started_at": "2026-11-01T08:00:13.207Z",
-      "completed_at": "2026-11-01T08:00:14.454Z"
     }
   ]
 }
